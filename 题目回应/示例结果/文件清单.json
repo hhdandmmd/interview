@@ -1,0 +1,184 @@
+{
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 1396,
+      "sha256": "80df77aebed95eea5a0160565418a03564611c44a1ac0d1be38c05e51da8399c"
+    },
+    {
+      "path": "分组回测/chart_data.csv",
+      "bytes": 4596,
+      "sha256": "7b7814484facbcff0bfedf6dc610b4ea56f3c05d127cae1965d6cd9257303fcc"
+    },
+    {
+      "path": "分组回测/exclusions.csv",
+      "bytes": 6439,
+      "sha256": "43e883a08f54bf04e0f753c5198a3de4b16d4a564444b6e45d8a975d0daaf39f"
+    },
+    {
+      "path": "分组回测/market/calendar.csv",
+      "bytes": 8739,
+      "sha256": "886b060b8fa082316d4edb35301d119502595214dccd687ab2a4156285b83951"
+    },
+    {
+      "path": "分组回测/market/manifest.json",
+      "bytes": 951,
+      "sha256": "d496e99751e0b0da600430ef9b6727390ae95f6f249e51b7b7233ca0409e31c0"
+    },
+    {
+      "path": "分组回测/market/prices.csv",
+      "bytes": 207323,
+      "sha256": "22897c3942472c191c9a92c786023e220b0bd6e3fbb206a939e267b06a5fe340"
+    },
+    {
+      "path": "分组回测/memberships.csv",
+      "bytes": 55847,
+      "sha256": "bd52a084966d18686d9051031db7d3132174f7121716258b29ece1019d2d6a9a"
+    },
+    {
+      "path": "分组回测/nav.csv",
+      "bytes": 3305,
+      "sha256": "ae2ad48754b96446f087694ad1e92ef50a2b39b1f096e59c6010a394f2532f23"
+    },
+    {
+      "path": "分组回测/nav.svg",
+      "bytes": 20211,
+      "sha256": "0bf5bfc02f1611c4a686dc5e4b5e6b0bf6c3408e51c26545501e1578b028581f"
+    },
+    {
+      "path": "分组回测/period_returns.csv",
+      "bytes": 14957,
+      "sha256": "fa57b7f5106de8c7712b11af2805fb1d7bbb36b897f65a76c6d94e0a4a854d2c"
+    },
+    {
+      "path": "分组回测/report.html",
+      "bytes": 28524,
+      "sha256": "3de15b574c4112de5a16b309986556de9dd56c88f73058707446df3bc7677da6"
+    },
+    {
+      "path": "分组回测/report.json",
+      "bytes": 249117,
+      "sha256": "1a1c907bc4095c3fa9413f5189f1feda286c2af730fe85aab70ec450ca60e13c"
+    },
+    {
+      "path": "分组回测/SHA256.json",
+      "bytes": 1070,
+      "sha256": "04e89eab326401a8faeda31ebbfd7385f695f83363b592c0d2945855748872e4"
+    },
+    {
+      "path": "分组回测/signals.json",
+      "bytes": 67377,
+      "sha256": "ed50fe60232dcb313150aaa2509df5729687ad64d0bd0e57d0265bb9449997bf"
+    },
+    {
+      "path": "原报告核对.json",
+      "bytes": 372125,
+      "sha256": "bb3b9e1141e71f1a83f8f4943490b01bf4c8a0d04134d91ec7f220c7ce3e183e"
+    },
+    {
+      "path": "清洗反例.json",
+      "bytes": 13679,
+      "sha256": "739ae72ac3514cc17e88f396671ffa42e470576ed966bfa65ffa7e56e56910b1"
+    },
+    {
+      "path": "财务处理/balance.csv",
+      "bytes": 14484,
+      "sha256": "0d612fb8b615588a4b610b31b949b245c4f82928768ea80ba858abf117c57186"
+    },
+    {
+      "path": "财务处理/balance.parquet",
+      "bytes": 15887,
+      "sha256": "488588037a80772bad2193a8844f6acd122426b03dca0ff5a9b4674db034889e"
+    },
+    {
+      "path": "财务处理/dictionary.json",
+      "bytes": 77284,
+      "sha256": "05364b6bee957f8b125681d3928378d850908b647fdd506beb8fe97c71955d80"
+    },
+    {
+      "path": "财务处理/dictionary.md",
+      "bytes": 5239,
+      "sha256": "e06ae9b19a8632af0681ee43e77f3c15d8dac27c086f6f0908d3576ca654c5ff"
+    },
+    {
+      "path": "财务处理/features_long.csv",
+      "bytes": 77027,
+      "sha256": "30daa45e5e9bac41512ebe5d6b34c71833e324ca4a3aa74a68d8a19f25214979"
+    },
+    {
+      "path": "财务处理/features_long.parquet",
+      "bytes": 20507,
+      "sha256": "e7004c51cf3abeabde270e5bf5784d920f07250d7d1d9bcf04f85e0044df2a7f"
+    },
+    {
+      "path": "财务处理/features_panel.csv",
+      "bytes": 4016,
+      "sha256": "ef5449a11e3857818eccf2c9e5c05f2072b67c91b5adbbe23300fe5c142dd420"
+    },
+    {
+      "path": "财务处理/features_panel.parquet",
+      "bytes": 13500,
+      "sha256": "a668c8e62a06d9eed0ab273cc645ee9f005ea6d4ff7d56ad6944af2feeaf8542"
+    },
+    {
+      "path": "财务处理/income.csv",
+      "bytes": 13752,
+      "sha256": "0235c892b1f38ef94624a9aa776d73a5ef671d3f308d4ded1c76e04772bdb7a4"
+    },
+    {
+      "path": "财务处理/income.parquet",
+      "bytes": 15144,
+      "sha256": "9f3b17e179dda27c3eaa3a1389f58bd91c60cafe8a1af4bf5925d085d25bfd3b"
+    },
+    {
+      "path": "财务处理/indicator.csv",
+      "bytes": 14350,
+      "sha256": "3be2d3489d7cfb75259b81f6a763f35ad064af36f910481cb763fbae5d621312"
+    },
+    {
+      "path": "财务处理/indicator.parquet",
+      "bytes": 15346,
+      "sha256": "d4d246576653a38584b043096d4a45b6b39d9dce54862e8f08b60856660185cc"
+    },
+    {
+      "path": "财务处理/manifest.json",
+      "bytes": 322026,
+      "sha256": "4beda1b701db9289b8921330da26bcc21596a75da20309c01c7db9f25b2cecea"
+    },
+    {
+      "path": "财务处理/publication_receipt.json",
+      "bytes": 293,
+      "sha256": "b2adacb670d8bd750a7123d9d0d361c8d56a4a5a7649af8913a7c9546c1b5cb9"
+    },
+    {
+      "path": "财务处理/quality.json",
+      "bytes": 303576,
+      "sha256": "4a52a3668ed232cce4677e6d809e69cf8d85366c04c823b517fa36d92edd072a"
+    },
+    {
+      "path": "财务处理/report.html",
+      "bytes": 6324,
+      "sha256": "45cc63ac256b92bdf509db5d3eb8161bc330ba1689c199fe2f3a21aae7e697b5"
+    },
+    {
+      "path": "财务处理/单公司查询.json",
+      "bytes": 8233,
+      "sha256": "7504009bf8691ee743f051e49b14a58be24baf1480715dbcb087afac53db8cba"
+    },
+    {
+      "path": "财务处理/因子解释.json",
+      "bytes": 3898,
+      "sha256": "2515833fc5a02ca6210e2890d4dbd8dd69b240469688b3410ca0dfff46e191a2"
+    },
+    {
+      "path": "财务处理/清洗日志.csv",
+      "bytes": 35488,
+      "sha256": "3dfbba1bb6f58d6d6d8d102a4946fc762c498d21e56f755783782def47104dca"
+    },
+    {
+      "path": "运行验收.json",
+      "bytes": 4618,
+      "sha256": "398d6e6f90da906b6aea081e98febeefb3db044fd096bf92f84624ca0a0a7abf"
+    }
+  ]
+}

@@ -1,0 +1,2318 @@
+{
+  "dictionary_version": "1",
+  "fields": {
+    "income": [
+      {
+        "name": "operating_revenue_ytd",
+        "source_field": "OPERATE_INCOME",
+        "unit": "cny",
+        "period_basis": "ytd",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "营业收入",
+        "update_policy": "event"
+      },
+      {
+        "name": "total_revenue_ytd",
+        "source_field": "TOTAL_OPERATE_INCOME",
+        "unit": "cny",
+        "period_basis": "ytd",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "营业总收入",
+        "update_policy": "event"
+      },
+      {
+        "name": "operating_cost_ytd",
+        "source_field": "OPERATE_COST",
+        "unit": "cny",
+        "period_basis": "ytd",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "营业成本",
+        "update_policy": "event"
+      },
+      {
+        "name": "net_profit_ytd",
+        "source_field": "NETPROFIT",
+        "unit": "cny",
+        "period_basis": "ytd",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "合并净利润",
+        "update_policy": "event"
+      },
+      {
+        "name": "parent_net_profit_ytd",
+        "source_field": "PARENT_NETPROFIT",
+        "unit": "cny",
+        "period_basis": "ytd",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "归母净利润",
+        "update_policy": "event"
+      }
+    ],
+    "balance": [
+      {
+        "name": "total_assets",
+        "source_field": "TOTAL_ASSETS",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "总资产",
+        "update_policy": "event"
+      },
+      {
+        "name": "total_liabilities",
+        "source_field": "TOTAL_LIABILITIES",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "总负债",
+        "update_policy": "event"
+      },
+      {
+        "name": "total_equity",
+        "source_field": "TOTAL_EQUITY",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "权益合计",
+        "update_policy": "event"
+      },
+      {
+        "name": "parent_equity",
+        "source_field": "TOTAL_PARENT_EQUITY",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "归母权益",
+        "update_policy": "event"
+      },
+      {
+        "name": "current_assets",
+        "source_field": "TOTAL_CURRENT_ASSETS",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "流动资产",
+        "update_policy": "event"
+      },
+      {
+        "name": "current_liabilities",
+        "source_field": "TOTAL_CURRENT_LIAB",
+        "unit": "cny",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "流动负债",
+        "update_policy": "event"
+      }
+    ],
+    "indicator": [
+      {
+        "name": "roe_weighted_ytd",
+        "source_field": "ROEJQ",
+        "unit": "ratio",
+        "period_basis": "ytd",
+        "multiplier": 0.01,
+        "required": true,
+        "description": "累计加权ROE",
+        "update_policy": "event"
+      },
+      {
+        "name": "source_gross_margin_ytd",
+        "source_field": "XSMLL",
+        "unit": "ratio",
+        "period_basis": "ytd",
+        "multiplier": 0.01,
+        "required": true,
+        "description": "累计毛利率",
+        "update_policy": "event"
+      },
+      {
+        "name": "source_net_margin_ytd",
+        "source_field": "XSJLL",
+        "unit": "ratio",
+        "period_basis": "ytd",
+        "multiplier": 0.01,
+        "required": true,
+        "description": "累计净利率",
+        "update_policy": "event"
+      },
+      {
+        "name": "source_debt_asset_ratio",
+        "source_field": "ZCFZL",
+        "unit": "ratio",
+        "period_basis": "point_in_time",
+        "multiplier": 0.01,
+        "required": true,
+        "description": "负债率",
+        "update_policy": "event"
+      },
+      {
+        "name": "source_current_ratio",
+        "source_field": "LD",
+        "unit": "multiple",
+        "period_basis": "point_in_time",
+        "multiplier": 1.0,
+        "required": true,
+        "description": "流动比率",
+        "update_policy": "event"
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "roe_weighted_ytd",
+      "description": "披露累计加权ROE",
+      "formula": "ROE_ytd",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "indicator",
+          "field_name": "roe_weighted_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。",
+      "formula_version": "2"
+    },
+    {
+      "name": "roe_change_yoy",
+      "description": "披露ROE同比相对变化",
+      "formula": "ROE_ytd / lag4(ROE_ytd) - 1",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "indicator",
+          "field_name": "roe_weighted_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0,
+            4
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。成长基期须正且超过声明阈值；非正基期为nonpositive_baseline，过小正基期为invalid_denominator。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "roe_change_yoy_pp",
+      "description": "披露ROE同比百分点变化",
+      "formula": "ROE_ytd - lag4(ROE_ytd)",
+      "storage_unit": "ratio_delta",
+      "display_unit": "percentage_point",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "indicator",
+          "field_name": "roe_weighted_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0,
+            4
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "net_margin_q",
+      "description": "单季合并净利率",
+      "formula": "NP_q / R_q",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "net_profit_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。",
+      "formula_version": "2"
+    },
+    {
+      "name": "gross_margin_q",
+      "description": "单季毛利率",
+      "formula": "(R_q - C_q) / R_q",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "income",
+          "field_name": "operating_cost_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。",
+      "formula_version": "2"
+    },
+    {
+      "name": "net_margin_ytd",
+      "description": "累计合并净利率",
+      "formula": "NP_ytd / R_ytd",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "net_profit_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。",
+      "formula_version": "2"
+    },
+    {
+      "name": "gross_margin_ytd",
+      "description": "累计毛利率",
+      "formula": "(R_ytd - C_ytd) / R_ytd",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "income",
+          "field_name": "operating_cost_ytd",
+          "period_basis": "ytd",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。",
+      "formula_version": "2"
+    },
+    {
+      "name": "revenue_growth_yoy",
+      "description": "单季营业收入同比",
+      "formula": "R_q / lag4(R_q) - 1",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0,
+            4
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。成长基期须正且超过声明阈值；非正基期为nonpositive_baseline，过小正基期为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "revenue_growth_qoq",
+      "description": "单季营业收入环比",
+      "formula": "R_q / lag1(R_q) - 1",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "operating_revenue_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。成长基期须正且超过声明阈值；非正基期为nonpositive_baseline，过小正基期为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "parent_profit_growth_yoy",
+      "description": "单季归母利润同比",
+      "formula": "PNP_q / lag4(PNP_q) - 1",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "parent_net_profit_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0,
+            4
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。成长基期须正且超过声明阈值；非正基期为nonpositive_baseline，过小正基期为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "parent_profit_growth_qoq",
+      "description": "单季归母利润环比",
+      "formula": "PNP_q / lag1(PNP_q) - 1",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "income",
+          "field_name": "parent_net_profit_ytd",
+          "period_basis": "quarter",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "Q1仅本季累计；Q2至Q4减同年紧邻前季累计，准确lag1/lag4后分别展开。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。成长基期须正且超过声明阈值；非正基期为nonpositive_baseline，过小正基期为invalid_denominator。已知未解决重述或不可比基础为input_error；普通source_assumed差分保留值并warning。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "debt_asset_ratio",
+      "description": "期末资产负债率",
+      "formula": "L / A",
+      "storage_unit": "ratio",
+      "display_unit": "percent",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "balance",
+          "field_name": "total_liabilities",
+          "period_basis": "point_in_time",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "balance",
+          "field_name": "total_assets",
+          "period_basis": "point_in_time",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。",
+      "formula_version": "2"
+    },
+    {
+      "name": "debt_asset_change_qoq_pp",
+      "description": "负债率环比百分点变化",
+      "formula": "L / A - lag1(L / A)",
+      "storage_unit": "ratio_delta",
+      "display_unit": "percentage_point",
+      "display_multiplier": 100,
+      "period_dependencies": [
+        {
+          "statement_type": "balance",
+          "field_name": "total_liabilities",
+          "period_basis": "point_in_time",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "balance",
+          "field_name": "total_assets",
+          "period_basis": "point_in_time",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    },
+    {
+      "name": "current_ratio",
+      "description": "期末流动比率",
+      "formula": "CA / CL",
+      "storage_unit": "multiple",
+      "display_unit": "倍",
+      "display_multiplier": 1,
+      "period_dependencies": [
+        {
+          "statement_type": "balance",
+          "field_name": "current_assets",
+          "period_basis": "point_in_time",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "balance",
+          "field_name": "current_liabilities",
+          "period_basis": "point_in_time",
+          "lags": [
+            0
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。",
+      "formula_version": "2"
+    },
+    {
+      "name": "current_ratio_change_qoq",
+      "description": "流动比率环比倍数变化",
+      "formula": "CA / CL - lag1(CA / CL)",
+      "storage_unit": "multiple_delta",
+      "display_unit": "倍差",
+      "display_multiplier": 1,
+      "period_dependencies": [
+        {
+          "statement_type": "balance",
+          "field_name": "current_assets",
+          "period_basis": "point_in_time",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        },
+        {
+          "statement_type": "balance",
+          "field_name": "current_liabilities",
+          "period_basis": "point_in_time",
+          "lags": [
+            0,
+            1
+          ],
+          "expansion": "读取准确目标期及声明lag期；累计ROE与存量不做季度差分。",
+          "currency": "CNY",
+          "consolidation_scope": "consolidated"
+        }
+      ],
+      "null_policy": "先查最新裁决及字段有效性；冲突、硬错误与准确依赖缺失输出NULL，保留所有原因。金额分母须超过声明阈值，否则为invalid_denominator。跨期比较同时检查本期及基期，包括Q1；已知不可比或重述风险输出input_error。",
+      "formula_version": "2"
+    }
+  ],
+  "database": {
+    "alerts": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "alert_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "alerts的alert_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "event_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "alerts的event_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "alerts的status字段，语义按对应对象契约"
+        },
+        {
+          "name": "opened_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "alerts的opened_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "resolved_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "alerts的resolved_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "recovery_run_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "alerts的recovery_run_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "runs",
+          "from": "recovery_run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "seq": 0,
+          "table": "quality_events",
+          "from": "event_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "batches": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "batch_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "batches的batch_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "运行身份"
+        },
+        {
+          "name": "status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "batches的status字段，语义按对应对象契约"
+        },
+        {
+          "name": "content_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变对象规格及依据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "runs",
+          "from": "run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "clean_balance": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "精确清洗处理身份"
+        },
+        {
+          "name": "total_assets",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的total_assets字段，语义按对应对象契约"
+        },
+        {
+          "name": "total_liabilities",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的total_liabilities字段，语义按对应对象契约"
+        },
+        {
+          "name": "total_equity",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的total_equity字段，语义按对应对象契约"
+        },
+        {
+          "name": "parent_equity",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的parent_equity字段，语义按对应对象契约"
+        },
+        {
+          "name": "current_assets",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的current_assets字段，语义按对应对象契约"
+        },
+        {
+          "name": "current_liabilities",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_balance的current_liabilities字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "clean_versions",
+          "from": "clean_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "clean_income": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "精确清洗处理身份"
+        },
+        {
+          "name": "operating_revenue_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_income的operating_revenue_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "total_revenue_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_income的total_revenue_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "operating_cost_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_income的operating_cost_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "net_profit_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_income的net_profit_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "parent_net_profit_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_income的parent_net_profit_ytd字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "clean_versions",
+          "from": "clean_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "clean_indicator": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "精确清洗处理身份"
+        },
+        {
+          "name": "roe_weighted_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_indicator的roe_weighted_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "source_gross_margin_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_indicator的source_gross_margin_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "source_net_margin_ytd",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_indicator的source_net_margin_ytd字段，语义按对应对象契约"
+        },
+        {
+          "name": "source_debt_asset_ratio",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_indicator的source_debt_asset_ratio字段，语义按对应对象契约"
+        },
+        {
+          "name": "source_current_ratio",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "clean_indicator的source_current_ratio字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "clean_versions",
+          "from": "clean_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "clean_versions": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "精确清洗处理身份"
+        },
+        {
+          "name": "source_version_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变来源版本身份"
+        },
+        {
+          "name": "mapping_version",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "clean_versions的mapping_version字段，语义按对应对象契约"
+        },
+        {
+          "name": "cleaning_rule_version",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "clean_versions的cleaning_rule_version字段，语义按对应对象契约"
+        },
+        {
+          "name": "quality_status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "clean_versions的quality_status字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "source_versions",
+          "from": "source_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "dataset_snapshots": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "snapshot_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "dataset_snapshots的snapshot_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "universe_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结公司池身份"
+        },
+        {
+          "name": "profile_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "映射、规则、公式、字典及时间政策内容指纹"
+        },
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "运行身份"
+        },
+        {
+          "name": "expected_parent_head",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "激活事务必须匹配的父发布指针，首次允许空"
+        },
+        {
+          "name": "data_as_of",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的data_as_of字段，语义按对应对象契约"
+        },
+        {
+          "name": "status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的status字段，语义按对应对象契约"
+        },
+        {
+          "name": "signature",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的signature字段，语义按对应对象契约"
+        },
+        {
+          "name": "manifest_hash",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的manifest_hash字段，语义按对应对象契约"
+        },
+        {
+          "name": "exported_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的exported_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "published_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "SQL实际激活时间"
+        },
+        {
+          "name": "publication_sequence",
+          "dtype": "INTEGER",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "dataset_snapshots的publication_sequence字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "dataset_snapshots",
+          "from": "expected_parent_head",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "runs",
+          "from": "run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "seq": 0,
+          "table": "processing_profiles",
+          "from": "profile_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 3,
+          "seq": 0,
+          "table": "universe_snapshots",
+          "from": "universe_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 4,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "expected_keys": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "business_key",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "来源、公司、报告期、报表与合并范围的完整键"
+        },
+        {
+          "name": "eligibility",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "expected_keys的eligibility字段，语义按对应对象契约"
+        },
+        {
+          "name": "evidence_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "expected_keys的evidence_json字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "feature_inputs": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "feature_version_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "精确特征版本身份"
+        },
+        {
+          "name": "input_number",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "feature_inputs的input_number字段，语义按对应对象契约"
+        },
+        {
+          "name": "business_key",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "来源、公司、报告期、报表与合并范围的完整键"
+        },
+        {
+          "name": "record_state_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "业务裁决事件身份"
+        },
+        {
+          "name": "clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "精确清洗处理身份"
+        },
+        {
+          "name": "field_name",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_inputs的field_name字段，语义按对应对象契约"
+        },
+        {
+          "name": "input_role",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_inputs的input_role字段，语义按对应对象契约"
+        },
+        {
+          "name": "input_available_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_inputs的input_available_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "clean_versions",
+          "from": "clean_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "record_states",
+          "from": "record_state_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "seq": 0,
+          "table": "feature_versions",
+          "from": "feature_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "feature_versions": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "feature_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "精确特征版本身份"
+        },
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "profile_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "映射、规则、公式、字典及时间政策内容指纹"
+        },
+        {
+          "name": "security_code",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "保留交易所及前导零的证券代码"
+        },
+        {
+          "name": "report_end",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "自然年报告季末"
+        },
+        {
+          "name": "feature_name",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_versions的feature_name字段，语义按对应对象契约"
+        },
+        {
+          "name": "feature_value",
+          "dtype": "REAL",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "feature_versions的feature_value字段，语义按对应对象契约"
+        },
+        {
+          "name": "feature_status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_versions的feature_status字段，语义按对应对象契约"
+        },
+        {
+          "name": "data_available_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结的真实输入或失效状态可用边界"
+        },
+        {
+          "name": "computed_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "feature_versions的computed_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "input_hash",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "精确输入、状态、期间和边界摘要"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "processing_profiles",
+          "from": "profile_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "http_attempts": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "attempt_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "http_attempts的attempt_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "batch_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "http_attempts的batch_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "page_number",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "http_attempts的page_number字段，语义按对应对象契约"
+        },
+        {
+          "name": "attempt_number",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "http_attempts的attempt_number字段，语义按对应对象契约"
+        },
+        {
+          "name": "observed_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "http_attempts的observed_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "body_path",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "http_attempts的body_path字段，语义按对应对象契约"
+        },
+        {
+          "name": "raw_hash",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "http_attempts的raw_hash字段，语义按对应对象契约"
+        },
+        {
+          "name": "content_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变对象规格及依据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "batches",
+          "from": "batch_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "processing_profiles": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "profile_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "映射、规则、公式、字典及时间政策内容指纹"
+        },
+        {
+          "name": "content_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变对象规格及依据"
+        }
+      ],
+      "foreign_keys": []
+    },
+    "quality_events": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "event_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "quality_events的event_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "运行身份"
+        },
+        {
+          "name": "rule_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "quality_events的rule_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "severity",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "quality_events的severity字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "runs",
+          "from": "run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "quality_metrics": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "运行身份"
+        },
+        {
+          "name": "metric_name",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "quality_metrics的metric_name字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "runs",
+          "from": "run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "record_states": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "record_state_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "业务裁决事件身份"
+        },
+        {
+          "name": "business_key",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "来源、公司、报告期、报表与合并范围的完整键"
+        },
+        {
+          "name": "state_sequence",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "record_states的state_sequence字段，语义按对应对象契约"
+        },
+        {
+          "name": "state_status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "record_states的state_status字段，语义按对应对象契约"
+        },
+        {
+          "name": "selected_source_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "record_states的selected_source_version_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "decision_observed_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "record_states的decision_observed_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "payload_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "本对象的完整值、状态和证据"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "source_versions",
+          "from": "selected_source_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "run_inputs": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "运行身份"
+        },
+        {
+          "name": "observation_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "run_inputs的observation_id字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "source_observations",
+          "from": "observation_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "runs",
+          "from": "run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "runs": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "run_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "运行身份"
+        },
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "profile_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "映射、规则、公式、字典及时间政策内容指纹"
+        },
+        {
+          "name": "parent_run_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "runs的parent_run_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的status字段，语义按对应对象契约"
+        },
+        {
+          "name": "phase",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的phase字段，语义按对应对象契约"
+        },
+        {
+          "name": "started_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的started_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "heartbeat_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的heartbeat_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "finished_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "runs的finished_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "plan_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的plan_json字段，语义按对应对象契约"
+        },
+        {
+          "name": "counts_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "runs的counts_json字段，语义按对应对象契约"
+        },
+        {
+          "name": "snapshot_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "runs的snapshot_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "error_json",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "runs的error_json字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "runs",
+          "from": "parent_run_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "processing_profiles",
+          "from": "profile_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "schema_version": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "version",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "schema_version的version字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": []
+    },
+    "scopes": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "universe_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结公司池身份"
+        },
+        {
+          "name": "capture_kind",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "scopes的capture_kind字段，语义按对应对象契约"
+        },
+        {
+          "name": "content_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变对象规格及依据"
+        },
+        {
+          "name": "health_status",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "scopes的health_status字段，语义按对应对象契约"
+        },
+        {
+          "name": "health_reason",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "scopes的health_reason字段，语义按对应对象契约"
+        },
+        {
+          "name": "last_success_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "scopes的last_success_at字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "universe_snapshots",
+          "from": "universe_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "snapshot_features": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "snapshot_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "snapshot_features的snapshot_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "security_code",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "保留交易所及前导零的证券代码"
+        },
+        {
+          "name": "report_end",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 3,
+          "description": "自然年报告季末"
+        },
+        {
+          "name": "feature_name",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 4,
+          "description": "snapshot_features的feature_name字段，语义按对应对象契约"
+        },
+        {
+          "name": "feature_version_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "精确特征版本身份"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "feature_versions",
+          "from": "feature_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "dataset_snapshots",
+          "from": "snapshot_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "snapshot_records": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "snapshot_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 1,
+          "description": "snapshot_records的snapshot_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "business_key",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 2,
+          "description": "来源、公司、报告期、报表与合并范围的完整键"
+        },
+        {
+          "name": "source",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "snapshot_records的source字段，语义按对应对象契约"
+        },
+        {
+          "name": "security_code",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "保留交易所及前导零的证券代码"
+        },
+        {
+          "name": "report_end",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "自然年报告季末"
+        },
+        {
+          "name": "statement_type",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "snapshot_records的statement_type字段，语义按对应对象契约"
+        },
+        {
+          "name": "consolidation_scope",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "snapshot_records的consolidation_scope字段，语义按对应对象契约"
+        },
+        {
+          "name": "record_state_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "业务裁决事件身份"
+        },
+        {
+          "name": "selected_clean_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "snapshot_records的selected_clean_version_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "data_available_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "冻结的真实输入或失效状态可用边界"
+        },
+        {
+          "name": "source_available_at",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 0,
+          "description": "来源公告及更新的保守边界，坏证据允许空"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "clean_versions",
+          "from": "selected_clean_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "record_states",
+          "from": "record_state_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 2,
+          "seq": 0,
+          "table": "dataset_snapshots",
+          "from": "snapshot_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "source_observations": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "observation_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "source_observations的observation_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "source_version_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变来源版本身份"
+        },
+        {
+          "name": "attempt_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_observations的attempt_id字段，语义按对应对象契约"
+        },
+        {
+          "name": "row_index",
+          "dtype": "INTEGER",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_observations的row_index字段，语义按对应对象契约"
+        },
+        {
+          "name": "observed_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_observations的observed_at字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "http_attempts",
+          "from": "attempt_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "source_versions",
+          "from": "source_version_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    },
+    "source_versions": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "source_version_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "不可变来源版本身份"
+        },
+        {
+          "name": "business_key",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "来源、公司、报告期、报表与合并范围的完整键"
+        },
+        {
+          "name": "source",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_versions的source字段，语义按对应对象契约"
+        },
+        {
+          "name": "security_code",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "保留交易所及前导零的证券代码"
+        },
+        {
+          "name": "report_end",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "自然年报告季末"
+        },
+        {
+          "name": "statement_type",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_versions的statement_type字段，语义按对应对象契约"
+        },
+        {
+          "name": "consolidation_scope",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_versions的consolidation_scope字段，语义按对应对象契约"
+        },
+        {
+          "name": "first_seen_at",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "source_versions的first_seen_at字段，语义按对应对象契约"
+        },
+        {
+          "name": "raw_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "来源行内容，原HTTP正文另行归档"
+        }
+      ],
+      "foreign_keys": []
+    },
+    "universe_snapshots": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "universe_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "冻结公司池身份"
+        },
+        {
+          "name": "content_json",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "不可变对象规格及依据"
+        }
+      ],
+      "foreign_keys": []
+    },
+    "workspace_head": {
+      "owner": "finpipe.storage",
+      "columns": [
+        {
+          "name": "scope_id",
+          "dtype": "TEXT",
+          "nullable": true,
+          "primary_key_position": 1,
+          "description": "冻结样本及输入输出范围"
+        },
+        {
+          "name": "snapshot_id",
+          "dtype": "TEXT",
+          "nullable": false,
+          "primary_key_position": 0,
+          "description": "workspace_head的snapshot_id字段，语义按对应对象契约"
+        }
+      ],
+      "foreign_keys": [
+        {
+          "id": 0,
+          "seq": 0,
+          "table": "dataset_snapshots",
+          "from": "snapshot_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        },
+        {
+          "id": 1,
+          "seq": 0,
+          "table": "scopes",
+          "from": "scope_id",
+          "to": null,
+          "on_update": "NO ACTION",
+          "on_delete": "NO ACTION",
+          "match": "NONE"
+        }
+      ]
+    }
+  },
+  "profile": {
+    "cleaning_rule_label": "1",
+    "cleaning_rule_version": "rule_bd602fa957eacde69fc8b810142da28a",
+    "dictionary_version": "1",
+    "formula_version": "2",
+    "mapping_version": "1",
+    "parameters": {
+      "amount_denominator": 1.0,
+      "ratio_denominator": 1e-08
+    },
+    "quality": {
+      "max_invalid_rate": 0.01,
+      "min_usable_coverage": 0.95
+    },
+    "source_selection_policy": "latest_complete_observation",
+    "time_policy_version": "1"
+  },
+  "states": {
+    "record": [
+      "selected",
+      "conflict",
+      "missing"
+    ],
+    "field": [
+      "ok",
+      "warning",
+      "missing",
+      "not_applicable",
+      "invalid"
+    ],
+    "feature": [
+      "ok",
+      "warning",
+      "missing_input",
+      "missing_history",
+      "invalid_denominator",
+      "nonpositive_baseline",
+      "not_applicable",
+      "input_error",
+      "version_conflict"
+    ]
+  },
+  "null_policy": "真实空值须带原因，零与NULL分开；_pp存比例差，展示乘100为百分点",
+  "dataset_columns": {
+    "income": "source: string\nsecurity_code: string\nreport_end: date32[day]\nconsolidation_scope: string\nrecord_state_id: string\nclean_version_id: string\nrecord_status: string\nquality_status: string\ndata_available_at: timestamp[us, tz=UTC]\nsource_available_at: timestamp[us, tz=UTC]\nfield_states: string\nreason_codes: string\noperating_revenue_ytd: double\ntotal_revenue_ytd: double\noperating_cost_ytd: double\nnet_profit_ytd: double\nparent_net_profit_ytd: double\n-- schema metadata --\nfinpipe: '{}'\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 2343",
+    "balance": "source: string\nsecurity_code: string\nreport_end: date32[day]\nconsolidation_scope: string\nrecord_state_id: string\nclean_version_id: string\nrecord_status: string\nquality_status: string\ndata_available_at: timestamp[us, tz=UTC]\nsource_available_at: timestamp[us, tz=UTC]\nfield_states: string\nreason_codes: string\ntotal_assets: double\ntotal_liabilities: double\ntotal_equity: double\nparent_equity: double\ncurrent_assets: double\ncurrent_liabilities: double\n-- schema metadata --\nfinpipe: '{}'\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 2436",
+    "indicator": "source: string\nsecurity_code: string\nreport_end: date32[day]\nconsolidation_scope: string\nrecord_state_id: string\nclean_version_id: string\nrecord_status: string\nquality_status: string\ndata_available_at: timestamp[us, tz=UTC]\nsource_available_at: timestamp[us, tz=UTC]\nfield_states: string\nreason_codes: string\nroe_weighted_ytd: double\nsource_gross_margin_ytd: double\nsource_net_margin_ytd: double\nsource_debt_asset_ratio: double\nsource_current_ratio: double\n-- schema metadata --\nfinpipe: '{}'\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 2367",
+    "features_long": "feature_version_id: string\nsecurity_code: string\nreport_end: date32[day]\nfeature_name: string\nfeature_value: double\nfeature_status: string\nstorage_unit: string\nreason_codes: string\nevidence_flags: string\ndata_available_at: timestamp[us, tz=UTC]\ninput_hash: string\nsnapshot_id: string\nscope_id: string\nuniverse_id: string\nprofile_id: string\ndata_as_of: timestamp[us, tz=UTC]\ncomputed_at: timestamp[us, tz=UTC]\n-- schema metadata --\nfinpipe: '{}'\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 2263",
+    "features_panel": "security_code: string\nreport_end: date32[day]\ncurrent_ratio: double\ncurrent_ratio_change_qoq: double\ndebt_asset_change_qoq_pp: double\ndebt_asset_ratio: double\ngross_margin_q: double\ngross_margin_ytd: double\nnet_margin_q: double\nnet_margin_ytd: double\nparent_profit_growth_qoq: double\nparent_profit_growth_yoy: double\nrevenue_growth_qoq: double\nrevenue_growth_yoy: double\nroe_change_yoy: double\nroe_change_yoy_pp: double\nroe_weighted_ytd: double\n-- schema metadata --\nfinpipe: '{}'\npandas: '{\"index_columns\": [], \"column_indexes\": [], \"columns\": [{\"name\":' + 2361"
+  }
+}

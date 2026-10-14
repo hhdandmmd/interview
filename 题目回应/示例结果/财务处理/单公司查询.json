@@ -1,0 +1,229 @@
+{
+  "status": "ok",
+  "snapshot_id": "snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+  "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+  "profile_id": "profile_7a5c338c347275e20b02fc599dd560c0",
+  "published_at": "2026-10-14T13:32:49.332168Z",
+  "health": "healthy",
+  "rows": [
+    {
+      "feature_version_id": "feature_ff83f4d44c0185c3aba8e94cdb03b957",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "current_ratio",
+      "feature_value": 5.090026917619075,
+      "feature_status": "ok",
+      "storage_unit": "multiple",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_c10f9a7901f197c5dd77ba1f1ccfcba2"
+    },
+    {
+      "feature_version_id": "feature_27a775ff47bf6998010727cb20ecc3a4",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "current_ratio_change_qoq",
+      "feature_value": -1.529291793563826,
+      "feature_status": "ok",
+      "storage_unit": "multiple_delta",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_87dfa9db39354473593629b3dd441f23"
+    },
+    {
+      "feature_version_id": "feature_40d27610288b4f100f6711289aa323a1",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "debt_asset_change_qoq_pp",
+      "feature_value": 0.03606609634377639,
+      "feature_status": "ok",
+      "storage_unit": "ratio_delta",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_fe9740f71e1c726214eed08d74042561"
+    },
+    {
+      "feature_version_id": "feature_9f0bfa3fcb6eff8b513cb5b6be5b3622",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "debt_asset_ratio",
+      "feature_value": 0.16415362192247623,
+      "feature_status": "ok",
+      "storage_unit": "ratio",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_3c50e646f7fb007221c3fb01637950fc"
+    },
+    {
+      "feature_version_id": "feature_fbaf90e109085786f74aec90f0df43f1",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "gross_margin_q",
+      "feature_value": 0.9081747910277279,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_cbdb56c0cd5ec085f0c247917e3884cf"
+    },
+    {
+      "feature_version_id": "feature_e36503c2fb0345e8f6f700fd551293a2",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "gross_margin_ytd",
+      "feature_value": 0.9117955168348006,
+      "feature_status": "ok",
+      "storage_unit": "ratio",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_8c723f1c13968e3b88712f1c0f4352b8"
+    },
+    {
+      "feature_version_id": "feature_ca0b996fbd2662691e40f985735f5d60",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "net_margin_q",
+      "feature_value": 0.4559067964696455,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_5626e850680daddf41604b812f536bed"
+    },
+    {
+      "feature_version_id": "feature_bb3fb858d300f06f22190234e124bfdf",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "net_margin_ytd",
+      "feature_value": 0.5052788651554344,
+      "feature_status": "ok",
+      "storage_unit": "ratio",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_bf7bde29d967aa329100584ed0fdceb6"
+    },
+    {
+      "feature_version_id": "feature_4a260a24c39f2902e04fa71ca9bf3dc4",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "parent_profit_growth_qoq",
+      "feature_value": -0.07961304556968807,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_2e7c1597eb55f676cf8eeef1ccbfe992"
+    },
+    {
+      "feature_version_id": "feature_f5f8680ddcc3b11dd06f30b3b0d980bd",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "parent_profit_growth_yoy",
+      "feature_value": -0.30342888129457424,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_d158ad2521a770d9f47d1909912a71af"
+    },
+    {
+      "feature_version_id": "feature_d3444f86d908b516738670e2780a1383",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "revenue_growth_qoq",
+      "feature_value": 0.033791462304090025,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_2293ec3bc644daf1642c239773f65603"
+    },
+    {
+      "feature_version_id": "feature_405e0b42b3b9ac8ba536f1570396143c",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "revenue_growth_yoy",
+      "feature_value": -0.1942944671865665,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_cd073c1d20286d3a94e619cf0c6adcf4"
+    },
+    {
+      "feature_version_id": "feature_60a52927f6af10b0705f94550f39fda4",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "roe_change_yoy",
+      "feature_value": -0.09689061632426421,
+      "feature_status": "ok",
+      "storage_unit": "ratio",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_7e5708674e3e2c16d8239515ddf4cf9a"
+    },
+    {
+      "feature_version_id": "feature_949d33374d718dd883421ecf3c5b3097",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "roe_change_yoy_pp",
+      "feature_value": -0.03489999999999999,
+      "feature_status": "ok",
+      "storage_unit": "ratio_delta",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_7e5708674e3e2c16d8239515ddf4cf9a"
+    },
+    {
+      "feature_version_id": "feature_527964c5dff1e776ecd9373a5b57e48a",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "roe_weighted_ytd",
+      "feature_value": 0.32530000000000003,
+      "feature_status": "ok",
+      "storage_unit": "ratio",
+      "reason_codes": [],
+      "evidence_flags": [],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_851f5e303c0cf3308a91a1fad6ad1727"
+    }
+  ]
+}

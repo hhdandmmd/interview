@@ -1,0 +1,402 @@
+{
+  "data_kind": "synthetic",
+  "cases": [
+    {
+      "案例": "未披露利润保留NULL",
+      "data_kind": "synthetic",
+      "时间说明": "观察时间为人工夹具时间",
+      "关注字段": "net_profit_ytd",
+      "人工预期": {
+        "state": "missing",
+        "value": null
+      },
+      "输入": {
+        "source_version_id": "synthetic_source_cff6be2ec651cb0e0225def34af2d949",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "income",
+          "consolidation_scope": "consolidated"
+        },
+        "raw": {
+          "OPERATE_INCOME": 100,
+          "TOTAL_OPERATE_INCOME": 100,
+          "OPERATE_COST": 60,
+          "NETPROFIT": "未披露",
+          "PARENT_NETPROFIT": 8,
+          "CURRENCY": "CNY",
+          "NOTICE_DATE": "2025-04-20",
+          "UPDATE_DATE": "2025-04-20",
+          "_evidence": {
+            "consolidation_scope": "consolidated",
+            "data_kind": "synthetic",
+            "说明": "人工构造，未发起HTTP请求"
+          }
+        },
+        "first_seen_at": "2025-05-01T08:00:00Z"
+      },
+      "实际输出": {
+        "clean_version_id": "clean_9867af600b36ecb9be4ef4b170c47cb5",
+        "source_version_id": "synthetic_source_cff6be2ec651cb0e0225def34af2d949",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "income",
+          "consolidation_scope": "consolidated"
+        },
+        "values": {
+          "operating_revenue_ytd": 100.0,
+          "total_revenue_ytd": 100.0,
+          "operating_cost_ytd": 60.0,
+          "net_profit_ytd": null,
+          "parent_net_profit_ytd": 8.0
+        },
+        "field_states": {
+          "operating_revenue_ytd": "ok",
+          "total_revenue_ytd": "ok",
+          "operating_cost_ytd": "ok",
+          "net_profit_ytd": "missing",
+          "parent_net_profit_ytd": "ok"
+        },
+        "reasons": {
+          "operating_revenue_ytd": [],
+          "total_revenue_ytd": [],
+          "operating_cost_ytd": [],
+          "net_profit_ytd": [
+            "source_placeholder"
+          ],
+          "parent_net_profit_ytd": []
+        },
+        "quality_status": "accepted_with_issues",
+        "source_available_at": "2025-04-20T16:00:00.000000Z",
+        "data_available_at": "2025-05-01T08:00:00.000000Z",
+        "processed_at": "2026-10-14T13:58:18.604571Z",
+        "time_valid": true,
+        "basis_status": "source_assumed",
+        "evidence_flags": []
+      }
+    },
+    {
+      "案例": "坏数字不会填零",
+      "data_kind": "synthetic",
+      "时间说明": "观察时间为人工夹具时间",
+      "关注字段": "operating_revenue_ytd",
+      "人工预期": {
+        "state": "invalid",
+        "value": null
+      },
+      "输入": {
+        "source_version_id": "synthetic_source_2592731b8f38ffb2089f9fa37d003cd9",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "income",
+          "consolidation_scope": "consolidated"
+        },
+        "raw": {
+          "OPERATE_INCOME": "坏数字",
+          "TOTAL_OPERATE_INCOME": 100,
+          "OPERATE_COST": 60,
+          "NETPROFIT": 10,
+          "PARENT_NETPROFIT": 8,
+          "CURRENCY": "CNY",
+          "NOTICE_DATE": "2025-04-20",
+          "UPDATE_DATE": "2025-04-20",
+          "_evidence": {
+            "consolidation_scope": "consolidated",
+            "data_kind": "synthetic",
+            "说明": "人工构造，未发起HTTP请求"
+          }
+        },
+        "first_seen_at": "2025-05-01T08:00:00Z"
+      },
+      "实际输出": {
+        "clean_version_id": "clean_12c557ad5ed289ce47634b8ed02bc4ab",
+        "source_version_id": "synthetic_source_2592731b8f38ffb2089f9fa37d003cd9",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "income",
+          "consolidation_scope": "consolidated"
+        },
+        "values": {
+          "operating_revenue_ytd": null,
+          "total_revenue_ytd": 100.0,
+          "operating_cost_ytd": 60.0,
+          "net_profit_ytd": 10.0,
+          "parent_net_profit_ytd": 8.0
+        },
+        "field_states": {
+          "operating_revenue_ytd": "invalid",
+          "total_revenue_ytd": "ok",
+          "operating_cost_ytd": "ok",
+          "net_profit_ytd": "ok",
+          "parent_net_profit_ytd": "ok"
+        },
+        "reasons": {
+          "operating_revenue_ytd": [
+            "unparseable_number"
+          ],
+          "total_revenue_ytd": [],
+          "operating_cost_ytd": [],
+          "net_profit_ytd": [],
+          "parent_net_profit_ytd": []
+        },
+        "quality_status": "accepted_with_issues",
+        "source_available_at": "2025-04-20T16:00:00.000000Z",
+        "data_available_at": "2025-05-01T08:00:00.000000Z",
+        "processed_at": "2026-10-14T13:58:18.604778Z",
+        "time_valid": true,
+        "basis_status": "source_assumed",
+        "evidence_flags": []
+      }
+    },
+    {
+      "案例": "负资产被标记无效",
+      "data_kind": "synthetic",
+      "时间说明": "观察时间为人工夹具时间",
+      "关注字段": "total_assets",
+      "人工预期": {
+        "state": "invalid",
+        "value": null
+      },
+      "输入": {
+        "source_version_id": "synthetic_source_fa77e35ddeb25c2eddf039b33c8be6cf",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "balance",
+          "consolidation_scope": "consolidated"
+        },
+        "raw": {
+          "TOTAL_ASSETS": -100,
+          "TOTAL_LIABILITIES": 30,
+          "TOTAL_EQUITY": 70,
+          "TOTAL_PARENT_EQUITY": 60,
+          "TOTAL_CURRENT_ASSETS": 50,
+          "TOTAL_CURRENT_LIAB": 20,
+          "CURRENCY": "CNY",
+          "NOTICE_DATE": "2025-04-20",
+          "UPDATE_DATE": "2025-04-20",
+          "_evidence": {
+            "consolidation_scope": "consolidated",
+            "data_kind": "synthetic",
+            "说明": "人工构造，未发起HTTP请求"
+          }
+        },
+        "first_seen_at": "2025-05-01T08:00:00Z"
+      },
+      "实际输出": {
+        "clean_version_id": "clean_3ba069900068479fdfd041b4376cb8e6",
+        "source_version_id": "synthetic_source_fa77e35ddeb25c2eddf039b33c8be6cf",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "balance",
+          "consolidation_scope": "consolidated"
+        },
+        "values": {
+          "total_assets": null,
+          "total_liabilities": 30.0,
+          "total_equity": 70.0,
+          "parent_equity": 60.0,
+          "current_assets": 50.0,
+          "current_liabilities": 20.0
+        },
+        "field_states": {
+          "total_assets": "invalid",
+          "total_liabilities": "ok",
+          "total_equity": "ok",
+          "parent_equity": "ok",
+          "current_assets": "ok",
+          "current_liabilities": "ok"
+        },
+        "reasons": {
+          "total_assets": [
+            "impossible_financial_value"
+          ],
+          "total_liabilities": [],
+          "total_equity": [],
+          "parent_equity": [],
+          "current_assets": [],
+          "current_liabilities": []
+        },
+        "quality_status": "accepted_with_issues",
+        "source_available_at": "2025-04-20T16:00:00.000000Z",
+        "data_available_at": "2025-05-01T08:00:00.000000Z",
+        "processed_at": "2026-10-14T13:58:18.604871Z",
+        "time_valid": true,
+        "basis_status": "source_assumed",
+        "evidence_flags": []
+      }
+    },
+    {
+      "案例": "极端ROE保留值并标记警告",
+      "data_kind": "synthetic",
+      "时间说明": "观察时间为人工夹具时间",
+      "关注字段": "roe_weighted_ytd",
+      "人工预期": {
+        "state": "warning",
+        "value": 1.5
+      },
+      "输入": {
+        "source_version_id": "synthetic_source_3e77e86ac4e607040e9874ea9f45c405",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "indicator",
+          "consolidation_scope": "consolidated"
+        },
+        "raw": {
+          "ROEJQ": 150,
+          "XSMLL": 40,
+          "XSJLL": 10,
+          "ZCFZL": 30,
+          "LD": 2.5,
+          "CURRENCY": "CNY",
+          "NOTICE_DATE": "2025-04-20",
+          "UPDATE_DATE": "2025-04-20",
+          "_evidence": {
+            "consolidation_scope": "consolidated",
+            "data_kind": "synthetic",
+            "说明": "人工构造，未发起HTTP请求"
+          }
+        },
+        "first_seen_at": "2025-05-01T08:00:00Z"
+      },
+      "实际输出": {
+        "clean_version_id": "clean_f7bf5665f0615d2ce3c169deead1e18b",
+        "source_version_id": "synthetic_source_3e77e86ac4e607040e9874ea9f45c405",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "indicator",
+          "consolidation_scope": "consolidated"
+        },
+        "values": {
+          "roe_weighted_ytd": 1.5,
+          "source_gross_margin_ytd": 0.4,
+          "source_net_margin_ytd": 0.1,
+          "source_debt_asset_ratio": 0.3,
+          "source_current_ratio": 2.5
+        },
+        "field_states": {
+          "roe_weighted_ytd": "warning",
+          "source_gross_margin_ytd": "ok",
+          "source_net_margin_ytd": "ok",
+          "source_debt_asset_ratio": "ok",
+          "source_current_ratio": "ok"
+        },
+        "reasons": {
+          "roe_weighted_ytd": [
+            "extreme_roe"
+          ],
+          "source_gross_margin_ytd": [],
+          "source_net_margin_ytd": [],
+          "source_debt_asset_ratio": [],
+          "source_current_ratio": []
+        },
+        "quality_status": "accepted_with_issues",
+        "source_available_at": "2025-04-20T16:00:00.000000Z",
+        "data_available_at": "2025-05-01T08:00:00.000000Z",
+        "processed_at": "2026-10-14T13:58:18.604958Z",
+        "time_valid": true,
+        "basis_status": "source_assumed",
+        "evidence_flags": []
+      }
+    },
+    {
+      "案例": "会计恒等式不匹配",
+      "data_kind": "synthetic",
+      "时间说明": "观察时间为人工夹具时间",
+      "关注字段": "total_assets",
+      "人工预期": {
+        "state": "warning",
+        "value": 100
+      },
+      "输入": {
+        "source_version_id": "synthetic_source_a6caa41d215734ae411970a3eda32ea6",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "balance",
+          "consolidation_scope": "consolidated"
+        },
+        "raw": {
+          "TOTAL_ASSETS": 100,
+          "TOTAL_LIABILITIES": 30,
+          "TOTAL_EQUITY": 50,
+          "TOTAL_PARENT_EQUITY": 60,
+          "TOTAL_CURRENT_ASSETS": 50,
+          "TOTAL_CURRENT_LIAB": 20,
+          "CURRENCY": "CNY",
+          "NOTICE_DATE": "2025-04-20",
+          "UPDATE_DATE": "2025-04-20",
+          "_evidence": {
+            "consolidation_scope": "consolidated",
+            "data_kind": "synthetic",
+            "说明": "人工构造，未发起HTTP请求"
+          }
+        },
+        "first_seen_at": "2025-05-01T08:00:00Z"
+      },
+      "实际输出": {
+        "clean_version_id": "clean_aac84a9b7f6683ca92d6ec1e1cf61f01",
+        "source_version_id": "synthetic_source_a6caa41d215734ae411970a3eda32ea6",
+        "key": {
+          "source": "eastmoney",
+          "security_code": "000999.SZ",
+          "report_end": "2024-12-31",
+          "statement_type": "balance",
+          "consolidation_scope": "consolidated"
+        },
+        "values": {
+          "total_assets": 100.0,
+          "total_liabilities": 30.0,
+          "total_equity": 50.0,
+          "parent_equity": 60.0,
+          "current_assets": 50.0,
+          "current_liabilities": 20.0
+        },
+        "field_states": {
+          "total_assets": "warning",
+          "total_liabilities": "warning",
+          "total_equity": "warning",
+          "parent_equity": "ok",
+          "current_assets": "ok",
+          "current_liabilities": "ok"
+        },
+        "reasons": {
+          "total_assets": [
+            "accounting_identity_mismatch"
+          ],
+          "total_liabilities": [
+            "accounting_identity_mismatch"
+          ],
+          "total_equity": [
+            "accounting_identity_mismatch"
+          ],
+          "parent_equity": [],
+          "current_assets": [],
+          "current_liabilities": []
+        },
+        "quality_status": "accepted_with_issues",
+        "source_available_at": "2025-04-20T16:00:00.000000Z",
+        "data_available_at": "2025-05-01T08:00:00.000000Z",
+        "processed_at": "2026-10-14T13:58:18.605049Z",
+        "time_valid": true,
+        "basis_status": "source_assumed",
+        "evidence_flags": []
+      }
+    }
+  ]
+}

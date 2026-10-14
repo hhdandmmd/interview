@@ -1,0 +1,101 @@
+{
+  "status": "ok",
+  "snapshot_id": "snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+  "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+  "profile_id": "profile_7a5c338c347275e20b02fc599dd560c0",
+  "published_at": "2026-10-14T13:32:49.332168Z",
+  "health": "healthy",
+  "rows": [
+    {
+      "feature_version_id": "feature_405e0b42b3b9ac8ba536f1570396143c",
+      "security_code": "600519.SH",
+      "report_end": "2025-12-31",
+      "feature_name": "revenue_growth_yoy",
+      "feature_value": -0.1942944671865665,
+      "feature_status": "warning",
+      "storage_unit": "ratio",
+      "reason_codes": [
+        "restatement_basis_unverified"
+      ],
+      "evidence_flags": [
+        "source_assumed_quarter"
+      ],
+      "data_available_at": "2026-10-14T13:32:48.941863Z",
+      "input_hash": "input_cd073c1d20286d3a94e619cf0c6adcf4",
+      "inputs": [
+        {
+          "key": {
+            "source": "eastmoney",
+            "security_code": "600519.SH",
+            "report_end": "2024-09-30",
+            "statement_type": "income",
+            "consolidation_scope": "consolidated"
+          },
+          "field_name": "operating_revenue_ytd",
+          "input_role": "lag4.previous_ytd",
+          "record_state_id": "state_a501285471b98231806d19c705da8a0a",
+          "clean_version_id": "clean_770007fac9599efde9852d1f8d72b8d5",
+          "input_status": "satisfied",
+          "input_available_at": "2026-10-14T13:32:48.941863Z",
+          "source_available_at": "2025-10-30T16:00:00.000000Z",
+          "input_value": 120776131874.69,
+          "reason_codes": []
+        },
+        {
+          "key": {
+            "source": "eastmoney",
+            "security_code": "600519.SH",
+            "report_end": "2024-12-31",
+            "statement_type": "income",
+            "consolidation_scope": "consolidated"
+          },
+          "field_name": "operating_revenue_ytd",
+          "input_role": "lag4",
+          "record_state_id": "state_6f3570a6556f6ea016c9f07d54c58c08",
+          "clean_version_id": "clean_7d25634a49ea8769657bfdfb7c26b23e",
+          "input_status": "satisfied",
+          "input_available_at": "2026-10-14T13:32:48.941863Z",
+          "source_available_at": "2026-04-17T16:00:00.000000Z",
+          "input_value": 170899152276.34,
+          "reason_codes": []
+        },
+        {
+          "key": {
+            "source": "eastmoney",
+            "security_code": "600519.SH",
+            "report_end": "2025-09-30",
+            "statement_type": "income",
+            "consolidation_scope": "consolidated"
+          },
+          "field_name": "operating_revenue_ytd",
+          "input_role": "current.previous_ytd",
+          "record_state_id": "state_06a65fc41dce380fb420ff0b9af2a385",
+          "clean_version_id": "clean_ac2ab46b2b3b79fa035ac1659ec44b54",
+          "input_status": "satisfied",
+          "input_available_at": "2026-10-14T13:32:48.941863Z",
+          "source_available_at": "2025-10-30T16:00:00.000000Z",
+          "input_value": 128453707655.86,
+          "reason_codes": []
+        },
+        {
+          "key": {
+            "source": "eastmoney",
+            "security_code": "600519.SH",
+            "report_end": "2025-12-31",
+            "statement_type": "income",
+            "consolidation_scope": "consolidated"
+          },
+          "field_name": "operating_revenue_ytd",
+          "input_role": "current",
+          "record_state_id": "state_3faca8ea54d242b80ef7e937c628e29e",
+          "clean_version_id": "clean_83b635832fcaa330182b34a72377e7c4",
+          "input_status": "satisfied",
+          "input_available_at": "2026-10-14T13:32:48.941863Z",
+          "source_available_at": "2026-04-17T16:00:00.000000Z",
+          "input_value": 168838102514.79,
+          "reason_codes": []
+        }
+      ]
+    }
+  ]
+}

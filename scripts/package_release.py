@@ -50,6 +50,8 @@ def start_page(destination: Path, snapshot_id: str, companies: int, has_backtest
     links = f'<a href="examples/financial/snapshots/{snapshot_id}/report.html">查看{companies}家公司财务结果</a>'
     if has_backtest:
         links += ' · <a href="examples/backtest_real/report.html">查看真实近似回测</a>'
+    links += ' · <a href="source/题目回应/示例结果/index.html">题目示例与验收结果</a>'
+    links += ' · <a href="source/题目回应/README.md">逐项题目回应</a>'
     query = ".\\windows\\finpipe\\finpipe.exe query --workspace .\\examples\\financial --company 600519.SH --period 2025Q4"
     replay = ".\\windows\\finpipe\\finpipe.exe backtest --signals .\\examples\\backtest_real\\signals.json --market .\\examples\\backtest_real\\market --time-policy publication_proxy --horizon 20 --start 2023-01-01 --end 2025-12-31 --output .\\output\\真实回测_第二次"
     body = (
@@ -109,6 +111,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     shutil.copytree(root / "config", binary / "config", ignore=shutil.ignore_patterns("output"))
     source = destination / "source"
     source.mkdir()
+    shutil.copytree(root / "题目回应", source / "题目回应")
     for name in ("src", "tests", "config", "scripts"):
         shutil.copytree(
             root / name,
@@ -196,6 +199,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     start = (
         "# 从这里开始\n\n日常运行：修改根目录`config.py`中的股票、来源和报告期，双击`run.cmd`，自动采集、清洗、存储并同步生成因子。比较历史由程序自动补齐；当前来源仅支持东方财富。\n\n先双击根目录 `START_HERE.html`，无需Markdown软件即可查看真实结果和运行步骤。\n\nWindows程序在 `windows/finpipe`，双击其中的 `run_demo.cmd` 即可离线运行。"
         "源码、题目、锁定依赖和全部测试位于 `source`。\n\n"
+        "逐项[题目回应](source/题目回应/README.md)、[可查看的示例结果](source/题目回应/示例结果/index.html)、测试方案与截图清单集中放在source/题目回应。\n\n"
         f"{example_companies}家公司已核验财务工作区位于 `{example_path}`，可直接查询或打开其snapshots中的HTML。\n\n"
         f"```powershell\n.\\windows\\finpipe\\finpipe.exe query --workspace .\\{example_path.replace('/', chr(92))} --company 600519.SH --period 2025Q4\n```\n\n"
         + backtest_start

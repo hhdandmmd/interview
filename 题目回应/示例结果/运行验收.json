@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-10-14T13:32:50.275074Z",
+  "financial_data_kind": "offline_replay_real",
+  "source_manifest": "src/finpipe/resources/demo/manifest.json",
+  "source_manifest_sha256": "60f6ab1900531773f812180f8d0d7ccb021d2541dc5996fc594d99c9467020cf",
+  "original_captured_at": "2026-10-13T04:47:53.335092Z",
+  "companies": [
+    "600519.SH",
+    "000333.SZ",
+    "000651.SZ"
+  ],
+  "input_quarters": 8,
+  "首次重放": {
+    "status": "PUBLISHED",
+    "run_id": "run_f338c48abf1446818ded9c8dcc9a2c13",
+    "snapshot_id": "snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+    "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+    "counts": {
+      "clean_new": 72,
+      "evaluated": 180,
+      "expected_reports": 72,
+      "lineage_changed": 0,
+      "numeric_changed": 180,
+      "reused": 0,
+      "scan_requested_reports": 72,
+      "scan_returned_reports": 72,
+      "source_new": 72,
+      "state_new": 72,
+      "status_changed": 180
+    },
+    "export_path": "C:\\Users\\h'h'h\\AppData\\Local\\Temp\\finpipe_submission_zp5g6b34\\financial\\snapshots\\snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+    "scope_health": "healthy",
+    "health_rules": []
+  },
+  "重复重放": {
+    "status": "NO_CHANGE",
+    "run_id": "run_23b6456522ec42e99ad9ca90b5b6ce6f",
+    "snapshot_id": "snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+    "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+    "counts": {
+      "source_new": 0,
+      "clean_new": 0,
+      "state_new": 0,
+      "expected_reports": 72,
+      "scan_requested_reports": 72,
+      "scan_returned_reports": 72,
+      "evaluated": 0,
+      "numeric_changed": 0,
+      "status_changed": 0,
+      "lineage_changed": 0,
+      "reused": 180
+    },
+    "export_path": "C:\\Users\\h'h'h\\AppData\\Local\\Temp\\finpipe_submission_zp5g6b34\\financial\\snapshots\\snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+    "scope_health": "healthy",
+    "health_rules": []
+  },
+  "数据库完整性": {
+    "status": "ok",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_keys": [],
+    "failures": [],
+    "repaired": []
+  },
+  "独立原报告核对": {
+    "status": "ok",
+    "output": "F:\\test\\题目回应\\示例结果\\原报告核对.json",
+    "reference_kind": "independent_reference",
+    "reference_count": 34,
+    "left_count": 384,
+    "counts": {
+      "left_only": 350,
+      "matched": 33,
+      "not_comparable": 1
+    },
+    "comparison_coverage": 0.9705882352941176,
+    "reference_coverage": 0.0859375,
+    "match_rate": 1.0,
+    "historical_revision_basis_verified": false,
+    "snapshot_id": "snapshot_a79da6c8a48648debfb1d0e12efb6ef4",
+    "profile_id": "profile_7a5c338c347275e20b02fc599dd560c0",
+    "reference_sha256": "c98c796d9088d52a2d0367f0ff9e5f629218159bc7aadf3250e08461b6a0a272"
+  },
+  "公开行情回测": {
+    "status": "ok",
+    "output": "F:\\test\\题目回应\\示例结果\\分组回测",
+    "summary": {
+      "formed_periods": 20,
+      "first_entry_date": "2024-05-07",
+      "last_exit_date": "2025-12-24",
+      "calendar_first_session": "2023-01-03",
+      "calendar_last_session": "2025-12-31",
+      "skipped_decisions": {
+        "insufficient_factor_members": 16,
+        "insufficient_forward_calendar": 1
+      },
+      "exclusion_counts": {
+        "not_yet_available": 160
+      },
+      "universe_size": 10,
+      "groups": [
+        {
+          "group": 1,
+          "cumulative_return": 0.9337544821670849,
+          "max_drawdown_at_period_ends": -0.2101562295065158
+        },
+        {
+          "group": 2,
+          "cumulative_return": 0.836055554775202,
+          "max_drawdown_at_period_ends": -0.18355718055963977
+        },
+        {
+          "group": 3,
+          "cumulative_return": 0.05761703670725904,
+          "max_drawdown_at_period_ends": -0.12920171416030157
+        },
+        {
+          "group": 4,
+          "cumulative_return": 0.010176396442507896,
+          "max_drawdown_at_period_ends": -0.22414670890592725
+        },
+        {
+          "group": 5,
+          "cumulative_return": 0.5864772652580317,
+          "max_drawdown_at_period_ends": -0.17373487407530253
+        }
+      ]
+    },
+    "time_policy": "publication_proxy",
+    "report": "F:\\test\\题目回应\\示例结果\\分组回测\\report.html"
+  },
+  "限制": [
+    "历史财报版本未核验，公告近似不等于严格PIT",
+    "不单独核验现金分红与可成交性",
+    "人工反例不是上游真实数据",
+    "完整Windows干净VM尚未验收"
+  ]
+}

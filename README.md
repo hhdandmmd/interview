@@ -1,12 +1,39 @@
 # 金融数据处理与特征工程
 
-面向[机试题目](机试题目-金融数据处理与特征工程.md)的可执行项目：公开财报采集 → 原文归档 → 规范化与清洗 → SQLite版本存储 → 15个财务特征 → 质量门禁 → 固定快照、CSV、Parquet和HTML报告。
+选择公司和财报季度，程序会自动从东方财富获取财报，完成清洗、存储和15个财务因子的计算，并输出可查看的报告。
 
-已运行真实数据：冻结沪深京50家非金融公司，2022—2025年16个输入季度，2023—2025年12个输出季度。取得2353/2400条报表记录；输出9000个特征位置，其中8482个有数值、518个保留NULL及原因。47条缺报表未伪造为“不适用”。详见[实际交付记录](docs/delivery_validation.md)与[原题要求对应](docs/requirements_traceability.md)。
+**第一次看项目：先读[题目逐项回应](题目回应/README.md)，再在本地用浏览器打开[示例结果](题目回应/示例结果/index.html)。** 示例已经准备好，不需要先联网运行。
 
-## 一分钟运行
+## 1. 怎么运行
 
-日常只修改根目录`config.py`，然后运行根目录`main.py`或双击`run.cmd`。以下五项配置控制自选股票、来源、输出报告期和数据目录；上一年比较历史由程序自动补齐，采集后同步生成全部15个因子。
+### 收到完整 Windows ZIP
+
+1. 解压整个 ZIP，打开根目录 `START_HERE.html`，先看已有结果。
+2. 编辑根目录 `config.py`，填写公司和财报季度。
+3. 双击根目录 `run.cmd`。完成后，控制台会显示结果目录和报告路径。
+
+此方式不需要安装 Python。保留 `windows/finpipe` 整个目录，其中包含程序依赖；代码和详细说明位于 `source`。
+
+### 从 GitHub 下载源码
+
+在源码根目录打开 PowerShell，首次安装执行：
+
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+随后修改 `config.py`，双击 `run.cmd`，或者执行：
+
+```powershell
+.\.venv\Scripts\python.exe main.py
+```
+
+项目声明 Python 3.11 以上，推荐3.13；已实测3.12与3.13，3.11尚未实测。依赖文件会一起安装本地项目，无需激活虚拟环境。
+
+## 2. 怎么选择公司和时间
+
+日常只编辑根目录的 `config.py`。例如：
 
 ```python
 from pathlib import Path
@@ -14,137 +41,68 @@ from pathlib import Path
 from finpipe.config import BacktestConfig, RunConfig
 
 CONFIG = RunConfig(
-    stocks=["600519.SH"],
+    stocks=["600519.SH", "000333.SZ", "000651.SZ"],
     source="eastmoney",
     start_period="2025Q1",
     end_period="2025Q4",
-    output_dir=Path(__file__).parent / "output" / "financial",
-    backtest=BacktestConfig(
-        enabled=False,
-        factors=["roe_weighted_ytd", "revenue_growth_yoy"],
-    ),
+    output_dir=Path(__file__).resolve().parent / "output" / "financial",
+    backtest=BacktestConfig(enabled=False, factors=["roe_weighted_ytd"]),
 )
 ```
 
-股票须带`.SH/.SZ/.BJ`，适用自然年季度、人民币口径的非金融A股。报告期可写季度简写或准确季末日期，表示财报报告期而非公告日期。来源默认东方财富，也接受`东方财富`名称；未接入的来源在联网和创建工作区之前报错。
-
-源码完成下方首次安装后直接执行：
-
-```powershell
-.\.venv\Scripts\python.exe main.py
-```
-
-在Python中也可以直接调用，返回原流水线结果及报告路径；导入模块不会联网：
-
-```python
-from main import run
-
-result = run()
-```
-
-Windows完整交付包包含根目录`config.py`和`run.cmd`以及自带程序，修改配置后双击即可运行。控制台显示实际财报数量、因子位置和报告路径，CSV、Parquet、字典及质量结果一起生成；缺值仍保留原因。
-
-需要回测时将`backtest.enabled=True`，并填写`factors`列表；五组至少选择五只股票，每个因子独立出报告。未指定`market_dir`时自动获取所选股票的腾讯后复权日线，多因子共用一次行情；也可指定本地行情目录。默认observed使用真实已知时间，历史近似研究须显式选择publication_proxy。日期、分组、持有期和费用设置见[配置回测](docs/backtest.md)。运行结束显示总览与各因子报告路径；回测失败保留财报结果并返回非零码。
-
-十五个因子已整理为独立目录，`factor.py`统一维护公式、单位、依赖和计算，见[因子扩展](docs/factors.md)。
-
-从GitHub获取源码时，按下方“源码运行”安装并执行。仓库根目录包含`src`、`tests`、`config`和`docs`；虚拟环境、运行输出与EXE构建产物不进入Git。
-
-拿到Windows完整交付包后，先双击解压根目录`START_HERE.html`，无需Python和网络即可看真实财务与回测结果。交付包中的原题、源码、测试和当前技术说明在`source`；小财务库在`examples/financial`，真实回测输入在`examples/backtest_real`。
-
-回测默认使用披露累计加权ROE，报告首屏说明因子与分组；图表带真实日期轴、净值刻度、图例和等权参考，提供独立SVG及图表CSV。实际持有范围与请求范围分别列出，见[回测读法](docs/backtest.md)。
-
-原有维护、离线演示和回测入口继续保留。以下命令在交付包的`windows/finpipe`目录执行，整个EXE及依赖目录必须保留。双击`run_demo.cmd`，或在PowerShell执行：
-
-```powershell
-.\finpipe.exe demo --workspace .\我的演示结果
-.\finpipe.exe query --workspace .\我的演示结果 --company 600519.SH --period 2025Q4
-.\finpipe.exe explain --workspace .\我的演示结果 --company 600519.SH --period 2025Q4 --feature revenue_growth_yoy
-.\finpipe.exe health --workspace .\我的演示结果
-```
-
-开发目录的EXE位于`dist\finpipe\finpipe.exe`。`demo`自带3家×8季度×3表真实HTTP归档，完全离线；重复运行复用180个结果，不新增来源、清洗及裁决版本。CLI不等键盘输入，双击脚本显示实际HTML路径并保留窗口。
-
-## 源码运行
-
-需要Python 3.11以上；已实际验证3.12.7和3.13.1，3.11尚未实测。在源码根目录执行；如果解压了交付包，先进入其中的`source`目录。Windows推荐：
-
-```powershell
-py -3.13 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe main.py
-.\.venv\Scripts\python.exe -m finpipe demo --workspace .\output\demo
-.\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe -m ruff check src tests
-```
-
-依赖统一在`requirements.txt`锁定，一次安装包括本地项目、测试、构建和PDF核验工具；`pyproject.toml`保留Python包元数据与运行依赖兼容范围。所有人工代码注释及docstring使用中文。配置中的相对工作区以配置文件目录为基准，显式`--workspace`以当前目录为基准。
-
-简单入口读取的相对`output_dir`以`config.py`所在目录为基准，换目录启动不改变结果位置。库调用`finpipe.runner.run(RunConfig(...))`中的相对路径以调用目录为基准。原TOML及高级命令保持原语义；`finpipe.exe`无参数也读取根目录配置，或用`--settings`指定本地配置文件。早期[v0.1.4下载页](https://github.com/hhdandmmd/interview/releases/tag/v0.1.4)保留旧入口，简单入口从0.1.5开始提供。
-
-## 在线、增量、恢复与核对
-
-以下命令在源码根目录执行，不需要激活虚拟环境。Windows程序的等价命令见[可执行程序说明](docs/windows_usage.md)。
-
-```powershell
-.\.venv\Scripts\python.exe -m finpipe run --config config/demo.toml
-.\.venv\Scripts\python.exe -m finpipe run --config config/default.toml
-.\.venv\Scripts\python.exe -m finpipe run --config config/default.toml --refresh recent
-.\.venv\Scripts\python.exe -m finpipe alerts --workspace output/live
-.\.venv\Scripts\python.exe -m finpipe resume --workspace output/live --run-id <失败运行ID>
-.\.venv\Scripts\python.exe -m finpipe replay --workspace output/live --from-db
-.\.venv\Scripts\python.exe -m finpipe doctor --workspace output/live
-.\.venv\Scripts\python.exe -m finpipe backup --workspace output/live --output output/backups
-.\.venv\Scripts\python.exe -m finpipe reconcile --workspace output/demo --reference data/reference/original_reports/reference_contract.json --output output/原报告核对.json
-```
-
-默认配置读取随包冻结的50家公司名单；小样本为茅台、美的、格力。首次采完整范围，`recent`随后只扫描最新4季度，仍发布原范围完整结果。改变公司在有限季度范围内重算，其他公司复用精确版本。请求串行、间隔至少1秒，有限重试遵守同来源Retry-After；403不自动反复请求。
-
-失败运行保存冻结计划、实际捕获目录和阶段。采集中断使用新完整会话，不拼跨会话分页；计算/导出失败复用原完整输入。旧运行和旧候选不能覆盖新head。原文、已发布快照及业务版本不原地修改。
-
-真实财报采用最新完整观察作为当前来源快照：同一扫描只有一个版本即可选择新值；多个不同版本仍冲突，旧归档不能覆盖较新观察。所有旧值保留用于审计。该政策不把观察顺序或UPDATE_DATE冒充官方修订序列。0.1.1的新运行使用公式2和新来源选择政策，profile改变会重算，避免复用旧公式结果；旧冻结计划保留原口径。
-
-当前范围受阻时普通查询拒绝旧结果，审计可显式`--snapshot`或`--allow-stale`。`--as-of`选择当时实际已发布的快照。确认告警不代表恢复；旧离线归档不能证明上游恢复。详细重跑、备份迁移和任务模板见[运行与维护说明](docs/implementation.md)。
-
-独立核对针对演示样本：茅台、美的原报告34项参考中33项匹配、1项不可比；另有4个单季收入核对。左侧384字段中350项无独立参考，报告分别披露覆盖率和匹配率。参考公司不在默认50家公司名单中，不能据此声称全市场原报告核验。
-
-## 代码维护与业务口径
-
-根目录日常只需要关注`config.py`、`main.py`和`run.cmd`。`src/`存放业务代码，`tests/`存放测试，`scripts/`存放构建与核验工具，`config/`存放高级命令的TOML示例，`data/`存放必要的来源证据、独立参考和小体量回测样例，`docs/`保留技术说明与评审。运行结果统一写入`output/`，Windows程序位于`dist/`，待提交的完整ZIP位于`release/`；这些生成目录不进入Git。
-
-历史解压副本、旧交付包和临时验证脚本已清理。需要重新整理完整ZIP时，先构建Windows程序，再执行下方命令；小财务样例直接从随包原文离线重放生成，不依赖任何历史`output`目录。`docs`中的历史审核记录按原文保留，当前安装命令以本README为准。
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/build_windows.ps1
-.\.venv\Scripts\python.exe scripts/package_release.py
-```
-
-| 位置 | 职责 |
+| 配置 | 含义 |
 | --- | --- |
-| `catalog.py`、`config.py` | 字段、单位、期间、规则和冻结profile |
-| `ingestion/` | HTTP、分页、限流、字节归档及中断检查点 |
-| `transforms/`、`features/` | 无IO的清洗和金融计算，15公式及字典 |
-| `source_records.py`、`storage/` | 来源裁决、观察事实、SQL约束和索引 |
-| `quality.py`、`reconciliation.py` | 覆盖/空值/异常/基线、同源及独立核对 |
-| `pipeline.py`、`publication.py` | 阶段顺序、冻结计划、血缘核验和条件发布 |
-| `monitoring.py`、`ops.py` | 告警复发与恢复、只读健康诊断、备份 |
-| `exports.py`、`cli.py` | 固定产物和统一命令入口 |
-| `backtest/` | 纯分组计算、时间口径、公开小范围行情与回测报告 |
+| `stocks` | 公司列表，股票代码保留交易所：上海`.SH`、深圳`.SZ`、北京`.BJ` |
+| `source` | 财报来源，当前支持`eastmoney`或`东方财富` |
+| `start_period / end_period` | 要输出的财报季度，例如`2025Q1—2025Q4`，也接受准确季末日期 |
+| `output_dir` | 数据和结果存放位置，相对路径以配置文件目录为基准 |
 
-累计金额只在同年准确相邻季度做差，Q1直接取本期；同比严格滞后4季度。合并和归母利润分别使用。百分数转小数、流动比率保留倍数；增长率要求正基期，亏损不填零。坏时间、非法字段、缺历史和版本冲突有不同NULL原因。
+这些日期表示**财报报告期**。程序会自动补齐上一年比较数据，用于同比和单季计算。当前支持自然年季度、人民币口径的非金融A股；其他网站需要完成接入后才能选择。
 
-公告日、实际观察、处理和真实发布时间分别保存。公开接口不能证明所有历史重述版本可比；累计差分带`source_assumed`警告，已知不可比输入停止差分及跨期比较，包括Q1同比和ROE变化；单期值及同期比率仍可展示。当前结果不宣称历史PIT或无前视偏差回测。
+## 3. 运行后看什么
 
-每个发布包提供5组CSV/Parquet、字典、质量JSON、HTML、封存manifest及SQL派生receipt。小数据每数据集一个Parquet文件，避免公司×季度小文件。SQLite是唯一权威，head按scope条件激活，封存目录本身不代表已发布。
+控制台会给出 `report.html` 的完整路径。用浏览器打开即可查看公司财务处理结果，并进入完整产物：
 
-进一步阅读：[维护说明](docs/implementation.md)、[当前架构](docs/architecture.md)、[数据口径](docs/data_contract.md)、[原报告证据](docs/original_report_validation.md)、[验收方案](docs/acceptance.md)、[本轮独立审核](docs/delivery_review_20261014.md)。当前说明在源码仓库的docs或Windows交付包的source/docs；历史对话与旧设计留档不进入Git。
+| 文件 | 内容 |
+| --- | --- |
+| `report.html` | 质量摘要、因子样例与结果链接 |
+| `features_long.csv / .parquet` | 因子长表：证券代码、报告期、名称、数值、状态和原因 |
+| `features_panel.csv / .parquet` | 按公司和季度对齐的因子宽表 |
+| `income / balance / indicator` 的CSV与Parquet | 规范化后的三类财报 |
+| `dictionary.md / .json` | 字段含义、单位、公式和数据结构 |
+| `quality.json` | 数据覆盖、缺失、异常及核对明细 |
 
-## 特征分组回测
+原始响应和SQLite数据库也保存在工作区。重复运行会识别未变输入并复用结果；缺值保留原因，不填零。
+
+只想离线体验一次完整流程，可执行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m finpipe backtest --demo --output output/人工回测
+.\.venv\Scripts\python.exe -m finpipe demo --workspace output/demo
 ```
 
-支持五组等权收益、持有窗口净值、端点回撤、Rank IC、成员与排除原因，以及HTML/JSON/CSV报告。真实信号默认按本系统实际可用时间放出；显式`--time-policy publication_proxy`可将历史财报按公告及已知更新日期近似回放，报告保留真实抓取/发布时间并说明历史版本未核验。已实际执行10家公司2023—2025公开日线与财务特征的近似研究；另有人工手算样例。输入小体量且可独立复算，未打包`E:\backtest`的任何私有行情数据。具体来源、命令和口径见[回测说明](docs/backtest.md)。
+这个演示使用茅台、美的、格力的真实HTTP归档，包含72份报表，生成180个因子位置；不是人工财报。
 
-盘中行情尚未接入真实协议和补包源；本次实现财报监控与核对、日线研究回测。独立无Python、断网VM验收仍需执行；清空PATH的测试不等同干净机器验证。
+## 4. 可选：因子回测
+
+在现有 `config.py` 的 `BacktestConfig` 中设置 `enabled=True`，通过 `factors` 列表选择因子，例如 `roe_weighted_ytd`、`revenue_growth_yoy`。五组回测至少需要五家公司；分组、持有期、费用、交易区间和行情来源均可配置，见[回测配置](docs/backtest.md)。
+
+财报处理成功后，每个选定因子分别生成报告，结果位于工作区 `backtests` 下，打开 `index.html` 查看。未提供本地行情时，程序会获取所选股票的小范围腾讯后复权日线。
+
+**默认按本系统真实已知时间使用财报，历史区间可能没有有效窗口。** 显式选择 `publication_proxy` 才做公告时间近似研究；今天抓到的历史财报可能已更正，不能据此宣称严格历史PIT。
+
+随附[五组回测示例](题目回应/示例结果/分组回测/report.html)使用披露累计加权ROE，图表有日期轴、净值轴、分组图例和等权参考，报告注明实际覆盖范围。
+
+## 5. 面试审核与代码维护
+
+| 要看什么 | 入口 |
+| --- | --- |
+| 对题目每一项的回答、代码位置与实际结果 | [题目回应](题目回应/README.md) |
+| 测试案例、复现命令和验证边界 | [测试与验收方案](题目回应/测试与验收.md) |
+| 建议截哪些画面 | [截图清单](题目回应/截图清单.md) |
+| 代码模块怎样配合 | [架构说明](docs/architecture.md) |
+| 添加新因子 | [因子维护说明](docs/factors.md)、`src/finpipe/features/factors/` |
+| 查询、增量刷新、失败恢复、备份和核对 | [运行维护说明](docs/implementation.md) |
+
+`src/` 是业务代码，`tests/` 是自动测试，`scripts/` 是构建和验收工具，`docs/` 保留技术说明。原始[机试题目](机试题目-金融数据处理与特征工程.md)也在根目录。
+
+本项目交付财报处理与简单日线分组研究。盘中行情、实盘撮合、现金分红单独核验及严格历史版本核验未纳入本次实现；独立干净Windows虚拟机尚未验收。
