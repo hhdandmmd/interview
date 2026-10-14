@@ -1,18 +1,31 @@
 # 运行、维护与代码说明
 
-本页对应当前源码。v3设计及旧评审保留为设计依据，实际环境和结果见`delivery_validation.md`。
+本页供已经跑通项目、需要查询和维护的人使用。第一次运行见[项目README](../README.md)，Windows操作见[Windows说明](windows_usage.md)；不需要先理解下面的版本与发布机制才能使用。
+
+本文命令统一在完整ZIP最外层执行；源码开发者在源码根目录将`.\windows\finpipe\finpipe.exe`替换为`.\.venv\Scripts\python.exe -m finpipe`。实际环境和结果见[验收记录](delivery_validation.md)。
 
 ## 运行路径与产物
 
 `demo`自带真实归档；`run`在线读取冻结公司和期间。每个工作区独立拥有`catalog.sqlite`、OS锁、`captures`、不可变`raw`、候选`staging`、发布`snapshots`和`diagnostics`。写操作使用单机单写锁；health仅以只读SQLite连接检查，另写诊断JSON，不等待业务锁。不要把工作区放到网络共享盘或把活动库通过文件同步工具直接复制。
 
-命令退出码：0成功，2参数/输入/环境错误，3门禁阻断或诊断不健康，4工作区写锁冲突。正常CLI不暂停；双击`run_demo.cmd`负责在结束后保留窗口。JSON输出UTF-8，CSV含UTF-8 BOM供Excel读取；Parquet明确保存字符串代码、date32、UTC时间及可空float64。
+命令退出码：0成功，2参数/输入/环境错误，3门禁阻断或诊断不健康，4工作区写锁冲突。正常CLI不暂停；根目录`run.cmd`和`run_demo.cmd`在结束后保留窗口，分别运行自选公司和固定真实演示。JSON输出UTF-8，CSV含UTF-8 BOM供Excel读取；Parquet明确保存字符串代码、date32、UTC时间及可空float64。
 
 发布固定五个数据集：利润表、资产负债表、主要指标、特征长表和完整面板。每个各一份CSV/Parquet，另有字典JSON/Markdown、质量JSON、无外部资源HTML、封存manifest和派生publication receipt。小样本无需按股票或季度分区；每表一个文件降低碎片，扩大数据量时应依据读取粒度重新测量。
 
 ## 配置和维护
 
-日常配置用根config.py的stocks和BacktestConfig；高级命令用scope.codes或run --sample-size。原配置`scope.sample_size`从未控制采集，现已移除并明确拒绝，避免配置看似生效却仍请求50家公司。配置类型、未知字段和规则标签在任何写入前校验，错误指出字段位置。
+日常配置用根config.py的stocks和BacktestConfig，由main.py/run.cmd读取。高级`run --config`读取TOML中的scope.codes，`run --sample-size`从冻结名单选样；这两个高级入口不读取根config.py。配置类型、未知字段和规则标签在写入前校验，错误指出字段位置。
+
+### 高级：最近季度增量刷新
+
+需要调整网络、质量阈值或定期刷新时，在`source/config/default.toml`维护公司和期间，并指定同一个独立工作区。该文件默认50家公司，运行前先确认范围。首次完整运行与后续刷新分别为：
+
+```powershell
+.\windows\finpipe\finpipe.exe run --config .\source\config\default.toml --workspace .\output\advanced
+.\windows\finpipe\finpipe.exe run --config .\source\config\default.toml --workspace .\output\advanced --refresh recent
+```
+
+源码环境除了替换程序前缀，还应使用`--config .\config\default.toml`。后续仍发布完整范围，但只扫描最近四个输入季度。日常run.cmd会重新扫描其配置范围，并复用未变的处理结果；它没有默认为最近季度扫描。
 
 `catalog.py`维护字段名称、来源、单位、期间性质及说明；features/factors各目录的factor.py维护公式、单位、依赖和计算，registry.py登记，specifications.py生成字典，calculation.py负责网格及指纹，见[factors.md](factors.md)。新增因子需同时声明公式、单位、依赖、数学无定义政策和独立手算。`transforms/cleaning.py`与`quality.py`分别负责局部输入处理和整个候选的质量预算，不把网络和数据库塞进计算函数。
 
@@ -37,9 +50,9 @@
 `backup`使用SQLite backup API，并在同一业务锁下复制固定原文和已发布目录，完成后执行doctor。恢复时复制整个备份目录作为新工作区，再运行：
 
 ```powershell
-.\finpipe.exe doctor --workspace D:\恢复的财报数据
-.\finpipe.exe query --workspace D:\恢复的财报数据 --company 600519.SH --period 2025Q4
-.\finpipe.exe replay --workspace D:\恢复的财报数据 --from-db
+.\windows\finpipe\finpipe.exe doctor --workspace "D:\恢复的财报数据"
+.\windows\finpipe\finpipe.exe query --workspace "D:\恢复的财报数据" --company 600519.SH --period 2025Q4
+.\windows\finpipe\finpipe.exe replay --workspace "D:\恢复的财报数据" --from-db
 ```
 
 冻结plan的原逻辑身份不变，工作区内证据路径按新目录重定位；原请求事实中的历史绝对路径保留用于审计。doctor检查SQLite完整性、外键、冻结原文清单/正文和已发布清单，不以目录存在认定健康。采集中断checkpoint用于定位和冷却，不能拿它代替完整manifest发布。
@@ -50,8 +63,6 @@
 
 `scripts/scheduled_job.ps1`提供run或health的等价入口，保存JSON、日志和实际退出码。可由Windows任务计划程序每24小时调用run、每5分钟调用health；配置job规格应与实际周期一致。模板不会自动注册系统任务或发送外部通知。
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/scheduled_job.ps1 -Executable D:\Finpipe\finpipe.exe -Workspace D:\FinpipeData -Command run
-```
+该脚本使用高级CLI，不读取日常config.py；注册任务前须确认其默认公司范围及参数符合任务。自选公司日常运行直接使用run.cmd，定时任务不属于首次演示步骤。
 
 任务未启动、上次失败和心跳超时独立检查；财报固定历史内容长期不变不等于行情停更。health本身未启动需要OS监督。盘中行情涉及休市、停牌、序号域、乱序、时钟误差和补包，不属于本次财报实现。新增日线分组研究及时间边界见[回测说明](backtest.md)，历史修订版本及交易可实现性尚未核验。

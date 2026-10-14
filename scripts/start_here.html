@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>从这里开始 · 金融数据处理与特征工程</title>
+  <!-- 交付页模板：版本及固定样例链接由打包脚本填写，其余操作说明在此维护。 -->
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f6f8; color: #203044; font: 16px/1.75 "Microsoft YaHei", system-ui, sans-serif; }
+    main { max-width: 980px; margin: 32px auto; padding: 0 24px 40px; }
+    h1 { margin: 4px 0 12px; font-size: 30px; line-height: 1.4; }
+    h2 { margin: 0 0 12px; font-size: 22px; }
+    h3 { margin: 16px 0 8px; font-size: 17px; }
+    p { margin: 10px 0; }
+    a { color: #075ca8; text-underline-offset: 3px; }
+    section, details { margin: 20px 0; padding: 24px; background: white; border: 1px solid #dce3ea; border-radius: 10px; }
+    .tag { color: #52667b; font-size: 14px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+    .button { display: inline-block; border: 1px solid #1768a5; border-radius: 6px; padding: 9px 16px; text-decoration: none; }
+    .primary { background: #125c94; color: white; }
+    .tip { border-left: 4px solid #89aaca; padding: 8px 14px; background: #f0f5fa; }
+    code { color: #234f72; font-family: Consolas, monospace; overflow-wrap: anywhere; }
+    pre { padding: 14px; background: #f0f5fa; overflow: auto; line-height: 1.6; }
+    li { margin: 7px 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+    th, td { border-bottom: 1px solid #dce3ea; padding: 12px 8px; text-align: left; vertical-align: top; }
+    footer { color: #52667b; font-size: 14px; }
+    @media (max-width: 600px) { main { padding: 0 14px 24px; } section, details { padding: 18px; } h1 { font-size: 25px; } }
+  </style>
+</head>
+<body><main>
+  <header>
+    <div class="tag">面试项目 · 版本 ${version} · Windows完整交付包</div>
+    <h1>金融数据处理与特征工程</h1>
+    <p>选择公司与财报季度，一次运行完成采集、清洗、存储和15个财务因子计算。</p>
+    <p class="tip"><strong>先解压整个ZIP。</strong> 以下操作都在本页面所在的最外层文件夹完成，无需安装Python。</p>
+  </header>
+
+  <section>
+    <h2>1　先看项目能得到什么</h2>
+    <p>直接打开随包结果，不需要联网，也不需要修改配置。</p>
+    <div class="buttons">
+      <a class="button primary" href="${financial_report}">查看财务结果</a>
+      ${backtest_link}
+      <a class="button" href="source/题目回应/示例结果/index.html">查看清洗、质量与核对示例</a>
+    </div>
+    <p>财务结果来自${companies}家公司的真实归档。财务报告中可以打开完整因子CSV，查看股票、报告期、因子名称、值和状态。</p>
+  </section>
+
+  <section>
+    <h2>2　自己离线跑一遍</h2>
+    <ol>
+      <li>回到本页面所在文件夹，双击 <strong><code>run_demo.cmd</code></strong>。</li>
+      <li>等窗口显示“<strong>退出码：0</strong>”。首次为 <code>PUBLISHED</code>（已生成），重复为 <code>NO_CHANGE</code>（复用成功）。</li>
+      <li>复制“<strong>报告路径</strong>”后面的完整路径，粘贴到浏览器地址栏。</li>
+    </ol>
+    <p>固定样例为茅台、美的、格力的72份真实报表，生成2025年180个因子位置，保存到 <code>output/demo</code>。</p>
+    <p class="tag">此步骤不需要网络，也不读取你在config.py里选择的公司。</p>
+  </section>
+
+  <section>
+    <h2>3　选择自己的公司并采集</h2>
+    <ol>
+      <li>右键同目录的 <strong><code>config.py</code></strong>，用记事本或代码编辑器打开。</li>
+      <li>修改已有配置的股票和财报季度，保留其他内容、引号与行末逗号，保存：</li>
+    </ol>
+    <pre><code>    stocks=["600519.SH", "000333.SZ", "000651.SZ"],
+    start_period="2025Q1",
+    end_period="2025Q4",</code></pre>
+    <ol start="3">
+      <li>保持 <code>source="eastmoney"</code> 和回测 <code>enabled=False</code>，双击 <strong><code>run.cmd</code></strong>。</li>
+      <li>看到“运行完成”或“已复用结果”，且“退出码：0”后，按“<strong>查看报告</strong>”的路径打开HTML。</li>
+    </ol>
+    <p>此步骤需要网络；结果在 <code>output/financial</code>。默认一家公司生成60个因子位置，上面三家公司对应180个位置；自动补齐上一年财报供同比计算。</p>
+    <p class="tip">编辑本页面同层的config.py；source/config.py供源码开发使用。以上三行只是修改片段，不要用它们替换整个配置文件。</p>
+  </section>
+
+  <details>
+    <summary>遇到问题：没有运行成功，或找不到结果</summary>
+    <table>
+      <tr><th>现象</th><th>下一步</th></tr>
+      <tr><td>配置语法错误</td><td>看提示行号，检查英文引号、逗号和括号，再保存重跑。</td></tr>
+      <tr><td>网络超时、TLS、403</td><td>先检查网络、代理或来源访问限制，保留失败窗口。403不要连续重试；需要恢复时使用窗口实际给出的恢复命令。</td></tr>
+      <tr><td>找不到报告</td><td>只复制中文标签后面的完整路径，粘贴到浏览器地址栏；不要手动猜编号目录。</td></tr>
+      <tr><td>数据有空值或warning</td><td>在因子CSV查看feature_status和reason_codes；空值不等于零，warning表示有数值但需关注口径。</td></tr>
+      <tr><td>改了配置，演示仍是三家公司</td><td>run_demo.cmd固定演示；自选公司请运行run.cmd。</td></tr>
+      <tr><td>退出码非0</td><td>本次操作未全部成功；按错误原因处理，不能把旧报告当作本次成功。详细操作见source/docs/windows_usage.md。</td></tr>
+    </table>
+  </details>
+
+  <details>
+    <summary>按需继续：因子回测、题目回应、测试与源码</summary>
+    <p>财报跑通后，再按 <a href="source/docs/backtest.md">回测说明</a>中的完整配置选择公司和因子。五组至少五家公司，报告期和交易区间分别设置。</p>
+    <p>默认按本系统真实已知时间使用信号，历史区间可能无有效窗口。显式选择publication_proxy才做公告近似研究；随包ROE示例使用该近似，历史财报版本未完整核验。</p>
+    <ul>
+      <li><a href="source/题目回应/README.md">题目逐项回应</a>：逐项实现、代码和证据。</li>
+      <li><a href="source/题目回应/测试与验收.md">测试与验收</a>：案例、复现命令和实际边界。</li>
+      <li><a href="source/README.md">源码安装与使用</a>、<a href="source/docs/README.md">技术文档导航</a>。</li>
+    </ul>
+    <p class="tag">.md说明可用编辑器或记事本打开；源码在source/src，测试在source/tests。使用已构建程序时无需先安装源码。</p>
+  </details>
+  <footer>范围：人民币、自然年季度的非金融A股财报与简单日线分组研究。回测未模拟实盘成交或单独核验分红现金流。独立干净Windows机器尚未验收。</footer>
+</main></body>
+</html>

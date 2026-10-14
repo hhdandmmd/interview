@@ -1,52 +1,75 @@
-# Windows可执行程序使用说明
+# Windows操作说明
 
-日常运行在完整交付包根目录进行：修改`config.py`中的`stocks`、`source`、`start_period`、`end_period`和`output_dir`，双击`run.cmd`。默认来源东方财富；程序自动采集上一年比较历史，随后清洗、存储并同步生成15个因子。控制台显示财报数量、因子数量及HTML路径，不需要Python。
+本文用于**包含Windows程序的完整ZIP**。先解压整个包，之后所有命令都在**同时含有`START_HERE.html`、`config.py`、`run.cmd`的最外层目录**执行。源码安装见[项目README](../README.md)。
 
-股票写完整代码，支持多只非金融A股，例如`stocks=["600519.SH", "000333.SZ"]`；时间是输出财报报告期。根目录配置是日常唯一维护入口；原TOML只用于高级操作。`finpipe.exe`无参数读取完整项目根目录配置，也支持`--settings`指定本地Python配置；配置缺失时明确报错，不自动切换50家公司。
+## 首次使用只做三步
 
-下面保留离线演示和高级命令说明。
+1. 双击`START_HERE.html`，点击“查看财务结果”，先确认你希望得到的结果长什么样。
+2. 双击同目录`run_demo.cmd`，等待“退出码：0”。它离线读取真实三家公司归档，输出180个因子位置。
+3. 复制窗口中“报告路径”后面的完整路径，粘贴到浏览器地址栏。
 
-先双击交付包根目录`START_HERE.html`查看真实结果和首次步骤。本文命令在`windows/finpipe`目录执行；整个EXE及依赖目录必须保留，不需要Python。双击`run_demo.cmd`离线演示，结果在用户目录的`Finpipe/demo`，窗口显示实际HTML路径和运行摘要位置。
+演示结果在`output/demo`，运行摘要在`output/demo_result.json`。重复运行显示`NO_CHANGE`表示复用成功，不是失败。演示固定使用茅台、美的、格力，不读取`config.py`。
 
-在本目录打开PowerShell，直接复制执行：
+## 自己选公司并联网采集
 
-```powershell
-.\finpipe.exe demo --workspace .\我的演示结果
-.\finpipe.exe query --workspace .\我的演示结果 --company 600519.SH --period 2025Q4
-.\finpipe.exe explain --workspace .\我的演示结果 --company 600519.SH --period 2025Q4 --feature revenue_growth_yoy
-.\finpipe.exe health --workspace .\我的演示结果
-.\finpipe.exe doctor --workspace .\我的演示结果
-.\finpipe.exe replay --workspace .\我的演示结果 --from-db
+右键最外层`config.py`，用记事本或代码编辑器打开。修改已有的`stocks`、`start_period`、`end_period`三行并保存，再双击`run.cmd`。
+
+```python
+    stocks=["600519.SH", "000333.SZ", "000651.SZ"],
+    start_period="2025Q1",
+    end_period="2025Q4",
 ```
 
-`demo`完全离线，首次发布180个特征，重复运行复用结果。打开返回路径中的`report.html`查看质量摘要、因子样例和完整产物链接；NULL保留原因。
+这里只展示要修改的三行；保留文件其他内容。首次保持来源`eastmoney`及回测`enabled=False`。不要修改`source/config.py`或`windows/finpipe/config/*.toml`来控制此入口。
 
-在线演示及默认50家公司范围：
+成功窗口会显示“运行完成”或“已复用结果”、记录数量和“查看报告”的准确路径。默认一家公司有60个因子位置；上面三家公司有180个位置。输出季度为2025年，程序还会自动抓取2024年比较数据。自选结果位于`output/financial`，与固定演示分开。
 
-```powershell
-.\finpipe.exe run --config .\config\demo.toml
-.\finpipe.exe run --config .\config\default.toml
-.\finpipe.exe run --config .\config\default.toml --refresh recent
-.\finpipe.exe alerts --workspace .\output\live
-.\finpipe.exe resume --workspace .\output\live --run-id <失败运行ID>
-.\finpipe.exe backup --workspace .\output\live --output .\output\backups
-.\finpipe.exe reconcile --workspace .\我的演示结果 --reference ..\..\source\data\reference\original_reports\reference_contract.json --output .\原报告核对.json
-```
+## 需要查询或检查时
 
-配置中的工作区相对于配置文件，显式`--workspace`相对于当前目录。上面默认配置的结果在本目录`output/live`，小样本在线结果在`output/demo_online`。程序返回JSON和退出码，运行成功不等于全部输入有值；告警确认不等于恢复。
-
-交付包根目录的`START_HERE.md`提供3家公司已核验财务示例及10家公司小体量回测输入的实际路径，无需先联网即可查询和复算。源码和依赖文件位于交付包的`source`目录，50家公司公开财务归档可重放生成完整结果，见`docs/backtest.md`。安装与维护请在源码目录阅读`README.md`。
-
-完全离线的人工分组演示：
+在最外层文件夹的资源管理器地址栏输入`powershell`并回车，再复制命令。以下读取你刚才跑出的离线演示：
 
 ```powershell
-.\finpipe.exe backtest --demo --output .\人工分组回测
+.\windows\finpipe\finpipe.exe query --workspace .\output\demo --company 600519.SH --period 2025Q4
+.\windows\finpipe\finpipe.exe explain --workspace .\output\demo --company 600519.SH --period 2025Q4 --feature revenue_growth_yoy
+.\windows\finpipe\finpipe.exe health --workspace .\output\demo
+.\windows\finpipe\finpipe.exe doctor --workspace .\output\demo
 ```
 
-真实回测默认`observed`时间；显式`publication_proxy`为公告及已知更新日期近似研究，不能宣称严格历史PIT。复算及在线获取方法见包根目录的`source/docs/backtest.md`；重复回测须换新输出目录。
+`query`输出数值，`explain`输出公式输入和状态原因，`health`检查当前健康，`doctor`检查数据库及文件完整性。查询自选公司的在线结果时，将`--workspace .\output\demo`改成`.\output\financial`，并修改公司和报告期。JSON用于进一步核验，日常看结果打开HTML和CSV即可。
 
-当前财报不构成历史PIT或无前视偏差回测。独立干净Windows机器尚未验收，本机搬迁和无Python PATH验证见包根目录`source/docs/delivery_validation.md`。技术说明和官方PDF集中在source，EXE目录不重复保存。
+尚未运行时，也可以直接查随包已有的财务样例：
 
-## 配置多因子回测
+```powershell
+.\windows\finpipe\finpipe.exe query --workspace .\examples\financial --company 600519.SH --period 2025Q4
+```
 
-根config.py的backtest.enabled控制是否回测，factors为因子列表；五组至少需要五只股票。每个因子分别出报告，多因子共用行情并固定本次财报快照。默认observed不回填历史，公告近似研究须显式选publication_proxy；结果总览在工作区backtests/时间_编号/index.html。日期、持有期、费用与本地行情见交付包source/docs/backtest.md。回测失败保留财报结果，修复输入后重跑入口。
+## 看回测或重跑回测
+
+先在`START_HERE.html`点击“查看ROE五组回测”，无需修改配置。要用自己的公司和因子回测，按[完整配置示例](backtest.md)修改最外层`config.py`，仍运行同一个`run.cmd`。
+
+要离线复算随包公开样例，在最外层PowerShell执行：
+
+```powershell
+.\windows\finpipe\finpipe.exe backtest --signals .\examples\backtest_real\signals.json --market .\examples\backtest_real\market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output .\output\回测复算_01
+```
+
+成功后打开`output/回测复算_01/report.html`。第二次将末尾输出目录换成`回测复算_02`；回测不会覆盖已有报告。此样例使用累计加权ROE与公告时间近似，历史财报版本未完整核验。
+
+## 失败后怎么处理
+
+| 窗口现象 | 处理方法 |
+| --- | --- |
+| 配置第几行语法错误 | 保留原文件结构，修正该行引号、逗号或括号，保存后重跑 |
+| 网络错误、TLS错误、403 | 检查网络、代理或来源访问限制；保留窗口中的运行编号和采集证据路径。403不要连续重试 |
+| 财报成功，但回测未完成 | 财报结果保留；查看回测总览中的人数、可用时间或行情错误，按[回测排错](backtest.md)调整 |
+| 退出码4 | 同一数据目录有另一个写入任务，等它结束后重试 |
+| 质量阻断或健康异常 | 先按下面命令看具体问题，再使用窗口实际给出的恢复命令；不要删除数据库来消除告警 |
+
+```powershell
+.\windows\finpipe\finpipe.exe alerts --workspace .\output\financial
+.\windows\finpipe\finpipe.exe doctor --workspace .\output\financial
+```
+
+控制台给出的恢复命令已经带上真实工作区和运行编号，整行复制到PowerShell即可。`resume`恢复的是失败时的原配置；如果你希望换公司或报告期，编辑`config.py`后重新运行`run.cmd`。
+
+首次上手不需要配置定时任务、TOML、备份或数据库。确有维护需求时再读[运行维护](implementation.md)。程序依赖整个`windows/finpipe`目录，请整体保留。已验证中文空格路径和无Python PATH运行，独立干净Windows机器尚未验收。

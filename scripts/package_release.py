@@ -12,10 +12,13 @@ import tempfile
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+from string import Template
 
 from finpipe import __version__
 
 CURRENT_DOCUMENTS = (
+    "README.md",
+    "source_capture_implementation.md",
     "windows_usage.md",
     "implementation.md",
     "architecture.md",
@@ -46,41 +49,19 @@ def copy_documents(root: Path, destination: Path) -> None:
 
 
 def start_page(destination: Path, snapshot_id: str, companies: int, has_backtest: bool) -> None:
-    """不依赖Markdown软件或外网的首次入口，直接链接已核验真实结果。"""
-    links = f'<a href="examples/financial/snapshots/{snapshot_id}/report.html">查看{companies}家公司财务结果</a>'
-    if has_backtest:
-        links += ' · <a href="examples/backtest_real/report.html">查看真实近似回测</a>'
-    links += ' · <a href="source/题目回应/示例结果/index.html">题目示例与验收结果</a>'
-    links += ' · <a href="source/题目回应/README.md">逐项题目回应</a>'
-    query = ".\\windows\\finpipe\\finpipe.exe query --workspace .\\examples\\financial --company 600519.SH --period 2025Q4"
-    replay = ".\\windows\\finpipe\\finpipe.exe backtest --signals .\\examples\\backtest_real\\signals.json --market .\\examples\\backtest_real\\market --time-policy publication_proxy --horizon 20 --start 2023-01-01 --end 2025-12-31 --output .\\output\\真实回测_第二次"
-    body = (
-        '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>金融数据项目 · 从这里开始</title>'
-        "<style>body{max-width:960px;margin:36px auto;padding:0 20px;font:16px/1.8 sans-serif;color:#1e293b}"
-        "a{color:#0369a1}pre{background:#f1f5f9;padding:16px;white-space:pre-wrap;word-break:break-all}"
-        ".note{background:#fff7ed;padding:16px}</style>"
-        f"<h1>金融数据处理与特征工程 {html.escape(__version__)}</h1><p>{links}</p>"
-        "<h2>配置后直接运行</h2><ol><li>打开根目录config.py，填写股票、来源和输出报告期；默认东方财富和茅台2025年。</li>"
-        "<li>双击根目录run.cmd，自动采集财报、清洗、存储并同步计算15个因子。窗口显示结果目录和HTML路径，无需安装Python。</li>"
-        "<li>程序自动补齐上一年比较数据。当前只支持东方财富，其他来源会明确报错。</li></ol>"
-        "<p>可选回测：在config.py设置backtest.enabled=True并填写factors；五组至少选择五只股票。每个因子分别出报告，多因子共用一次行情，运行结束显示总览路径。"
-        "默认observed按真实已知时间放出；历史近似研究须显式选publication_proxy。因子定义维护在source/src/finpipe/features/factors各目录的factor.py。</p>"
-        "<h2>离线查看与演示</h2><p>点击上方链接看随包真实结果，无需网络。进入windows/finpipe，双击run_demo.cmd重跑固定真实样本；再次演示复用结果。</p>"
-        "<h2>在交付包根目录打开PowerShell</h2><p>查询一家公司一个报告期：</p>"
-        f"<pre>{html.escape(query)}</pre><p>人工五组演示：</p>"
-        "<pre>.\\windows\\finpipe\\finpipe.exe backtest --demo --output .\\output\\人工回测_第一次</pre>"
-        "<p>输出已存在时换新目录，不覆盖之前的结果。回测默认使用披露累计加权ROE，报告包含日期轴、净值轴、分组图例、等权参考和首期成员；可保存独立SVG与图表CSV。</p>"
-        + (
-            f"<p>小体量真实输入离线复算：</p><pre>{html.escape(replay)}</pre>"
+    """模板只填写当前版本和实际样例链接，首次操作说明保持可单独阅读。"""
+    template = Template(Path(__file__).with_name("start_here.html").read_text(encoding="utf-8"))
+    page = template.substitute(
+        version=html.escape(__version__),
+        companies=companies,
+        financial_report=f"examples/financial/snapshots/{html.escape(snapshot_id)}/report.html",
+        backtest_link=(
+            '<a class="button" href="examples/backtest_real/report.html">查看ROE五组回测</a>'
             if has_backtest
             else ""
-        )
-        + "<h2>评审与维护</h2><p>先读source/README.md和source/docs/architecture.md。原题、要求对照、实际测试、"
-        "金融与回测口径在source中，目录说明见START_HERE.md。</p>"
-        '<div class="note">真实回测按公告及已知更新日期近似放出当前财报值，历史版本未核验；'
-        "后复权价格研究未单独核验分红现金流或可交易性。人工样例明确标识。独立干净Windows VM尚未验收。</div></html>"
+        ),
     )
-    (destination / "START_HERE.html").write_text(body, encoding="utf-8")
+    (destination / "START_HERE.html").write_text(page, encoding="utf-8", newline="\n")
 
 
 def digest(path: Path) -> str:
@@ -100,10 +81,18 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     destination.mkdir(parents=True, exist_ok=False)
     binary = destination / "windows" / "finpipe"
     shutil.copytree(root / "dist/finpipe", binary)
-    for name in ("config.py", "main.py", "run.cmd"):
+    for name in ("config.py", "main.py", "run.cmd", "run_demo.cmd"):
         shutil.copyfile(root / name, destination / name)
     shutil.copyfile(root / "scripts/run_demo.cmd", binary / "run_demo.cmd")
-    shutil.copyfile(root / "docs/windows_usage.md", binary / "README.md")
+    # 程序子目录只指回交付根目录，避免把相对链接和命令复制到错误位置。
+    (binary / "README.md").write_text(
+        "# Windows程序目录\n\n请回到交付包最外层，打开[START_HERE.html](../../START_HERE.html)。\n\n"
+        "离线演示双击最外层run_demo.cmd，自选公司编辑最外层config.py后双击run.cmd。\n\n"
+        "操作与排错见[Windows说明](../../source/docs/windows_usage.md)。"
+        "本目录及依赖须整体保留；这里的旧run_demo.cmd兼容入口将结果写到用户目录。\n",
+        encoding="utf-8",
+        newline="\n",
+    )
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
         shutil.copyfile(root / name, binary / name)
     (binary / "scripts").mkdir()
@@ -130,6 +119,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "config.py",
         "main.py",
         "run.cmd",
+        "run_demo.cmd",
     ):
         shutil.copyfile(root / name, source / name)
     copy_documents(root, source / "docs")
@@ -158,7 +148,6 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     ):
         raise ValueError("示例整理路径越过新交付目录")
     original.rename(financial)
-    example_path = financial.relative_to(destination).as_posix()
     from finpipe.storage import Store
 
     with Store(example_workspace, readonly=True) as store:
@@ -184,30 +173,25 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
             horizon=20,
         )
     start_page(destination, published["snapshot_id"], example_companies, bool(backtest_example))
-    backtest_start = (
-        (
-            "小体量真实近似回测及可独立复算输入位于 `examples/backtest_real`，"
-            "报告明确历史财报版本未核验；不包含任何E盘私有行情库。\n\n"
-            "```powershell\n.\\windows\\finpipe\\finpipe.exe backtest --demo --output .\\人工回测\n"
-            ".\\windows\\finpipe\\finpipe.exe backtest --signals .\\examples\\backtest_real\\signals.json "
-            "--market .\\examples\\backtest_real\\market --time-policy publication_proxy "
-            "--start 2023-01-01 --end 2025-12-31 --horizon 20 --output .\\真实近似复算\n```\n\n"
-        )
-        if backtest_example
-        else ""
-    )
     start = (
-        "# 从这里开始\n\n日常运行：修改根目录`config.py`中的股票、来源和报告期，双击`run.cmd`，自动采集、清洗、存储并同步生成因子。比较历史由程序自动补齐；当前来源仅支持东方财富。\n\n先双击根目录 `START_HERE.html`，无需Markdown软件即可查看真实结果和运行步骤。\n\nWindows程序在 `windows/finpipe`，双击其中的 `run_demo.cmd` 即可离线运行。"
-        "源码、题目、锁定依赖和全部测试位于 `source`。\n\n"
-        "逐项[题目回应](source/题目回应/README.md)、[可查看的示例结果](source/题目回应/示例结果/index.html)、测试方案与截图清单集中放在source/题目回应。\n\n"
-        f"{example_companies}家公司已核验财务工作区位于 `{example_path}`，可直接查询或打开其snapshots中的HTML。\n\n"
-        f"```powershell\n.\\windows\\finpipe\\finpipe.exe query --workspace .\\{example_path.replace('/', chr(92))} --company 600519.SH --period 2025Q4\n```\n\n"
-        + backtest_start
-        + "为控制体积，默认附小财务示例；50家公司公开原文位于source/data/evidence，重放方法见source/docs/backtest.md。\n\n"
-        + "当前说明先读source/README.md、docs/architecture.md、docs/implementation.md和docs/backtest.md；审核结论见docs/delivery_review_20261014.md。历史设计、对话及旧在线capture留在原工作区；官方PDF只存于source/data/reference/original_reports。\n\n"
-        "实际验收与限制见 `source/docs/delivery_validation.md`；SHA256.json及provenance.json固定文件和构建环境。\n"
+        "# 从这里开始\n\n先解压整个ZIP，再双击同目录的[START_HERE.html](START_HERE.html)。"
+        "无需Python，以下操作都在本文件所在的最外层完成。\n\n"
+        "1. 点击起始页的“查看财务结果”，先看已有样例。\n"
+        "2. 双击同目录run_demo.cmd离线重跑；退出码0表示成功，按窗口的“报告路径”打开HTML。"
+        "固定三家公司，结果保存到output/demo。\n"
+        "3. 需要自选公司时，用编辑器打开同目录config.py，修改股票和财报季度，保存后双击run.cmd。"
+        "该步骤需联网，结果保存到output/financial。\n\n"
+        "日常编辑最外层config.py；source/config.py用于源码开发。程序需要整个windows/finpipe目录。\n\n"
+        "更多操作与排错见[Windows说明](source/docs/windows_usage.md)，"
+        "回测见[完整配置示例](source/docs/backtest.md)。\n\n"
+        "审核材料：[题目逐项回应](source/题目回应/README.md)、"
+        "[示例结果](source/题目回应/示例结果/index.html)、"
+        "[测试与验收](source/题目回应/测试与验收.md)。\n\n"
+        "源码安装见[source/README.md](source/README.md)，技术说明见"
+        "[文档导航](source/docs/README.md)。SHA256.json记录交付文件摘要，"
+        "provenance.json记录构建环境。独立干净Windows机器尚未验收。\n"
     )
-    (destination / "START_HERE.md").write_text(start, encoding="utf-8")
+    (destination / "START_HERE.md").write_text(start, encoding="utf-8", newline="\n")
     licenses = binary / "licenses"
     python_license = Path(sys.base_prefix) / "LICENSE.txt"
     if python_license.exists():

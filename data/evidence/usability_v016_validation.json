@@ -1,0 +1,52 @@
+{
+  "checked_at": "2026-10-15T00:29:29.362733+08:00",
+  "version": "0.1.6",
+  "kind": "实际操作预验收，最终ZIP搬迁检查另见同名validation.json",
+  "preflight_archive_sha256": "3e65a37c5bb3fca1f247ea3542f8211dbcd8f2f56371eb844b972feb6d9ed774",
+  "focused_tests": {
+    "passed": 52,
+    "seconds": 5.04,
+    "files": [
+      "tests/test_simple_runner.py",
+      "tests/test_configured_backtest.py",
+      "tests/test_first_run.py"
+    ]
+  },
+  "source_root_demo": [
+    "PUBLISHED",
+    "NO_CHANGE"
+  ],
+  "windows_root_demo": [
+    "PUBLISHED",
+    "NO_CHANGE"
+  ],
+  "offline_reports": 72,
+  "offline_feature_positions": 180,
+  "query_explain_health_doctor": "passed",
+  "public_backtest_windows": 20,
+  "missing_dependencies_message": "passed",
+  "invalid_config_message": "passed",
+  "default_live": {
+    "exit_code": 0,
+    "financial_reports": 24,
+    "feature_positions": 60
+  },
+  "copied_document_config": {
+    "status": "ok",
+    "financial_reports": 120,
+    "feature_positions": 300,
+    "factors": [
+      {
+        "name": "roe_weighted_ytd",
+        "windows": 4
+      },
+      {
+        "name": "revenue_growth_yoy",
+        "windows": 4
+      }
+    ]
+  },
+  "browser": "Edge无头浏览器实际渲染START_HERE.html并检查截图",
+  "network_condition": "离线命令使用不可用代理，联网用例另用实际网络；不是操作系统隔离",
+  "clean_machine_verified": false
+}

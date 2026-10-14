@@ -2,31 +2,89 @@
 
 本模块落实原题附加项：读取项目生成的财务特征，按值从低到高分五组，计算等权收益并输出HTML、JSON、成员CSV、分组收益CSV及净值CSV。它是价格研究工具，范围小、可离线复算，不引入撮合引擎、任务平台或额外依赖。
 
-## 根配置自动回测
+## 1. 先看一个完整结果
 
-在根目录config.py将backtest.enabled设为True，并在factors填写因子列表。每个因子分别排序、分组和回测；财报主线仍完整生成全部因子。五组至少需要五只股票，名称/人数/日期/费用等在联网前校验，财报成功后固定使用该次返回的快照。
+在本地浏览器打开[随附ROE五组回测](../题目回应/示例结果/分组回测/report.html)。横轴是日期，纵轴是净值，G1为因子值最低组，G5为最高组；初始净值1，1.20表示累计收益20%。该样例用十家公司披露的累计加权ROE形成20个有效窗口，属于公告时间近似研究。
+
+想复算同一结果，无需改公司或联网。**完整ZIP**在含`START_HERE.html`的最外层PowerShell执行：
+
+```powershell
+.\windows\finpipe\finpipe.exe backtest --signals .\examples\backtest_real\signals.json --market .\examples\backtest_real\market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output .\output\回测复算_01
+```
+
+**源码**先按README安装，在含`main.py`的目录执行：
+
+```powershell
+.\.venv\Scripts\python.exe -m finpipe backtest --signals data/examples/backtest_real/signals.json --market data/examples/backtest_real/market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output output/回测复算_01
+```
+
+成功后打开`output/回测复算_01/report.html`。再次复算时把输出目录改成`回测复算_02`，已有报告不会覆盖。
+
+## 2. 用自己的公司和因子回测
+
+下面是一份**可整体替换`config.py`的完整配置**。完整ZIP编辑最外层`config.py`；源码编辑与`main.py`同层的文件。它用五家公司2025年的财务因子研究2026年6—9月的价格收益，自动补历史财报并获取小范围行情。
+
+此配置显式启用`publication_proxy`：按公告及已知更新日期近似释放信号，历史修订版本未核验。程序原始默认值仍为`observed`，即按本系统真正知道数据的时间处理。
 
 ```python
-backtest=BacktestConfig(
-    enabled=True,
-    factors=["roe_weighted_ytd", "revenue_growth_yoy"],
-    groups=5,
-    horizon=20,
-    cost_bps=0.0,
-    # 历史公告近似研究；本系统真实已知时间用observed。
-    time_policy="publication_proxy",
-    start_date="2025-01-01",
-    end_date="2025-12-31",
-    # 不指定则自动采集腾讯后复权行情；指定本地目录可复用已有行情。
-    market_dir=None,
+from pathlib import Path
+
+from finpipe.config import BacktestConfig, RunConfig
+
+CONFIG = RunConfig(
+    stocks=["600519.SH", "000333.SZ", "000651.SZ", "600009.SH", "601006.SH"],
+    source="eastmoney",
+    # 财报季度与下方的交易日期分别设置。
+    start_period="2025Q1",
+    end_period="2025Q4",
+    output_dir=Path(__file__).resolve().parent / "output" / "financial",
+    backtest=BacktestConfig(
+        enabled=True,
+        # 每个因子分别出报告；只研究ROE时删去第二项即可。
+        factors=["roe_weighted_ytd", "revenue_growth_yoy"],
+        groups=5,
+        horizon=20,
+        cost_bps=0.0,
+        # 显式选择历史公告近似，不能视为严格历史PIT。
+        time_policy="publication_proxy",
+        start_date="2026-06-01",
+        end_date="2026-09-30",
+        # 自动获取腾讯后复权日线；已有同格式文件时可改为本地目录。
+        market_dir=None,
+    ),
 )
 ```
 
-上述字段放在RunConfig的backtest参数中，完整可运行入口见根config.py。日期是回测交易区间；不填写时取输出报告期首年的1月1日至末个报告期末日。默认时间口径仍为observed，不把本次抓取的数据回填到过去；历史区间可能没有有效窗口。publication_proxy须明确选择，保留历史版本未核验的说明。
+保存后双击同目录`run.cmd`，需要网络。完成时先看财报的“查看报告”，再看“回测状态”一行中的“总览”路径。总览位于`output/financial/backtests/时间_编号/index.html`，点击因子名称对应的报告；各因子独立分组，不是把多个因子合成一个策略。
+
+| 需要改什么 | 对应配置 |
+| --- | --- |
+| 股票和财报季度 | 外层`stocks`、`start_period`、`end_period`；五组至少五家公司 |
+| 是否回测 | `enabled`，关闭后仍采集并计算全部财务因子 |
+| 用哪些因子 | `factors`，名称见[15个因子及含义](../题目回应/README.md)或生成的字典 |
+| 交易区间 | `start_date`、`end_date`；应给财报发布及后续持有留出时间 |
+| 分组及持有期 | `groups`、`horizon`；持有期单位为交易日 |
+| 费用 | `cost_bps`为单边基点，1表示0.01%；0表示不计费用 |
+| 本地行情 | `market_dir`，留`None`自动获取；相对目录相对于配置文件 |
+
+不填写交易日期时取输出报告期首年的1月1日至末个报告期末日。日期范围相同，也可能因因子依赖和实际可用时间不同而得到不同窗口数。此配置曾对两个因子各形成4个窗口，实时抓取结果仍以本次报告为准，不能保证以后一直相同。
 
 多个因子共用一次行情采集与解析；本地行情允许包含额外证券，研究池固定取stocks，缺少已声明股票则报错。自动行情至多50只沪深股票、五个自然年；北京证券或更长范围请提供外部同契约行情。
 
 输出位于财务工作区backtests/时间_编号：index.html是总览，batch.json记录固定快照/配置/阶段状态，各因子目录保留独立报告、SVG、收益/成员CSV和可复算输入。重复运行创建新目录，不覆盖旧报告。行情失败或单因子失败保留上下文；其他因子仍可完成。回测不完整时入口返回非零码，已成功的财报结果保留。因子代码维护见[因子扩展](factors.md)。
+
+## 3. 回测没有结果时先查什么
+
+| 提示或现象 | 检查方法 |
+| --- | --- |
+| 五组至少需要五只股票 | 增加外层`stocks`，或减小`groups`；不要只把默认一家公司配置的开关改为True |
+| 有效窗口为0，状态`incomplete` | 先看时间口径；2026年首次抓取的财报在`observed`下不会进入2025年回测。也可能是有效公司不足或依赖尚未可用 |
+| 显式选了`publication_proxy`仍无窗口 | 公告近似也包含已知更新日期和滞后报表依赖；选择更晚且有行情的交易区间，不能删掉这些时间限制制造收益 |
+| ROE有结果，另一个因子没有 | 不同因子的输入及可用时间不同；看该报告的排除原因和实际窗口数 |
+| 输出目录已存在 | CLI复算换一个新的`--output`目录；配置入口会自动创建新目录 |
+| 缺行情、抓取失败或个别组净值为空 | 看报告中的错误或缺价明细；不要补零。财报成功产物仍在原路径 |
+
+以下是计算口径和高级维护参考，首次运行无需读完。
 
 ## 因子与报告读法
 
@@ -67,9 +125,9 @@ HTML首屏显示中文因子名称、标识、分组方式、股票池、持有�
 
 缺少停复牌、涨跌停、成交量限制、历史上市退市与完整复权事件核验，所以本模块不宣称策略可成交或无偏历史绩效。它参考`E:\backtest`中“分层评估、延迟持仓、复权价、缺失生命周期”的处理思路，未复制其代码或任何本地大行情数据。
 
-## 三种运行方式
+## 高级：人工案例、在线行情和完整归档
 
-以下在源码根目录运行；Windows交付程序用`.\finpipe.exe`替换`.\.venv\Scripts\python.exe -m finpipe`。输出使用新目录，已有报告不会覆盖。
+本节命令均在已安装依赖的**源码根目录**运行，适合需要单独控制采集、行情和回测的维护者。普通使用优先选择上面的完整配置。输出使用新目录，已有报告不会覆盖。
 
 完全离线的人工财报演示：
 
@@ -91,12 +149,6 @@ HTML首屏显示中文因子名称、标识、分组方式、股票池、持有�
 
 ```powershell
 .\.venv\Scripts\python.exe -m finpipe replay --manifest data/evidence/full_market_capture_20261013/manifest.json --workspace output/full
-```
-
-在交付包根目录复算`examples/backtest_real`中的小体量公开输入：
-
-```powershell
-.\windows\finpipe\finpipe.exe backtest --signals .\examples\backtest_real\signals.json --market .\examples\backtest_real\market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output .\我的复算结果
 ```
 
 输出的`signals.json`与`market`目录可单独复算；它们只包含本次研究的小池日线和所选因子，不要求交付SQLite库或`E:\backtest`的私有大行情文件。请求原字节留在采集工作区，派生输入保存SHA和原请求摘要。交付包附真实小报告，人工报告可用离线命令自动生成；财务演示库采用3家公司小样本，50家完整财务结果可由公开归档重新生成。

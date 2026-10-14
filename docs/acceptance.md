@@ -5,9 +5,9 @@
 ## 首次使用
 
 1. 解压整个包，双击根目录START_HERE.html；无需Python或网络，先看财务报告、原题和真实近似回测。
-2. 在windows/finpipe双击run_demo.cmd，确认退出0并找到实际HTML路径及摘要。
+2. 双击最外层run_demo.cmd，确认退出0并找到实际HTML路径及摘要；结果在output/demo。
 3. 再运行同一演示，确认复用结果，不新增来源、清洗与特征版本。
-4. 按起始页查询单公司单期，解释一个NULL或warning；源码和测试位于source。
+4. 按[Windows说明](windows_usage.md)在同一个最外层目录查询单公司单期，解释一个NULL或warning；源码和测试位于source。
 5. 人工回测后用小体量真实输入复算；使用新输出目录，旧报告不覆盖。
 
 ## 原题核验
