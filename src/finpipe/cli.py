@@ -13,6 +13,7 @@ from filelock import Timeout
 from finpipe import __version__
 from finpipe.config import load_config
 from finpipe.pipeline import execute_manifest, execute_online, plan_manifest, resume_run
+from finpipe.runtime import recovery_command, result_exit_code
 from finpipe.storage import Store
 from finpipe.timeutil import iso_time, quarter_end
 
@@ -291,20 +292,29 @@ def main(argv: list[str] | None = None) -> int:
     """程序正常结束返回退出码；不用input阻塞调度或自动化。"""
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if not argv or argv[0] == "--settings":
+        from finpipe.runner import main as start
+
+        base = (
+            Path(sys.executable).resolve().parent.parent.parent
+            if getattr(sys, "frozen", False)
+            else Path.cwd()
+        )
+        simple = argparse.ArgumentParser(
+            prog="finpipe", description="读取config.py运行财报与因子处理"
+        )
+        simple.add_argument("--settings", type=Path, default=base / "config.py")
+        return start(simple.parse_args(argv).settings)
     arguments = parser().parse_args(argv)
     try:
         config = load_config(arguments.config, arguments.workspace)
         result = _run(arguments, config)
         if result.get("run_id") and result.get("status") in ("FAILED", "BLOCKED", "WAITING_DATA"):
-            prefix = f'& "{sys.executable}"' + (
-                "" if getattr(sys, "frozen", False) else " -m finpipe"
+            result["recovery_command_powershell"] = recovery_command(
+                result["run_id"], config["workspace"]
             )
-            result["recovery_command_powershell"] = (
-                f'{prefix} resume --run-id "{result["run_id"]}" --workspace "{config["workspace"]}"'
-            )
-        code = 0 if result.get("status") in ("ok", "healthy", "PUBLISHED", "NO_CHANGE") else 3
-        if result.get("scope_health") in ("blocked", "stale"):
-            code = 3
+        code = result_exit_code(result)
     except Timeout:
         result, code = {"status": "FAILED", "error": "工作区正被另一进程写入，OS锁未释放"}, 4
     except (ValueError, OSError, KeyError, RuntimeError, sqlite3.Error) as exc:

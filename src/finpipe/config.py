@@ -4,6 +4,7 @@ import copy
 import json
 import re
 import tomllib
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from finpipe.identity import stable_id
@@ -33,34 +34,43 @@ DEFAULTS = {
 }
 
 
-def load_config(path: Path | None = None, workspace: Path | None = None) -> dict:
-    """校验有限参数及输入上下文，未知键报错而不忽略拼写错误。"""
-    result = copy.deepcopy(DEFAULTS)
-    # 默认在线范围读取真实冻结名单；demo的三家公司由自带归档决定。
-    result["scope"]["codes"] = json.loads(
-        (Path(__file__).parent / "resources/demo/universe/universe.json").read_text(
-            encoding="utf-8"
-        )
-    )["codes"]
-    result["_output_explicit"] = False
+def load_config(
+    path: Path | None = None, workspace: Path | None = None, *, values: dict | None = None
+) -> dict:
+    """文件或内存配置二选一；共用口径校验，未知键不静默忽略。"""
+    if path is not None and values is not None:
+        raise ValueError("配置文件与内存配置不能同时指定")
     base = Path.cwd()
+    incoming = {} if values is None else values
     if path:
         path = path.resolve()
         base = path.parent
         incoming = tomllib.loads(path.read_text(encoding="utf-8"))
-        for key, value in incoming.items():
-            if key not in DEFAULTS:
-                raise ValueError(f"未知配置键：{key}")
-            if isinstance(result[key], dict):
-                if not isinstance(value, dict):
-                    raise ValueError(f"配置段或字段无效：{key}")
-                unknown = set(value) - set(result[key])
-                if unknown:
-                    raise ValueError(f"未知配置字段：{key}." + f", {key}.".join(sorted(unknown)))
-                result[key].update(value)
-            else:
-                result[key] = value
-        result["_output_explicit"] = "output_start" in incoming.get("scope", {})
+    if not isinstance(incoming, dict):
+        raise ValueError("配置必须为对象")
+    if "scope" in incoming and not isinstance(incoming["scope"], dict):
+        raise ValueError("配置段或字段无效：scope")
+    result = copy.deepcopy(DEFAULTS)
+    # 未指定公司时才加载冻结名单；简单入口的自选公司不被默认50家公司覆盖。
+    if "codes" not in incoming.get("scope", {}):
+        result["scope"]["codes"] = json.loads(
+            (Path(__file__).parent / "resources/demo/universe/universe.json").read_text(
+                encoding="utf-8"
+            )
+        )["codes"]
+    for key, value in incoming.items():
+        if key not in DEFAULTS:
+            raise ValueError(f"未知配置键：{key}")
+        if isinstance(result[key], dict):
+            if not isinstance(value, dict):
+                raise ValueError(f"配置段或字段无效：{key}")
+            unknown = set(value) - set(result[key])
+            if unknown:
+                raise ValueError(f"未知配置字段：{key}." + f", {key}.".join(sorted(unknown)))
+            result[key].update(value)
+        else:
+            result[key] = value
+    result["_output_explicit"] = "output_start" in incoming.get("scope", {})
     if not isinstance(result["workspace"], str) or not result["workspace"].strip():
         raise ValueError("workspace必须为非空目录字符串")
     requested = workspace if workspace is not None else Path(result["workspace"])
@@ -133,3 +143,41 @@ def load_config(path: Path | None = None, workspace: Path | None = None) -> dict
     result["profile_id"] = stable_id("profile", result["profile"])
     result["input_periods"], result["output_periods"] = inputs, outputs
     return result
+
+
+@dataclass
+class RunConfig:
+    """日常运行只指定公司、来源和输出报告期；相对输出目录以调用目录为准。"""
+
+    stocks: list[str] = field(default_factory=lambda: ["600519.SH"])
+    source: str = "eastmoney"
+    start_period: str = "2025Q1"
+    end_period: str = "2025Q4"
+    output_dir: str | Path = "output/financial"
+
+    def to_pipeline_config(self) -> dict:
+        """自动补齐上一自然年Q1起的历史，供单季、同比和跨年环比计算。"""
+        if self.source not in ("eastmoney", "东方财富"):
+            raise ValueError("当前数据来源仅支持东方财富（eastmoney），其他网站尚未接入")
+        if not isinstance(self.stocks, list):
+            raise ValueError('stocks须为股票代码列表，如["600519.SH"]')
+        if not isinstance(self.start_period, str) or not isinstance(self.end_period, str):
+            raise ValueError("报告期须为季度字符串，如2025Q1")
+        if not isinstance(self.output_dir, (str, Path)) or not str(self.output_dir).strip():
+            raise ValueError("output_dir须为非空目录")
+        outputs = quarters(self.start_period, self.end_period)
+        year = int(outputs[0][:4])
+        if year <= 1:
+            raise ValueError("起始报告期须留出上一年的比较历史")
+        return load_config(
+            values={
+                "workspace": str(self.output_dir),
+                "scope": {
+                    "codes": self.stocks.copy(),
+                    "input_start": f"{year - 1:04d}Q1",
+                    "input_end": outputs[-1],
+                    "output_start": outputs[0],
+                    "output_end": outputs[-1],
+                },
+            }
+        )

@@ -56,9 +56,10 @@ def start_page(destination: Path, snapshot_id: str, companies: int, has_backtest
         "a{color:#0369a1}pre{background:#f1f5f9;padding:16px;white-space:pre-wrap;word-break:break-all}"
         ".note{background:#fff7ed;padding:16px}</style>"
         f"<h1>金融数据处理与特征工程 {html.escape(__version__)}</h1><p>{links}</p>"
-        "<h2>先看结果，再运行</h2><ol><li>点击上方链接看随包真实结果，无需Python和网络。</li>"
-        "<li>进入windows/finpipe，双击run_demo.cmd。窗口显示结果目录和实际HTML路径。</li>"
-        "<li>再次演示会复用结果；源码、测试和当前技术文档集中在source。</li></ol>"
+        "<h2>配置后直接运行</h2><ol><li>打开根目录config.py，填写股票、来源和输出报告期；默认东方财富和茅台2025年。</li>"
+        "<li>双击根目录run.cmd，自动采集财报、清洗、存储并同步计算15个因子。窗口显示结果目录和HTML路径，无需安装Python。</li>"
+        "<li>程序自动补齐上一年比较数据。当前只支持东方财富，其他来源会明确报错。</li></ol>"
+        "<h2>离线查看与演示</h2><p>点击上方链接看随包真实结果，无需网络。进入windows/finpipe，双击run_demo.cmd重跑固定真实样本；再次演示复用结果。</p>"
         "<h2>在交付包根目录打开PowerShell</h2><p>查询一家公司一个报告期：</p>"
         f"<pre>{html.escape(query)}</pre><p>人工五组演示：</p>"
         "<pre>.\\windows\\finpipe\\finpipe.exe backtest --demo --output .\\output\\人工回测_第一次</pre>"
@@ -93,6 +94,8 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     destination.mkdir(parents=True, exist_ok=False)
     binary = destination / "windows" / "finpipe"
     shutil.copytree(root / "dist/finpipe", binary)
+    for name in ("config.py", "main.py", "run.cmd"):
+        shutil.copyfile(root / name, destination / name)
     shutil.copyfile(root / "scripts/run_demo.cmd", binary / "run_demo.cmd")
     shutil.copyfile(root / "docs/windows_usage.md", binary / "README.md")
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
@@ -109,7 +112,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         shutil.copytree(
             root / name,
             source / name,
-            ignore=shutil.ignore_patterns("__pycache__", ".pytest_cache", "output"),
+            ignore=shutil.ignore_patterns("__pycache__", ".pytest_cache", "*.egg-info", "output"),
         )
     for name in (
         "README.md",
@@ -122,6 +125,9 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "requirements-audit.txt",
         ".gitignore",
         ".gitattributes",
+        "config.py",
+        "main.py",
+        "run.cmd",
     ):
         shutil.copyfile(root / name, source / name)
     copy_documents(root, source / "docs")
@@ -174,7 +180,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         else ""
     )
     start = (
-        "# 从这里开始\n\n先双击根目录 `START_HERE.html`，无需Markdown软件即可查看真实结果和运行步骤。\n\nWindows程序在 `windows/finpipe`，双击其中的 `run_demo.cmd` 即可离线运行。"
+        "# 从这里开始\n\n日常运行：修改根目录`config.py`中的股票、来源和报告期，双击`run.cmd`，自动采集、清洗、存储并同步生成因子。比较历史由程序自动补齐；当前来源仅支持东方财富。\n\n先双击根目录 `START_HERE.html`，无需Markdown软件即可查看真实结果和运行步骤。\n\nWindows程序在 `windows/finpipe`，双击其中的 `run_demo.cmd` 即可离线运行。"
         "源码、题目、锁定依赖和全部测试位于 `source`。\n\n"
         f"{example_companies}家公司已核验财务工作区位于 `{example_path}`，可直接查询或打开其snapshots中的HTML。\n\n"
         f"```powershell\n.\\windows\\finpipe\\finpipe.exe query --workspace .\\{example_path.replace('/', chr(92))} --company 600519.SH --period 2025Q4\n```\n\n"
@@ -200,7 +206,10 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
                     target = licenses / distribution.metadata["Name"] / item
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(original, target)
-    packages = {dist.metadata["Name"]: dist.version for dist in metadata.distributions()}
+    # 可编辑安装可能遗留重复元数据，采用与metadata.version一致的首个有效记录。
+    packages = {}
+    for dist in metadata.distributions():
+        packages.setdefault(dist.metadata["Name"], dist.version)
     provenance = {
         "version": version,
         "created_at": stamp,

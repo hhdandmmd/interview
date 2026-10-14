@@ -1,6 +1,8 @@
 # 当前架构与维护入口
 
-本文对应0.1.4实际实现，更新于2026-10-14。完整链路包括财报采集、规范化、清洗、版本存储、财务特征、查询、质量、恢复和可执行交付；另有简单日线分组研究。真实执行证据与限制见[交付记录](delivery_validation.md)，逐条题目对应见[要求对照](requirements_traceability.md)。
+本文对应0.1.5实际实现，更新于2026-10-14。完整链路包括财报采集、规范化、清洗、版本存储、财务特征、查询、质量、恢复和可执行交付；另有简单日线分组研究。真实执行证据与限制见[交付记录](delivery_validation.md)，逐条题目对应见[要求对照](requirements_traceability.md)。
+
+日常入口为根目录`config.py`、`main.py`和`run.cmd`：五项简单配置通过`RunConfig`复用原配置校验，自动补齐上一年历史；`runner.py`调用原`execute_online`同步生成15个因子，不维护第二条处理链。原14个命令、数据库表、质量、恢复和回测能力全部保留。当前只真实接入东方财富，未知来源不回退；导入入口不联网。
 
 ## 业务链路
 
@@ -27,6 +29,7 @@ flowchart LR
 
 | 位置 | 具体职责 |
 | --- | --- |
+| 根目录`config.py`、`main.py`、`run.cmd`，`runner.py` | 日常配置、直接run调用、中文摘要、同一流水线与Windows双击入口 |
 | `cli.py`、`config.py` | 统一命令、参数与配置校验、绝对工作区、退出码 |
 | `catalog.py`、`models.py`、`timeutil.py` | 字段与单位、业务对象、准确季度及时间边界 |
 | `ingestion/client.py`、`archive.py`、`universe.py` | 串行请求、限流与重试、分页契约、正文摘要、冻结公司池 |

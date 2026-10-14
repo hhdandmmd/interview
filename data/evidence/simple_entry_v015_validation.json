@@ -1,0 +1,77 @@
+{
+  "version": "0.1.5",
+  "source": "eastmoney",
+  "companies": [
+    "600519.SH"
+  ],
+  "input_periods": "2024Q1—2025Q4",
+  "output_periods": "2025Q1—2025Q4",
+  "snapshot_id": "snapshot_8b68d4624660463abd005f95489dd957",
+  "feature_positions": 60,
+  "numeric": 60,
+  "statuses": {
+    "ok": 40,
+    "warning": 20
+  },
+  "runs": [
+    {
+      "status": "SUCCEEDED",
+      "counts": {
+        "clean_new": 24,
+        "evaluated": 60,
+        "expected_reports": 24,
+        "lineage_changed": 0,
+        "numeric_changed": 60,
+        "reused": 0,
+        "scan_requested_reports": 24,
+        "scan_returned_reports": 24,
+        "source_new": 24,
+        "state_new": 24,
+        "status_changed": 60
+      }
+    },
+    {
+      "status": "SUCCEEDED",
+      "counts": {
+        "clean_new": 0,
+        "evaluated": 0,
+        "expected_reports": 24,
+        "lineage_changed": 0,
+        "numeric_changed": 0,
+        "reused": 60,
+        "scan_requested_reports": 24,
+        "scan_returned_reports": 24,
+        "source_new": 0,
+        "state_new": 0,
+        "status_changed": 0
+      }
+    },
+    {
+      "status": "SUCCEEDED",
+      "counts": {
+        "clean_new": 0,
+        "evaluated": 0,
+        "expected_reports": 24,
+        "lineage_changed": 0,
+        "numeric_changed": 0,
+        "reused": 60,
+        "scan_requested_reports": 24,
+        "scan_returned_reports": 24,
+        "source_new": 0,
+        "state_new": 0,
+        "status_changed": 0
+      }
+    }
+  ],
+  "source_observations": 72,
+  "source_and_executable_live_runs": "源码首次/重复，以及新EXE无参数默认入口，均实际联网并复用相同快照",
+  "regression": {
+    "passed": 273,
+    "subtests": 289,
+    "seconds": 164.11
+  },
+  "final_targeted_tests": 44,
+  "python_311_syntax": "passed",
+  "original_demo_manifest_sha256": "60f6ab1900531773f812180f8d0d7ccb021d2541dc5996fc594d99c9467020cf",
+  "clean_machine_validation": "not_run"
+}

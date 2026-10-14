@@ -1,5 +1,11 @@
 # Windows可执行程序使用说明
 
+日常运行在完整交付包根目录进行：修改`config.py`中的`stocks`、`source`、`start_period`、`end_period`和`output_dir`，双击`run.cmd`。默认来源东方财富；程序自动采集上一年比较历史，随后清洗、存储并同步生成15个因子。控制台显示财报数量、因子数量及HTML路径，不需要Python。
+
+股票写完整代码，支持多只非金融A股，例如`stocks=["600519.SH", "000333.SZ"]`；时间是输出财报报告期。根目录配置是日常唯一维护入口；原TOML只用于高级操作。`finpipe.exe`无参数读取完整项目根目录配置，也支持`--settings`指定本地Python配置；配置缺失时明确报错，不自动切换50家公司。
+
+下面保留离线演示和高级命令说明。
+
 先双击交付包根目录`START_HERE.html`查看真实结果和首次步骤。本文命令在`windows/finpipe`目录执行；整个EXE及依赖目录必须保留，不需要Python。双击`run_demo.cmd`离线演示，结果在用户目录的`Finpipe/demo`，窗口显示实际HTML路径和运行摘要位置。
 
 在本目录打开PowerShell，直接复制执行：

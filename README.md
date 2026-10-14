@@ -6,7 +6,39 @@
 
 ## 一分钟运行
 
-Windows免安装完整交付包：[下载v0.1.4](https://github.com/hhdandmmd/interview/releases/tag/v0.1.4)。下载Release中的`finpipe_0.1.4_20261014T062410Z.zip`，完整解压后使用下面的双击入口。
+日常只修改根目录`config.py`，然后运行根目录`main.py`或双击`run.cmd`。以下五项配置控制自选股票、来源、输出报告期和数据目录；上一年比较历史由程序自动补齐，采集后同步生成全部15个因子。
+
+```python
+from pathlib import Path
+
+from finpipe.config import RunConfig
+
+CONFIG = RunConfig(
+    stocks=["600519.SH"],
+    source="eastmoney",
+    start_period="2025Q1",
+    end_period="2025Q4",
+    output_dir=Path(__file__).parent / "output" / "financial",
+)
+```
+
+股票须带`.SH/.SZ/.BJ`，适用自然年季度、人民币口径的非金融A股。报告期可写季度简写或准确季末日期，表示财报报告期而非公告日期。来源默认东方财富，也接受`东方财富`名称；未接入的来源在联网和创建工作区之前报错。
+
+源码完成下方首次安装后直接执行：
+
+```powershell
+.\.venv\Scripts\python.exe main.py
+```
+
+在Python中也可以直接调用，返回原流水线结果及报告路径；导入模块不会联网：
+
+```python
+from main import run
+
+result = run()
+```
+
+Windows完整交付包包含根目录`config.py`和`run.cmd`以及自带程序，修改配置后双击即可运行。控制台显示实际财报数量、因子位置和报告路径，CSV、Parquet、字典及质量结果一起生成；缺值仍保留原因。
 
 从GitHub获取源码时，按下方“源码运行”安装并执行。仓库根目录包含`src`、`tests`、`config`和`docs`；虚拟环境、运行输出与EXE构建产物不进入Git。
 
@@ -14,7 +46,7 @@ Windows免安装完整交付包：[下载v0.1.4](https://github.com/hhdandmmd/in
 
 回测默认使用披露累计加权ROE，报告首屏说明因子与分组；图表带真实日期轴、净值刻度、图例和等权参考，提供独立SVG及图表CSV。实际持有范围与请求范围分别列出，见[回测读法](docs/backtest.md)。
 
-以下命令在交付包的`windows/finpipe`目录执行，整个EXE及依赖目录必须保留。双击`run_demo.cmd`，或在PowerShell执行：
+原有维护、离线演示和回测入口继续保留。以下命令在交付包的`windows/finpipe`目录执行，整个EXE及依赖目录必须保留。双击`run_demo.cmd`，或在PowerShell执行：
 
 ```powershell
 .\finpipe.exe demo --workspace .\我的演示结果
@@ -33,12 +65,15 @@ Windows免安装完整交付包：[下载v0.1.4](https://github.com/hhdandmmd/in
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -m pip install --no-deps -e .
+.\.venv\Scripts\python.exe main.py
 .\.venv\Scripts\python.exe -m finpipe demo --workspace .\output\demo
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m ruff check src tests
 ```
 
 只运行时安装`requirements-runtime.txt`和项目即可。所有人工代码注释及docstring使用中文。配置中的相对工作区以配置文件目录为基准，显式`--workspace`以当前目录为基准。
+
+简单入口读取的相对`output_dir`以`config.py`所在目录为基准，换目录启动不改变结果位置。库调用`finpipe.runner.run(RunConfig(...))`中的相对路径以调用目录为基准。原TOML及高级命令保持原语义；`finpipe.exe`无参数也读取根目录配置，或用`--settings`指定本地配置文件。早期[v0.1.4下载页](https://github.com/hhdandmmd/interview/releases/tag/v0.1.4)保留旧入口，简单入口从0.1.5开始提供。
 
 ## 在线、增量、恢复与核对
 
