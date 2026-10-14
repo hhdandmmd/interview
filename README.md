@@ -71,15 +71,14 @@ Windows完整交付包包含根目录`config.py`和`run.cmd`以及自带程序�
 
 ```powershell
 py -3.13 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe -m pip install --no-deps -e .
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe main.py
 .\.venv\Scripts\python.exe -m finpipe demo --workspace .\output\demo
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m ruff check src tests
 ```
 
-只运行时安装`requirements-runtime.txt`和项目即可。所有人工代码注释及docstring使用中文。配置中的相对工作区以配置文件目录为基准，显式`--workspace`以当前目录为基准。
+依赖统一在`requirements.txt`锁定，一次安装包括本地项目、测试、构建和PDF核验工具；`pyproject.toml`保留Python包元数据与运行依赖兼容范围。所有人工代码注释及docstring使用中文。配置中的相对工作区以配置文件目录为基准，显式`--workspace`以当前目录为基准。
 
 简单入口读取的相对`output_dir`以`config.py`所在目录为基准，换目录启动不改变结果位置。库调用`finpipe.runner.run(RunConfig(...))`中的相对路径以调用目录为基准。原TOML及高级命令保持原语义；`finpipe.exe`无参数也读取根目录配置，或用`--settings`指定本地配置文件。早期[v0.1.4下载页](https://github.com/hhdandmmd/interview/releases/tag/v0.1.4)保留旧入口，简单入口从0.1.5开始提供。
 
@@ -110,6 +109,15 @@ py -3.13 -m venv .venv
 独立核对针对演示样本：茅台、美的原报告34项参考中33项匹配、1项不可比；另有4个单季收入核对。左侧384字段中350项无独立参考，报告分别披露覆盖率和匹配率。参考公司不在默认50家公司名单中，不能据此声称全市场原报告核验。
 
 ## 代码维护与业务口径
+
+根目录日常只需要关注`config.py`、`main.py`和`run.cmd`。`src/`存放业务代码，`tests/`存放测试，`scripts/`存放构建与核验工具，`config/`存放高级命令的TOML示例，`data/`存放必要的来源证据、独立参考和小体量回测样例，`docs/`保留技术说明与评审。运行结果统一写入`output/`，Windows程序位于`dist/`，待提交的完整ZIP位于`release/`；这些生成目录不进入Git。
+
+历史解压副本、旧交付包和临时验证脚本已清理。需要重新整理完整ZIP时，先构建Windows程序，再执行下方命令；小财务样例直接从随包原文离线重放生成，不依赖任何历史`output`目录。`docs`中的历史审核记录按原文保留，当前安装命令以本README为准。
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/build_windows.ps1
+.\.venv\Scripts\python.exe scripts/package_release.py
+```
 
 | 位置 | 职责 |
 | --- | --- |

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "public_market",
+  "source": "tencent",
+  "adjustment": "hfq",
+  "codes": [
+    "000002.SZ",
+    "000006.SZ",
+    "000007.SZ",
+    "000008.SZ",
+    "000009.SZ",
+    "000010.SZ",
+    "000011.SZ",
+    "000012.SZ",
+    "000014.SZ",
+    "000016.SZ"
+  ],
+  "start": "2023-01-01",
+  "end": "2025-12-31",
+  "complete": true,
+  "calendar_kind": "sh000001_observed_sessions",
+  "notice": "上证指数报价日期作为交易日代理；后复权日线不含可交易性核验，不保证含税分红总收益。",
+  "price_rows": 7258,
+  "calendar_sessions": 727,
+  "captured_at": "2026-10-13T16:29:41.668481Z",
+  "manifest_sha256": "6bd0de45f3eb304b835484a63ec157751321d80097976af2d25d32a2d8979dc7",
+  "files": {
+    "prices.csv": "22897c3942472c191c9a92c786023e220b0bd6e3fbb206a939e267b06a5fe340",
+    "calendar.csv": "886b060b8fa082316d4edb35301d119502595214dccd687ab2a4156285b83951"
+  }
+}

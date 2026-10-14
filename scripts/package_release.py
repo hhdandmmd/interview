@@ -8,6 +8,7 @@ import json
 import platform
 import shutil
 import sys
+import tempfile
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,6 +22,7 @@ CURRENT_DOCUMENTS = (
     "data_contract.md",
     "data_dictionary.md",
     "backtest.md",
+    "factors.md",
     "coding_standard.md",
     "acceptance.md",
     "requirements_traceability.md",
@@ -102,9 +104,6 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     shutil.copyfile(root / "docs/windows_usage.md", binary / "README.md")
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
         shutil.copyfile(root / name, binary / name)
-    for path in root.glob("*.md"):
-        if not (binary / path.name).exists():
-            shutil.copyfile(path, binary / path.name)
     (binary / "scripts").mkdir()
     shutil.copyfile(root / "scripts/scheduled_job.ps1", binary / "scripts/scheduled_job.ps1")
     shutil.copytree(root / "config", binary / "config", ignore=shutil.ignore_patterns("output"))
@@ -122,9 +121,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "THIRD_PARTY_NOTICES.md",
         "AGENTS.md",
         "pyproject.toml",
-        "requirements-runtime.txt",
-        "requirements-dev.txt",
-        "requirements-audit.txt",
+        "requirements.txt",
         ".gitignore",
         ".gitattributes",
         "config.py",
@@ -136,6 +133,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     shutil.copytree(
         root / "data/reference/original_reports", source / "data/reference/original_reports"
     )
+    shutil.copytree(root / "data/examples", source / "data/examples")
     shutil.copytree(
         root / "data/evidence/full_market_capture_20261013",
         source / "data/evidence/full_market_capture_20261013",
@@ -167,7 +165,21 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
             (published["snapshot_id"],),
         ).fetchone()[0]
     if backtest_example:
-        shutil.copytree(backtest_example, destination / "examples/backtest_real")
+        from finpipe.backtest.io import load_market, load_signals, run_backtest
+
+        signals, signal_metadata = load_signals(
+            backtest_example / "signals.json", "publication_proxy"
+        )
+        run_backtest(
+            signals,
+            signal_metadata,
+            load_market(backtest_example / "market"),
+            feature="roe_weighted_ytd",
+            output=destination / "examples/backtest_real",
+            start="2023-01-01",
+            end="2025-12-31",
+            horizon=20,
+        )
     start_page(destination, published["snapshot_id"], example_companies, bool(backtest_example))
     backtest_start = (
         (
@@ -199,10 +211,8 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         shutil.copyfile(python_license, licenses / "CPython-LICENSE.txt")
     for distribution in metadata.distributions():
         for item in distribution.files or []:
-            if any(
-                "license" in part.lower() or "copying" in part.lower() or "notice" in part.lower()
-                for part in item.parts
-            ):
+            # 按许可证文件名收集，避免将licenses模块的实现和字节码缓存作为许可材料。
+            if item.name.lower().startswith(("license", "licence", "copying", "notice")):
                 original = distribution.locate_file(item)
                 if original.is_file():
                     target = licenses / distribution.metadata["Name"] / item
@@ -256,12 +266,25 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
 
 
 if __name__ == "__main__":
+    root = Path(__file__).resolve().parents[1]
     arguments = argparse.ArgumentParser(description=__doc__)
-    arguments.add_argument("--example-workspace", type=Path, required=True)
-    arguments.add_argument("--backtest-example", type=Path)
-    values = arguments.parse_args()
-    package(
-        Path(__file__).resolve().parents[1],
-        values.example_workspace.resolve(),
-        values.backtest_example.resolve() if values.backtest_example else None,
+    arguments.add_argument("--example-workspace", type=Path, help="省略时离线生成小财务样例")
+    arguments.add_argument(
+        "--backtest-example", type=Path, default=root / "data/examples/backtest_real"
     )
+    values = arguments.parse_args()
+    with tempfile.TemporaryDirectory(prefix="finpipe_package_") as temporary:
+        workspace = values.example_workspace
+        if workspace is None:
+            from finpipe.config import load_config
+            from finpipe.pipeline import execute_manifest
+
+            # 从固定真实归档重放，保留原观察时间，不依赖历史运行目录或网络。
+            workspace = Path(temporary) / "financial"
+            result = execute_manifest(
+                root / "src/finpipe/resources/demo/manifest.json",
+                load_config(root / "config/demo.toml", workspace),
+            )
+            if result["status"] != "PUBLISHED":
+                raise ValueError(f"离线财务样例未成功发布：{result}")
+        package(root, workspace.resolve(), values.backtest_example.resolve())

@@ -1,5 +1,5 @@
 ﻿# 使用项目虚拟环境构建，资源固定随包带入，不依赖运行时工作目录。
-param([string]$BuildPython = ".build-venv\Scripts\python.exe")
+param([string]$BuildPython = ".venv\Scripts\python.exe")
 $ErrorActionPreference = "Stop"
 $ProjectRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 Push-Location $ProjectRoot

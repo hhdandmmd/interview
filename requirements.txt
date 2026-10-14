@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+# 一次安装运行、测试、构建和原报告核验依赖；版本来自已验证的Windows环境。
+numpy==2.2.6
+pandas==2.2.3
+pyarrow==19.0.1
+requests==2.32.3
+filelock==3.18.0
+python-dateutil==2.9.0.post0
+pytz==2025.2
+tzdata==2025.2
+six==1.17.0
+certifi==2026.7.22
+charset-normalizer==3.4.4
+idna==3.11
+urllib3==2.6.3
+
+# 以下工具供开发与核验使用；打包的Windows程序不需要另行安装。
+pytest==9.1.1
+pytest-subtests==0.15.0
+ruff==0.17.0
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8
+setuptools==82.0.1
+altgraph==0.17.5
+attrs==26.1.0
+colorama==0.4.6
+iniconfig==2.3.1
+packaging==26.3
+pefile==2024.8.26; sys_platform == "win32"
+pluggy==1.6.0
+Pygments==2.21.0
+pywin32-ctypes==0.2.3; sys_platform == "win32"
+pypdf==6.20.1
+
+# 同时安装本地项目，省去单独的可编辑安装命令；从项目根目录执行。
+-e .

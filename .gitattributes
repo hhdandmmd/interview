@@ -3,5 +3,5 @@
 *.cmd text eol=crlf
 
 # 来源原文和样例清单按原字节保存，避免换行转换改变SHA256。
-data/** -text
+data/** -text whitespace=cr-at-eol
 src/finpipe/resources/demo/** -text
