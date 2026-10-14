@@ -1,0 +1,12 @@
+{
+  "stage": "repair_v011",
+  "status": "passed",
+  "source_versions": 72,
+  "feature_cells": 180,
+  "chinese_space_cwd": true,
+  "path_contains_python": false,
+  "network_condition": "离线入口及不可用HTTP代理；不是操作系统网络隔离",
+  "clean_machine_verified": false,
+  "executable": "F:\\test\\dist\\finpipe\\finpipe.exe",
+  "executable_sha256": "946b08e99170be68fe631881ce18dc011fb1c68619085816f8809ea673b2e260"
+}

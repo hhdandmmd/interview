@@ -1,0 +1,842 @@
+[
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.03,
+    "exact_fraction": "3/100"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.075,
+    "exact_fraction": "3/40"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.126,
+    "exact_fraction": "63/500"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.196,
+    "exact_fraction": "49/250"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.01,
+    "exact_fraction": "1/100"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.025,
+    "exact_fraction": "1/40"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.036,
+    "exact_fraction": "9/250"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.056,
+    "exact_fraction": "7/125"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.16,
+    "exact_fraction": "4/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.18181818181818182,
+    "exact_fraction": "2/11"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.21428571428571427,
+    "exact_fraction": "3/14"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.25,
+    "exact_fraction": "1/4"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.44,
+    "exact_fraction": "11/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.48484848484848486,
+    "exact_fraction": "16/33"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.5384615384615384,
+    "exact_fraction": "7/13"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.16,
+    "exact_fraction": "4/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.1724137931034483,
+    "exact_fraction": "5/29"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.19,
+    "exact_fraction": "19/100"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.21052631578947367,
+    "exact_fraction": "4/19"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.44,
+    "exact_fraction": "11/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.46551724137931033,
+    "exact_fraction": "27/58"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.48,
+    "exact_fraction": "12/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.65,
+    "exact_fraction": "13/20"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.8,
+    "exact_fraction": "4/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.95,
+    "exact_fraction": "19/20"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": -0.0625,
+    "exact_fraction": "-1/16"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.32,
+    "exact_fraction": "8/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.2727272727272727,
+    "exact_fraction": "3/11"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.23809523809523808,
+    "exact_fraction": "5/21"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 1.5,
+    "exact_fraction": "3/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 1.0,
+    "exact_fraction": "1"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 0.875,
+    "exact_fraction": "7/8"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 0.8857142857142857,
+    "exact_fraction": "31/35"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": -0.42857142857142855,
+    "exact_fraction": "-3/7"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.4666666666666667,
+    "exact_fraction": "7/15"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.38,
+    "exact_fraction": "19/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.42,
+    "exact_fraction": "21/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.44,
+    "exact_fraction": "11/25"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.02,
+    "exact_fraction": "1/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.02,
+    "exact_fraction": "1/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.02,
+    "exact_fraction": "1/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.02,
+    "exact_fraction": "1/50"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "current_ratio",
+    "feature_value": 3.0,
+    "exact_fraction": "3"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "current_ratio",
+    "feature_value": 3.2,
+    "exact_fraction": "16/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "current_ratio",
+    "feature_value": 3.0,
+    "exact_fraction": "3"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "current_ratio",
+    "feature_value": 3.0,
+    "exact_fraction": "3"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-03-31",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-06-30",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": 0.2,
+    "exact_fraction": "1/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-09-30",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": -0.2,
+    "exact_fraction": "-1/5"
+  },
+  {
+    "security_code": "600519.SH",
+    "report_end": "2024-12-31",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.015,
+    "exact_fraction": "3/200"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.045,
+    "exact_fraction": "9/200"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.09,
+    "exact_fraction": "9/100"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_weighted_ytd",
+    "feature_value": 0.15,
+    "exact_fraction": "3/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_change_yoy",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.005,
+    "exact_fraction": "1/200"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.015,
+    "exact_fraction": "3/200"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.03,
+    "exact_fraction": "3/100"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "roe_change_yoy_pp",
+    "feature_value": 0.05,
+    "exact_fraction": "1/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.15,
+    "exact_fraction": "3/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.2,
+    "exact_fraction": "1/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.2,
+    "exact_fraction": "1/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "net_margin_q",
+    "feature_value": 0.2,
+    "exact_fraction": "1/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.45,
+    "exact_fraction": "9/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "gross_margin_q",
+    "feature_value": 0.5,
+    "exact_fraction": "1/2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.15,
+    "exact_fraction": "3/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.1782608695652174,
+    "exact_fraction": "41/230"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.1875,
+    "exact_fraction": "3/16"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "net_margin_ytd",
+    "feature_value": 0.19193548387096773,
+    "exact_fraction": "119/620"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.45,
+    "exact_fraction": "9/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.4217391304347826,
+    "exact_fraction": "97/230"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.455,
+    "exact_fraction": "91/200"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "gross_margin_ytd",
+    "feature_value": 0.47096774193548385,
+    "exact_fraction": "73/155"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.25,
+    "exact_fraction": "1/4"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.3,
+    "exact_fraction": "3/10"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.4166666666666667,
+    "exact_fraction": "5/12"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "revenue_growth_yoy",
+    "feature_value": 0.5714285714285714,
+    "exact_fraction": "4/7"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": -0.2857142857142857,
+    "exact_fraction": "-2/7"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.3,
+    "exact_fraction": "3/10"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.3076923076923077,
+    "exact_fraction": "4/13"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "revenue_growth_qoq",
+    "feature_value": 0.29411764705882354,
+    "exact_fraction": "5/17"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 1.0,
+    "exact_fraction": "1"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 1.0,
+    "exact_fraction": "1"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 0.8666666666666667,
+    "exact_fraction": "13/15"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "parent_profit_growth_yoy",
+    "feature_value": 1.2222222222222223,
+    "exact_fraction": "11/9"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": -0.3333333333333333,
+    "exact_fraction": "-1/3"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.6666666666666666,
+    "exact_fraction": "2/3"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "parent_profit_growth_qoq",
+    "feature_value": 0.42857142857142855,
+    "exact_fraction": "3/7"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "debt_asset_ratio",
+    "feature_value": 0.4,
+    "exact_fraction": "2/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "debt_asset_change_qoq_pp",
+    "feature_value": 0.0,
+    "exact_fraction": "0"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "current_ratio",
+    "feature_value": 2.1,
+    "exact_fraction": "21/10"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "current_ratio",
+    "feature_value": 1.8,
+    "exact_fraction": "9/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "current_ratio",
+    "feature_value": 2.0,
+    "exact_fraction": "2"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "current_ratio",
+    "feature_value": 1.7,
+    "exact_fraction": "17/10"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-03-31",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": 0.15,
+    "exact_fraction": "3/20"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-06-30",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": -0.3,
+    "exact_fraction": "-3/10"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-09-30",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": 0.2,
+    "exact_fraction": "1/5"
+  },
+  {
+    "security_code": "000333.SZ",
+    "report_end": "2024-12-31",
+    "feature_name": "current_ratio_change_qoq",
+    "feature_value": -0.3,
+    "exact_fraction": "-3/10"
+  }
+]

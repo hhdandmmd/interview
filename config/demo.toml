@@ -1,0 +1,9 @@
+# 在线小样本用于首次接入演示；离线demo命令自带相同公司的真实归档。
+workspace = "../output/demo_online"
+
+[scope]
+codes = ["600519.SH", "000333.SZ", "000651.SZ"]
+input_start = "2024Q1"
+input_end = "2025Q4"
+output_start = "2025Q1"
+output_end = "2025Q4"

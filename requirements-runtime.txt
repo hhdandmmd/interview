@@ -1,0 +1,14 @@
+﻿# 经本项目验证的Windows x64运行依赖；构建环境使用CPython 3.13。
+numpy==2.2.6
+pandas==2.2.3
+pyarrow==19.0.1
+requests==2.32.3
+filelock==3.18.0
+python-dateutil==2.9.0.post0
+pytz==2025.2
+tzdata==2025.2
+six==1.17.0
+certifi==2026.7.22
+charset-normalizer==3.4.4
+idna==3.11
+urllib3==2.6.3

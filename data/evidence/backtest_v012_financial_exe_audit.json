@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "financial_cells_compared": 9000,
+  "complete_query_response_equal": true,
+  "strict_historical_returncode": 3,
+  "strict_historical_groups_are_null": true,
+  "exe_sha256": "6c1dc1300c1f585381aaf34610cde347b906f5248633d99eee120c9c43279d8c",
+  "exe_online_market_rows": 243
+}

@@ -1,0 +1,52 @@
+{
+  "created_at": "2026-10-13T16:41:07.861710+00:00",
+  "report_audit": {
+    "status": "passed",
+    "report_sha256": "6d17c74180aca148284354645582479d2d35d10d9adcb0e03323676a254aff3c",
+    "members_verified": 200,
+    "group_windows_verified": 100,
+    "summary": {
+      "formed_periods": 20,
+      "first_entry_date": "2024-05-07",
+      "last_exit_date": "2025-12-24",
+      "calendar_first_session": "2023-01-03",
+      "calendar_last_session": "2025-12-31",
+      "skipped_decisions": {
+        "insufficient_factor_members": 16,
+        "insufficient_forward_calendar": 1
+      },
+      "exclusion_counts": {
+        "not_yet_available": 160
+      },
+      "universe_size": 10,
+      "groups": [
+        {
+          "group": 1,
+          "cumulative_return": 0.9337544821670849,
+          "max_drawdown_at_period_ends": -0.2101562295065158
+        },
+        {
+          "group": 2,
+          "cumulative_return": 0.836055554775202,
+          "max_drawdown_at_period_ends": -0.18355718055963977
+        },
+        {
+          "group": 3,
+          "cumulative_return": 0.05761703670725904,
+          "max_drawdown_at_period_ends": -0.12920171416030157
+        },
+        {
+          "group": 4,
+          "cumulative_return": 0.010176396442507896,
+          "max_drawdown_at_period_ends": -0.22414670890592725
+        },
+        {
+          "group": 5,
+          "cumulative_return": 0.5864772652580317,
+          "max_drawdown_at_period_ends": -0.17373487407530253
+        }
+      ]
+    },
+    "time_policy": "publication_proxy"
+  }
+}

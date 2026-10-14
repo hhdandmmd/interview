@@ -1,0 +1,63 @@
+{
+  "reviewed_at": "2026-10-13T14:47:25.441564+00:00",
+  "archive": "F:\\test\\release\\finpipe_0.1.0_20261013T142357Z.zip",
+  "archive_sha256": "19df751dd6b24a4f2032efc0ce19cbf743f35b17f9cabe99bf00c1ae60c289b4",
+  "audited_code_and_configuration_files": 49,
+  "workspace_release_code_differences": [],
+  "production_source_modified": false,
+  "original_evidence_modified": false,
+  "regression": {
+    "environment": "isolated CPython 3.13.1",
+    "passed": 155,
+    "subtests_passed": 289,
+    "seconds": 149.52
+  },
+  "root_counterexamples": [
+    {
+      "id": "HEALTH_RECURRENCE",
+      "kind": "isolated temporary workspace; intentional published HTML corruption",
+      "first_health": "unknown",
+      "first_alert": "open",
+      "after_restore_health": "healthy",
+      "after_restore_alert": "resolved",
+      "after_recurrence_health": "unknown",
+      "same_event_id": true,
+      "after_recurrence_alert": "resolved",
+      "expected_after_recurrence_alert": "open"
+    },
+    {
+      "id": "ONLINE_TIMEOUT_MASKED",
+      "kind": "isolated temporary workspace; manually constructed historical task timestamps",
+      "heartbeat_age_seconds": 10800,
+      "max_run_seconds": 7200,
+      "recent_offline_status": "SUCCEEDED",
+      "scheduled_online_status": "RUNNING",
+      "actual_health": "healthy",
+      "actual_health_rules": [],
+      "expected_rule": "run_timeout"
+    }
+  ],
+  "independent_financial_check": {
+    "actual_feature_cells": 9000,
+    "numeric_cells": 8482,
+    "null_cells": 518,
+    "independent_formula_differences": 0,
+    "historical_pit_verified": false
+  },
+  "independent_incremental_check": {
+    "kind": "explicit synthetic isolated workspaces; same A/B facts and frozen calculation time",
+    "null_field_change": {
+      "incremental_evaluated": 60,
+      "incremental_reused": 60,
+      "full_evaluated": 120,
+      "all_result_fields_equal": true
+    },
+    "profile_parameter_change": {
+      "evaluated_each": 120,
+      "numerically_changed_cells": 65,
+      "all_result_fields_equal": true
+    },
+    "probe_cleanup": "not_completed; temporary SQLite connection cleanup failed; later deletion blocked by automatic policy; no production files affected"
+  },
+  "review_conclusion": "conditional; original latest-correction requirement incomplete; identified monitoring and financial-boundary gaps need remediation"
+}

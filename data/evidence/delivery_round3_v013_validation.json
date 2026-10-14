@@ -1,0 +1,36 @@
+{
+  "version": "0.1.3",
+  "status": "passed",
+  "created_at": "2026-10-13T17:44:34.199896+00:00",
+  "regressions": [
+    {
+      "python": "3.12.7",
+      "passed": 240,
+      "subtests": 289,
+      "seconds": 174.72
+    },
+    {
+      "python": "3.13.1",
+      "passed": 240,
+      "subtests": 289,
+      "seconds": 156.6
+    }
+  ],
+  "ruff": "passed",
+  "format_files": 54,
+  "annotations": {
+    "docstrings": 240,
+    "comments": 18
+  },
+  "non_chinese_annotations": [],
+  "source_exe_financial_cells_equal": 9000,
+  "source_exe_query_complete_equal": true,
+  "original_evidence_unchanged": {
+    "full_financial_manifest": "dc339e2a1765390a32621c142fd967f2e89e486f537b910c93312e6070bd2b6b",
+    "v012_zip": "685d968626051f0ae71d03f7443dac5f321379361ffd6388ff5f8e2e8747b10c"
+  },
+  "business_source_bytes": 297752,
+  "business_source_lines": 6834,
+  "process_function_lines": 365,
+  "clean_machine_verified": false
+}

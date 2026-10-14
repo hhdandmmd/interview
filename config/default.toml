@@ -1,0 +1,23 @@
+# 默认历史研究范围；首次运行冻结名单，后续不按当天列表换公司。
+workspace = "../output/live"
+
+[scope]
+input_start = "2022Q1"
+input_end = "2025Q4"
+output_start = "2023Q1"
+output_end = "2025Q4"
+
+[network]
+interval = 1.0
+timeout = 30.0
+max_attempts = 3
+max_wait = 30.0
+
+[quality]
+min_usable_coverage = 0.95
+max_invalid_rate = 0.01
+
+[job]
+period_seconds = 86400
+grace_seconds = 900
+max_run_seconds = 7200

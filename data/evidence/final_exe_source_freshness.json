@@ -1,0 +1,26 @@
+{
+  "status": "PUBLISHED",
+  "run_id": "run_0e4bd3588daf4b8b93f4cf370c2ca915",
+  "snapshot_id": "snapshot_ddc8cf5c73cd4034bbff527f9502e0b3",
+  "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+  "counts": {
+    "clean_new": 72,
+    "evaluated": 180,
+    "expected_reports": 72,
+    "lineage_changed": 0,
+    "numeric_changed": 180,
+    "reused": 0,
+    "scan_requested_reports": 72,
+    "scan_returned_reports": 72,
+    "source_new": 72,
+    "state_new": 72,
+    "status_changed": 180
+  },
+  "export_path": "F:\\test\\output\\final_exe_source_freshness\\snapshots\\snapshot_ddc8cf5c73cd4034bbff527f9502e0b3",
+  "scope_health": "healthy",
+  "health_rules": [],
+  "executable_sha256": "cba1aca68600daf17e95e0bacc3ac366751597dc2666190bc352da6185060898",
+  "verified_at": "2026-10-13T14:15:10.016582+00:00",
+  "evidence_manifest": "data/evidence/final_exe_source_freshness_capture/manifest.json",
+  "evidence_manifest_sha256": "efaefc8a92b3f993cae8389191064c334a6fbec99e19e1932d627a17beddbb6a"
+}

@@ -1,0 +1,70 @@
+{
+  "captured_at": "2026-10-13T05:12:11.026818+00:00",
+  "reports": [
+    {
+      "report_id": "600519_2024_annual",
+      "url": "https://www.moutaichina.com/mtgf/attachDir/2025/04/2025040817542019660.pdf",
+      "disclosed_date": "2025-04-03",
+      "report_end": "2024-12-31",
+      "observed_at": "2026-10-13T05:12:12.348940+00:00",
+      "http_status": 200,
+      "final_url": "https://www.moutaichina.com/mtgf/attachDir/2025/04/2025040817542019660.pdf",
+      "sha256": "5299f4940e2ce4e91084b73dc457d558b9d335fa76fbfee6227e4254eb7f4a30",
+      "size_bytes": 3626217,
+      "status": "ok",
+      "file": "600519_2024_annual.pdf"
+    },
+    {
+      "report_id": "600519_2024_q1",
+      "url": "https://www.moutaichina.com/mtgf/articleFileDir/2024-05/07/1edb3ed2dbef4bef89ff23a72e3549fa.pdf",
+      "disclosed_date": "2024-04-27",
+      "report_end": "2024-03-31",
+      "observed_at": "2026-10-13T05:12:13.433685+00:00",
+      "http_status": 200,
+      "final_url": "https://www.moutaichina.com/mtgf/articleFileDir/2024-05/07/1edb3ed2dbef4bef89ff23a72e3549fa.pdf",
+      "sha256": "b706e237e25ff54a0bde7070a13b019a5e1eec7f412eb9d0baf33e750a7c32e2",
+      "size_bytes": 380443,
+      "status": "ok",
+      "file": "600519_2024_q1.pdf"
+    },
+    {
+      "report_id": "600519_2024_h1",
+      "url": "https://www.moutaichina.com/mtgf/attachDir/2024/08/2024080910020059419.pdf",
+      "disclosed_date": "2024-08-09",
+      "report_end": "2024-06-30",
+      "observed_at": "2026-10-13T05:12:15.332857+00:00",
+      "http_status": 200,
+      "final_url": "https://www.moutaichina.com/mtgf/attachDir/2024/08/2024080910020059419.pdf",
+      "sha256": "898b37d6529d0042aa66461bae11b84a47f9337c2ff1d572155bfa71fca77c58",
+      "size_bytes": 3058620,
+      "status": "ok",
+      "file": "600519_2024_h1.pdf"
+    },
+    {
+      "report_id": "600519_2024_q3",
+      "url": "https://www.moutaichina.com/mtgf/attachDir/2024/10/2024102616184816322.pdf",
+      "disclosed_date": "2024-10-26",
+      "report_end": "2024-09-30",
+      "observed_at": "2026-10-13T05:12:16.432985+00:00",
+      "http_status": 200,
+      "final_url": "https://www.moutaichina.com/mtgf/attachDir/2024/10/2024102616184816322.pdf",
+      "sha256": "ebeccbbe12b5b1a9dfa5ada16c956cba6fa30a6fb917f95856da16c1a719ce98",
+      "size_bytes": 511257,
+      "status": "ok",
+      "file": "600519_2024_q3.pdf"
+    },
+    {
+      "report_id": "000333_2024_annual",
+      "url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951181.PDF",
+      "disclosed_date": "2025-03-29",
+      "report_end": "2024-12-31",
+      "observed_at": "2026-10-13T05:12:17.746616+00:00",
+      "http_status": 200,
+      "final_url": "https://static.cninfo.com.cn/finalpage/2025-03-29/1222951181.PDF",
+      "sha256": "b17a9b9b84bca1d2a4e4a3cadc5dd5ba5c85e3f1fd2d758acd3315b5b040ecd9",
+      "size_bytes": 6737887,
+      "status": "ok",
+      "file": "000333_2024_annual.pdf"
+    }
+  ]
+}

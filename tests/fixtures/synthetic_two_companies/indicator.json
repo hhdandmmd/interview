@@ -1,0 +1,362 @@
+{
+  "success": true,
+  "code": 0,
+  "result": {
+    "pages": 1,
+    "count": 16,
+    "data": [
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-03-31 00:00:00",
+        "NOTICE_DATE": "2023-05-10 00:00:00",
+        "UPDATE_DATE": "2023-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 2,
+        "XSMLL": 40.0,
+        "XSJLL": 10.0,
+        "ZCFZL": 30.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-06-30 00:00:00",
+        "NOTICE_DATE": "2023-08-15 00:00:00",
+        "UPDATE_DATE": "2023-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 5,
+        "XSMLL": 42.72727272727273,
+        "XSJLL": 12.727272727272727,
+        "ZCFZL": 32.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-09-30 00:00:00",
+        "NOTICE_DATE": "2023-11-15 00:00:00",
+        "UPDATE_DATE": "2023-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 9,
+        "XSMLL": 45.55555555555556,
+        "XSJLL": 15.555555555555555,
+        "ZCFZL": 34.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-12-31 00:00:00",
+        "NOTICE_DATE": "2024-04-15 00:00:00",
+        "UPDATE_DATE": "2024-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 14,
+        "XSMLL": 48.46153846153846,
+        "XSJLL": 18.46153846153846,
+        "ZCFZL": 36.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-03-31 00:00:00",
+        "NOTICE_DATE": "2024-05-10 00:00:00",
+        "UPDATE_DATE": "2024-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 3,
+        "XSMLL": 44.0,
+        "XSJLL": 16.0,
+        "ZCFZL": 38.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-06-30 00:00:00",
+        "NOTICE_DATE": "2024-08-15 00:00:00",
+        "UPDATE_DATE": "2024-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 7.5,
+        "XSMLL": 46.55172413793103,
+        "XSJLL": 17.24137931034483,
+        "ZCFZL": 40.0,
+        "LD": 3.2
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-09-30 00:00:00",
+        "NOTICE_DATE": "2024-11-15 00:00:00",
+        "UPDATE_DATE": "2024-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 12.6,
+        "XSMLL": 48.0,
+        "XSJLL": 19.0,
+        "ZCFZL": 42.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-12-31 00:00:00",
+        "NOTICE_DATE": "2025-04-15 00:00:00",
+        "UPDATE_DATE": "2025-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 19.6,
+        "XSMLL": 50.0,
+        "XSJLL": 21.05263157894737,
+        "ZCFZL": 44.0,
+        "LD": 3.0
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-03-31 00:00:00",
+        "NOTICE_DATE": "2023-05-10 00:00:00",
+        "UPDATE_DATE": "2023-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 1,
+        "XSMLL": 40.0,
+        "XSJLL": 10.0,
+        "ZCFZL": 40.0,
+        "LD": 2.0
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-06-30 00:00:00",
+        "NOTICE_DATE": "2023-08-15 00:00:00",
+        "UPDATE_DATE": "2023-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 3,
+        "XSMLL": 38.888888888888886,
+        "XSJLL": 11.11111111111111,
+        "ZCFZL": 40.0,
+        "LD": 2.2
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-09-30 00:00:00",
+        "NOTICE_DATE": "2023-11-15 00:00:00",
+        "UPDATE_DATE": "2023-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 6,
+        "XSMLL": 39.333333333333336,
+        "XSJLL": 12.666666666666666,
+        "ZCFZL": 40.0,
+        "LD": 2.25
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-12-31 00:00:00",
+        "NOTICE_DATE": "2024-04-15 00:00:00",
+        "UPDATE_DATE": "2024-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 10,
+        "XSMLL": 39.54545454545455,
+        "XSJLL": 13.409090909090908,
+        "ZCFZL": 40.0,
+        "LD": 1.95
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-03-31 00:00:00",
+        "NOTICE_DATE": "2024-05-10 00:00:00",
+        "UPDATE_DATE": "2024-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 1.5,
+        "XSMLL": 45.0,
+        "XSJLL": 15.0,
+        "ZCFZL": 40.0,
+        "LD": 2.1
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-06-30 00:00:00",
+        "NOTICE_DATE": "2024-08-15 00:00:00",
+        "UPDATE_DATE": "2024-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 4.5,
+        "XSMLL": 42.17391304347826,
+        "XSJLL": 17.82608695652174,
+        "ZCFZL": 40.0,
+        "LD": 1.8
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-09-30 00:00:00",
+        "NOTICE_DATE": "2024-11-15 00:00:00",
+        "UPDATE_DATE": "2024-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 9,
+        "XSMLL": 45.5,
+        "XSJLL": 18.75,
+        "ZCFZL": 40.0,
+        "LD": 2.0
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-12-31 00:00:00",
+        "NOTICE_DATE": "2025-04-15 00:00:00",
+        "UPDATE_DATE": "2025-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "ROEJQ": 15,
+        "XSMLL": 47.096774193548384,
+        "XSJLL": 19.193548387096776,
+        "ZCFZL": 40.0,
+        "LD": 1.7
+      }
+    ]
+  }
+}

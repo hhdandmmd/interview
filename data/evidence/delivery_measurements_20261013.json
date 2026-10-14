@@ -1,0 +1,59 @@
+{
+  "platform": "Windows-10-10.0.19045-SP0",
+  "database_bytes": 102060032,
+  "snapshot_id": "snapshot_e3aa7027dc954ff8bfcd4811e6f6af0b",
+  "scope_id": "scope_c7a145335f13a44151814ce1cd8f88ea",
+  "tables": {
+    "schema_version": 1,
+    "processing_profiles": 1,
+    "universe_snapshots": 1,
+    "scopes": 1,
+    "runs": 1,
+    "expected_keys": 2400,
+    "batches": 150,
+    "http_attempts": 150,
+    "source_versions": 2353,
+    "source_observations": 2353,
+    "run_inputs": 2353,
+    "clean_versions": 2353,
+    "record_states": 2400,
+    "feature_versions": 9000,
+    "feature_inputs": 25200,
+    "quality_events": 1,
+    "quality_metrics": 41,
+    "alerts": 1,
+    "dataset_snapshots": 1,
+    "snapshot_records": 2400,
+    "snapshot_features": 9000,
+    "workspace_head": 1,
+    "clean_income": 789,
+    "clean_balance": 775,
+    "clean_indicator": 789
+  },
+  "query_rows": 15,
+  "query_median_ms": 0.058750039897859097,
+  "sql": "SELECT f.payload_json FROM snapshot_features m JOIN feature_versions f USING(feature_version_id) WHERE m.snapshot_id=? AND m.security_code=? AND m.report_end=? ORDER BY m.feature_name",
+  "query_plan": [
+    {
+      "id": 6,
+      "parent": 0,
+      "notused": 0,
+      "detail": "SEARCH m USING INDEX sqlite_autoindex_snapshot_features_1 (snapshot_id=? AND security_code=? AND report_end=?)"
+    },
+    {
+      "id": 17,
+      "parent": 0,
+      "notused": 0,
+      "detail": "SEARCH f USING INDEX sqlite_autoindex_feature_versions_1 (feature_version_id=?)"
+    }
+  ],
+  "integrity": [
+    "ok"
+  ],
+  "foreign_key_errors": [],
+  "protected_originals": {
+    "data\\evidence\\bank_balance_probe.json": "c6bbde2ae909aff064a67ffd402dd4a0e6a9f4016d7a5614e57fbae3989fd7c3",
+    "data\\evidence\\bank_probe.json": "b7fbe9995e0c07d737b949dc0c10d83cba67f26c6cec2c4c832927a24a79d48a",
+    "data\\evidence\\source_probe.json": "40b44350049c6a069784175db7d423934269bccd30372841a49bc4a2de4a8f3c"
+  }
+}

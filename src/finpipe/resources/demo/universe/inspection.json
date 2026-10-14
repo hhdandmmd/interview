@@ -1,0 +1,46 @@
+{
+  "body_path": "raw/bafcdccf3105f46021b09d0c27efdfa4df9302340a0a29c0af5a2e05992232ea.json",
+  "raw_hash": "bafcdccf3105f46021b09d0c27efdfa4df9302340a0a29c0af5a2e05992232ea",
+  "observed_at": "2026-10-13T04:48:34.572265Z",
+  "started_at": "2026-10-13T04:48:34.475162Z",
+  "request": {
+    "endpoint": "https://datacenter-web.eastmoney.com/api/data/v1/get",
+    "params": {
+      "reportName": "RPT_LICO_FN_CPD",
+      "columns": "ALL",
+      "pageNumber": "1",
+      "pageSize": "5",
+      "sortColumns": "SECURITY_CODE",
+      "sortTypes": "1",
+      "filter": "(REPORTDATE='2025-12-31')",
+      "source": "WEB",
+      "client": "WEB"
+    }
+  },
+  "http_status": 200,
+  "attempt": 1,
+  "attempts": [
+    {
+      "body_path": "raw/bafcdccf3105f46021b09d0c27efdfa4df9302340a0a29c0af5a2e05992232ea.json",
+      "raw_hash": "bafcdccf3105f46021b09d0c27efdfa4df9302340a0a29c0af5a2e05992232ea",
+      "observed_at": "2026-10-13T04:48:34.572265Z",
+      "started_at": "2026-10-13T04:48:34.475162Z",
+      "request": {
+        "endpoint": "https://datacenter-web.eastmoney.com/api/data/v1/get",
+        "params": {
+          "reportName": "RPT_LICO_FN_CPD",
+          "columns": "ALL",
+          "pageNumber": "1",
+          "pageSize": "5",
+          "sortColumns": "SECURITY_CODE",
+          "sortTypes": "1",
+          "filter": "(REPORTDATE='2025-12-31')",
+          "source": "WEB",
+          "client": "WEB"
+        }
+      },
+      "http_status": 200,
+      "attempt": 1
+    }
+  ]
+}

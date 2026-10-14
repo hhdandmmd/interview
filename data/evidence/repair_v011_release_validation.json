@@ -1,0 +1,84 @@
+{
+  "version": "0.1.1",
+  "archive": "F:\\test\\release\\finpipe_0.1.1_20261013T153641Z.zip",
+  "archive_sha256": "39bf436523f53bddf646118c854fefe61a5490e0452a36d5ede2907f67d05383",
+  "commands": [
+    {
+      "command": "demo",
+      "exit_code": 0
+    },
+    {
+      "command": "demo",
+      "exit_code": 0
+    },
+    {
+      "command": "query",
+      "exit_code": 0
+    },
+    {
+      "command": "explain",
+      "exit_code": 0
+    },
+    {
+      "command": "health",
+      "exit_code": 0
+    },
+    {
+      "command": "doctor",
+      "exit_code": 0
+    },
+    {
+      "command": "query",
+      "exit_code": 0
+    },
+    {
+      "command": "doctor",
+      "exit_code": 0
+    },
+    {
+      "command": "replay",
+      "exit_code": 0
+    },
+    {
+      "command": "query",
+      "exit_code": 0
+    }
+  ],
+  "clean_machine_verified": false,
+  "verified_files": 2182,
+  "executable_sha256": "946b08e99170be68fe631881ce18dc011fb1c68619085816f8809ea673b2e260",
+  "offline_smoke": {
+    "stage": "extracted_repair_v011",
+    "status": "passed",
+    "source_versions": 72,
+    "feature_cells": 180,
+    "chinese_space_cwd": true,
+    "path_contains_python": false,
+    "network_condition": "离线入口及不可用HTTP代理；不是操作系统网络隔离",
+    "clean_machine_verified": false,
+    "executable": "C:\\Users\\h'h'h\\AppData\\Local\\Temp\\finpipe 整改交付 中文 1chztsd3\\移出项目 运行\\windows\\finpipe\\finpipe.exe"
+  },
+  "full_market_replay": {
+    "status": "NO_CHANGE",
+    "snapshot_id": "snapshot_a0885a44460f4231b7370353644d36ec",
+    "counts": {
+      "source_new": 0,
+      "clean_new": 0,
+      "state_new": 0,
+      "expected_reports": 2400,
+      "scan_requested_reports": 2400,
+      "scan_returned_reports": 2353,
+      "evaluated": 0,
+      "numeric_changed": 0,
+      "status_changed": 0,
+      "lineage_changed": 0,
+      "reused": 9000
+    }
+  },
+  "html_bytes": 6362,
+  "launcher": "passed",
+  "documented_powershell_entry": "passed",
+  "extracted_source_query_equivalence": "passed",
+  "status": "passed",
+  "verified_at": "2026-10-13T15:41:09.853443+00:00"
+}

@@ -1,0 +1,3 @@
+﻿# 独立原报告核验另需PDF文本读取器，业务采集和离线demo不依赖它。
+-r requirements-dev.txt
+pypdf==6.20.1

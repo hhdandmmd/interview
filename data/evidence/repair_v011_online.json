@@ -1,0 +1,25 @@
+{
+  "status": "PUBLISHED",
+  "run_id": "run_e36970a37ac54770877b01d6889b0ca7",
+  "snapshot_id": "snapshot_4e38c4637d6f41f4b41be0af80c614e3",
+  "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+  "counts": {
+    "clean_new": 72,
+    "evaluated": 180,
+    "expected_reports": 72,
+    "lineage_changed": 0,
+    "numeric_changed": 180,
+    "reused": 0,
+    "scan_requested_reports": 72,
+    "scan_returned_reports": 72,
+    "source_new": 72,
+    "state_new": 72,
+    "status_changed": 180
+  },
+  "export_path": "F:\\test\\output\\repair_v011_online\\snapshots\\snapshot_4e38c4637d6f41f4b41be0af80c614e3",
+  "scope_health": "healthy",
+  "health_rules": [],
+  "evidence_manifest": "data/evidence/repair_v011_online_capture/manifest.json",
+  "executable_sha256": "946b08e99170be68fe631881ce18dc011fb1c68619085816f8809ea673b2e260",
+  "verified_at": "2026-10-13T15:28:00.598701+00:00"
+}

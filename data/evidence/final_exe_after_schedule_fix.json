@@ -1,0 +1,20 @@
+{
+  "status": "SUCCEEDED",
+  "run_id": "run_8b5487ee9826410eaf2538afdd089cb4",
+  "snapshot_id": "snapshot_0c46cfb84dba470e8fd182d8c726f3bb",
+  "started_at": "2026-10-13T10:33:27.788296Z",
+  "finished_at": "2026-10-13T10:33:38.893901Z",
+  "counts": {
+    "clean_new": 72,
+    "evaluated": 180,
+    "expected_reports": 72,
+    "lineage_changed": 0,
+    "numeric_changed": 180,
+    "reused": 0,
+    "source_new": 72,
+    "state_new": 72,
+    "status_changed": 180
+  },
+  "evidence_manifest": "data\\evidence\\final_exe_after_schedule_fix_capture\\manifest.json",
+  "executable_sha256": "b22ae18d6be1be4de59c0f42f10119f1238072865ba734dc088e46c4dd72a3f6"
+}

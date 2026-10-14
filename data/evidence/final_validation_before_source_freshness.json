@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-13T10:48:35.108355Z",
+  "tests": {
+    "python_3_12_7": {
+      "passed": 152,
+      "subtests": 289,
+      "seconds": 174.2
+    },
+    "python_3_13_1": {
+      "passed": 152,
+      "subtests": 289,
+      "seconds": 154.15
+    }
+  },
+  "ruff_check": "passed",
+  "ruff_format_files": 43,
+  "independent_clean_vm": "not_run",
+  "executable_sha256": "b22ae18d6be1be4de59c0f42f10119f1238072865ba734dc088e46c4dd72a3f6"
+}

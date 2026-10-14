@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "archive": "F:\\test\\release\\finpipe_0.1.0_20261013T142357Z.zip",
+  "archive_sha256": "19df751dd6b24a4f2032efc0ce19cbf743f35b17f9cabe99bf00c1ae60c289b4",
+  "clean_machine_verified": false,
+  "commands": [
+    {
+      "command": "demo",
+      "exit_code": 0,
+      "seconds": 2.005
+    },
+    {
+      "command": "demo",
+      "exit_code": 0,
+      "seconds": 1.565
+    },
+    {
+      "command": "query",
+      "exit_code": 0,
+      "seconds": 1.229
+    },
+    {
+      "command": "explain",
+      "exit_code": 0,
+      "seconds": 1.175
+    },
+    {
+      "command": "health",
+      "exit_code": 0,
+      "seconds": 1.156
+    },
+    {
+      "command": "doctor",
+      "exit_code": 0,
+      "seconds": 1.253
+    },
+    {
+      "command": "query",
+      "exit_code": 0,
+      "seconds": 1.664
+    },
+    {
+      "command": "doctor",
+      "exit_code": 0,
+      "seconds": 2.522
+    },
+    {
+      "command": "replay",
+      "exit_code": 0,
+      "seconds": 5.962
+    }
+  ],
+  "zip_crc": "passed",
+  "archive_files": 2157,
+  "verified_file_sha256": 2156,
+  "executable_sha256": "cba1aca68600daf17e95e0bacc3ac366751597dc2666190bc352da6185060898",
+  "relocated_offline_smoke": {
+    "stage": "extracted_final_release",
+    "status": "passed",
+    "source_versions": 72,
+    "feature_cells": 180,
+    "chinese_space_cwd": true,
+    "path_contains_python": false,
+    "network_condition": "离线入口及不可用HTTP代理；不是操作系统网络隔离",
+    "clean_machine_verified": false,
+    "executable": "C:\\Users\\h'h'h\\AppData\\Local\\Temp\\finpipe 交付包 中文 _5oba013\\移出项目 运行\\windows\\finpipe\\finpipe.exe"
+  },
+  "full_market_features": 9000,
+  "full_market_numeric": 8482,
+  "relocated_full_replay": {
+    "status": "NO_CHANGE",
+    "snapshot_id": "snapshot_e3aa7027dc954ff8bfcd4811e6f6af0b",
+    "counts": {
+      "source_new": 0,
+      "clean_new": 0,
+      "state_new": 0,
+      "expected_reports": 2400,
+      "scan_requested_reports": 2400,
+      "scan_returned_reports": 2353,
+      "evaluated": 0,
+      "numeric_changed": 0,
+      "status_changed": 0,
+      "lineage_changed": 0,
+      "reused": 9000
+    }
+  },
+  "double_click_script_equivalent_invocation": "passed",
+  "system_path_only": true,
+  "unavailable_proxy": true,
+  "actual_binary_relocated": true,
+  "verified_at": "2026-10-13T14:25:54.016565+00:00"
+}

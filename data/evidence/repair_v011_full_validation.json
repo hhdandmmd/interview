@@ -1,0 +1,217 @@
+{
+  "snapshot_id": "snapshot_a0885a44460f4231b7370353644d36ec",
+  "profile_id": "profile_7a5c338c347275e20b02fc599dd560c0",
+  "source_cells": 2353,
+  "feature_cells": 9000,
+  "numeric_cells": 8482,
+  "same_values_statuses_units_reasons_as_v010": true,
+  "html_bytes": 6362,
+  "html_lines": 256,
+  "metrics": {
+    "planned_count": 2400,
+    "requested_count": 2400,
+    "not_required_count": 0,
+    "received_count": 2353,
+    "selected_record_count": 2353,
+    "returned_candidate_count": 2353,
+    "accepted_count": 2353,
+    "quarantined_count": 0,
+    "usable_count": 2341,
+    "eligible_count": 2353,
+    "unknown_count": 47,
+    "report_coverage_rate": 0.9804166666666667,
+    "usable_report_rate": 0.9754166666666667,
+    "conditional_usable_rate": 0.9949001274968126,
+    "unknown_eligibility_rate": 0.019583333333333335,
+    "field_missing_rate": 0.003748006379585327,
+    "field_invalid_rate": 0.0,
+    "max_field_invalid_rate": 0.0,
+    "field_null_rate": 0.003748006379585327,
+    "field_rates": {
+      "balance.current_assets": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012903225806451613
+      },
+      "balance.current_liabilities": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012903225806451613
+      },
+      "balance.parent_equity": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 0,
+        "null": 0,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0
+      },
+      "balance.total_assets": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 0,
+        "null": 0,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0
+      },
+      "balance.total_equity": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012903225806451613
+      },
+      "balance.total_liabilities": {
+        "denominator": 775,
+        "invalid": 0,
+        "missing": 0,
+        "null": 0,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0
+      },
+      "income.net_profit_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012674271229404308
+      },
+      "income.operating_cost_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012674271229404308
+      },
+      "income.operating_revenue_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012674271229404308
+      },
+      "income.parent_net_profit_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 0,
+        "null": 0,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0
+      },
+      "income.total_revenue_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 0,
+        "null": 0,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0
+      },
+      "indicator.roe_weighted_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 10,
+        "null": 10,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.012674271229404309
+      },
+      "indicator.source_current_ratio": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 15,
+        "null": 15,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.019011406844106463
+      },
+      "indicator.source_debt_asset_ratio": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 14,
+        "null": 14,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.017743979721166033
+      },
+      "indicator.source_gross_margin_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012674271229404308
+      },
+      "indicator.source_net_margin_ytd": {
+        "denominator": 789,
+        "invalid": 0,
+        "missing": 1,
+        "null": 1,
+        "invalid_rate": 0.0,
+        "missing_rate": 0.0012674271229404308
+      }
+    },
+    "feature_count": 9000,
+    "feature_value_count": 8482,
+    "feature_value_coverage_rate": 0.9424444444444444,
+    "feature_reason_counts": {
+      "invalid_denominator": 2,
+      "missing_history": 76,
+      "missing_input": 109,
+      "nonpositive_baseline": 331,
+      "ok": 5724,
+      "warning": 2758
+    },
+    "usable_required_fields": {
+      "income": [
+        "operating_revenue_ytd",
+        "operating_cost_ytd",
+        "net_profit_ytd",
+        "parent_net_profit_ytd"
+      ],
+      "balance": [
+        "total_assets",
+        "total_liabilities",
+        "current_assets",
+        "current_liabilities"
+      ],
+      "indicator": [
+        "roe_weighted_ytd"
+      ]
+    },
+    "quarter_derivation_key_count": 2100,
+    "verified_basis_key_count": 0,
+    "verified_basis_coverage_rate": 0.0,
+    "baseline_status": "baseline_insufficient",
+    "baseline_sample_count": 0,
+    "row_count_change": null,
+    "field_null_rate_change": null,
+    "row_count_mad": null,
+    "comparison_count": 3105,
+    "comparison_planned_count": 3200,
+    "comparison_coverage": 0.9703125,
+    "reference_coverage": 0.9765625,
+    "match_rate": 1.0,
+    "reconciliation_reason_counts": {
+      "both_missing": 75,
+      "matched": 3105,
+      "not_comparable": 20
+    },
+    "record_anomaly_rate": 0.00042498937526561835
+  },
+  "doctor": {
+    "status": "ok",
+    "integrity": [
+      "ok"
+    ],
+    "foreign_keys": [],
+    "failures": [],
+    "repaired": []
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "analyzed_at": "2026-10-13T05:01:46.237968Z",
+  "source_manifest_sha256": "dc339e2a1765390a32621c142fd967f2e89e486f537b910c93312e6070bd2b6b",
+  "capture_elapsed_seconds": 172.97,
+  "response_pages": 150,
+  "record_count": 2353,
+  "theoretical_keys": 2400,
+  "missing_keys": [
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2022-06-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920002.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2024-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2025-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2025-09-30",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920003.BJ",
+      "report_end": "2025-09-30",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920005.BJ",
+      "report_end": "2023-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920006.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920006.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920006.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920006.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-06-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-06-30",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-06-30",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2023-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2023-06-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920007.BJ",
+      "report_end": "2023-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920008.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920008.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920009.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920009.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "income"
+    },
+    {
+      "security_code": "920009.BJ",
+      "report_end": "2022-03-31",
+      "report_type": "indicator"
+    },
+    {
+      "security_code": "920009.BJ",
+      "report_end": "2022-06-30",
+      "report_type": "balance"
+    },
+    {
+      "security_code": "920009.BJ",
+      "report_end": "2022-09-30",
+      "report_type": "balance"
+    }
+  ],
+  "null_field_counts": {
+    "balance.TOTAL_CURRENT_ASSETS": 1,
+    "balance.TOTAL_CURRENT_LIAB": 1,
+    "balance.TOTAL_EQUITY": 1,
+    "income.NETPROFIT": 1,
+    "income.OPERATE_COST": 1,
+    "income.OPERATE_INCOME": 1,
+    "indicator.LD": 15,
+    "indicator.ROEJQ": 10,
+    "indicator.XSJLL": 1,
+    "indicator.XSMLL": 1,
+    "indicator.ZCFZL": 14
+  },
+  "invalid_number_examples": [],
+  "invalid_date_examples": [],
+  "currency_counts": {
+    "income:CNY": 789,
+    "balance:CNY": 775,
+    "indicator:CNY": 789
+  },
+  "org_type_counts": {
+    "income:通用": 789,
+    "balance:通用": 775,
+    "indicator:通用": 789
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": "0.1.1",
+  "checked_at": "2026-10-13T15:32:54.519730+00:00",
+  "tests": {
+    "python_3_12_7": {
+      "passed": 166,
+      "subtests": 289,
+      "seconds": 172.6
+    },
+    "python_3_13_1": {
+      "passed": 166,
+      "subtests": 289,
+      "seconds": 153.63
+    }
+  },
+  "ruff_check": "passed",
+  "ruff_format_files": 45,
+  "pip_check": "passed",
+  "executable_sha256": "946b08e99170be68fe631881ce18dc011fb1c68619085816f8809ea673b2e260",
+  "clean_machine_validation": "not_run",
+  "original_release_zip_sha256": "19df751dd6b24a4f2032efc0ce19cbf743f35b17f9cabe99bf00c1ae60c289b4",
+  "new_database_bytes": 102535168
+}

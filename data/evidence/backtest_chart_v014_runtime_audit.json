@@ -1,0 +1,268 @@
+{
+  "created_at": "2026-10-14T06:22:57.959959+00:00",
+  "report_audit": {
+    "status": "passed",
+    "report_sha256": "a08c2c83a7b6af51cdd9bab30424c57c0aeec40c4221269542f0198acbaf8f06",
+    "members_verified": 200,
+    "group_windows_verified": 100,
+    "chart_points_verified": 126,
+    "summary": {
+      "formed_periods": 20,
+      "first_entry_date": "2024-05-07",
+      "last_exit_date": "2025-12-24",
+      "calendar_first_session": "2023-01-03",
+      "calendar_last_session": "2025-12-31",
+      "skipped_decisions": {
+        "insufficient_factor_members": 16,
+        "insufficient_forward_calendar": 1
+      },
+      "exclusion_counts": {
+        "not_yet_available": 160
+      },
+      "universe_size": 10,
+      "groups": [
+        {
+          "group": 1,
+          "cumulative_return": 0.9337544821670849,
+          "max_drawdown_at_period_ends": -0.2101562295065158
+        },
+        {
+          "group": 2,
+          "cumulative_return": 0.836055554775202,
+          "max_drawdown_at_period_ends": -0.18355718055963977
+        },
+        {
+          "group": 3,
+          "cumulative_return": 0.05761703670725904,
+          "max_drawdown_at_period_ends": -0.12920171416030157
+        },
+        {
+          "group": 4,
+          "cumulative_return": 0.010176396442507896,
+          "max_drawdown_at_period_ends": -0.22414670890592725
+        },
+        {
+          "group": 5,
+          "cumulative_return": 0.5864772652580317,
+          "max_drawdown_at_period_ends": -0.17373487407530253
+        }
+      ]
+    },
+    "time_policy": "publication_proxy"
+  },
+  "runtime_audit": {
+    "status": "passed",
+    "checks": [
+      {
+        "kind": "synthetic",
+        "runtime": "exe",
+        "returncode": 0,
+        "status": "passed",
+        "report_sha256": "913b8b97952f2e68f5a981a14448759caf577e2a8c32b3e9dcfe295c3279aa37",
+        "members_verified": 50,
+        "group_windows_verified": 25,
+        "chart_points_verified": 36,
+        "summary": {
+          "formed_periods": 5,
+          "first_entry_date": "2021-02-02",
+          "last_exit_date": "2021-02-16",
+          "calendar_first_session": "2021-02-01",
+          "calendar_last_session": "2021-02-16",
+          "skipped_decisions": {
+            "insufficient_forward_calendar": 1
+          },
+          "exclusion_counts": {},
+          "universe_size": 10,
+          "groups": [
+            {
+              "group": 1,
+              "cumulative_return": -0.06783093322637335,
+              "max_drawdown_at_period_ends": -0.06783093322637335
+            },
+            {
+              "group": 2,
+              "cumulative_return": -0.029593341788793803,
+              "max_drawdown_at_period_ends": -0.029593341788793803
+            },
+            {
+              "group": 3,
+              "cumulative_return": 0.010050160360593141,
+              "max_drawdown_at_period_ends": 0.0
+            },
+            {
+              "group": 4,
+              "cumulative_return": 0.05114533558631407,
+              "max_drawdown_at_period_ends": 0.0
+            },
+            {
+              "group": 5,
+              "cumulative_return": 0.09373924435951198,
+              "max_drawdown_at_period_ends": 0.0
+            }
+          ]
+        },
+        "time_policy": "observed"
+      },
+      {
+        "kind": "synthetic",
+        "runtime": "source",
+        "returncode": 0,
+        "status": "passed",
+        "report_sha256": "8b51474fe3c7d791433a09032e9c30cdb1fc8904f00e68eb9b4fac5c36ca9a3c",
+        "members_verified": 50,
+        "group_windows_verified": 25,
+        "chart_points_verified": 36,
+        "summary": {
+          "formed_periods": 5,
+          "first_entry_date": "2021-02-02",
+          "last_exit_date": "2021-02-16",
+          "calendar_first_session": "2021-02-01",
+          "calendar_last_session": "2021-02-16",
+          "skipped_decisions": {
+            "insufficient_forward_calendar": 1
+          },
+          "exclusion_counts": {},
+          "universe_size": 10,
+          "groups": [
+            {
+              "group": 1,
+              "cumulative_return": -0.06783093322637335,
+              "max_drawdown_at_period_ends": -0.06783093322637335
+            },
+            {
+              "group": 2,
+              "cumulative_return": -0.029593341788793803,
+              "max_drawdown_at_period_ends": -0.029593341788793803
+            },
+            {
+              "group": 3,
+              "cumulative_return": 0.010050160360593141,
+              "max_drawdown_at_period_ends": 0.0
+            },
+            {
+              "group": 4,
+              "cumulative_return": 0.05114533558631407,
+              "max_drawdown_at_period_ends": 0.0
+            },
+            {
+              "group": 5,
+              "cumulative_return": 0.09373924435951198,
+              "max_drawdown_at_period_ends": 0.0
+            }
+          ]
+        },
+        "time_policy": "observed"
+      },
+      {
+        "kind": "real_proxy",
+        "runtime": "exe",
+        "returncode": 0,
+        "status": "passed",
+        "report_sha256": "61201226a9123259e59e1f2ce8aec3b35c6e440fe0e5ff4f3c07b8a962fd7f48",
+        "members_verified": 200,
+        "group_windows_verified": 100,
+        "chart_points_verified": 126,
+        "summary": {
+          "formed_periods": 20,
+          "first_entry_date": "2024-05-07",
+          "last_exit_date": "2025-12-24",
+          "calendar_first_session": "2023-01-03",
+          "calendar_last_session": "2025-12-31",
+          "skipped_decisions": {
+            "insufficient_factor_members": 16,
+            "insufficient_forward_calendar": 1
+          },
+          "exclusion_counts": {
+            "not_yet_available": 160
+          },
+          "universe_size": 10,
+          "groups": [
+            {
+              "group": 1,
+              "cumulative_return": 0.9337544821670849,
+              "max_drawdown_at_period_ends": -0.2101562295065158
+            },
+            {
+              "group": 2,
+              "cumulative_return": 0.836055554775202,
+              "max_drawdown_at_period_ends": -0.18355718055963977
+            },
+            {
+              "group": 3,
+              "cumulative_return": 0.05761703670725904,
+              "max_drawdown_at_period_ends": -0.12920171416030157
+            },
+            {
+              "group": 4,
+              "cumulative_return": 0.010176396442507896,
+              "max_drawdown_at_period_ends": -0.22414670890592725
+            },
+            {
+              "group": 5,
+              "cumulative_return": 0.5864772652580317,
+              "max_drawdown_at_period_ends": -0.17373487407530253
+            }
+          ]
+        },
+        "time_policy": "publication_proxy"
+      },
+      {
+        "kind": "real_proxy",
+        "runtime": "source",
+        "returncode": 0,
+        "status": "passed",
+        "report_sha256": "c28896133a75fca0b528db7b0fc25fe1d6e290104be139f0693fde782c683a7d",
+        "members_verified": 200,
+        "group_windows_verified": 100,
+        "chart_points_verified": 126,
+        "summary": {
+          "formed_periods": 20,
+          "first_entry_date": "2024-05-07",
+          "last_exit_date": "2025-12-24",
+          "calendar_first_session": "2023-01-03",
+          "calendar_last_session": "2025-12-31",
+          "skipped_decisions": {
+            "insufficient_factor_members": 16,
+            "insufficient_forward_calendar": 1
+          },
+          "exclusion_counts": {
+            "not_yet_available": 160
+          },
+          "universe_size": 10,
+          "groups": [
+            {
+              "group": 1,
+              "cumulative_return": 0.9337544821670849,
+              "max_drawdown_at_period_ends": -0.2101562295065158
+            },
+            {
+              "group": 2,
+              "cumulative_return": 0.836055554775202,
+              "max_drawdown_at_period_ends": -0.18355718055963977
+            },
+            {
+              "group": 3,
+              "cumulative_return": 0.05761703670725904,
+              "max_drawdown_at_period_ends": -0.12920171416030157
+            },
+            {
+              "group": 4,
+              "cumulative_return": 0.010176396442507896,
+              "max_drawdown_at_period_ends": -0.22414670890592725
+            },
+            {
+              "group": 5,
+              "cumulative_return": 0.5864772652580317,
+              "max_drawdown_at_period_ends": -0.17373487407530253
+            }
+          ]
+        },
+        "time_policy": "publication_proxy"
+      }
+    ],
+    "system_path_without_python": true,
+    "unavailable_proxy": true,
+    "source_exe_equal": true,
+    "clean_machine_verified": false
+  }
+}

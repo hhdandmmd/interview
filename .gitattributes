@@ -1,0 +1,7 @@
+# 源码统一使用LF；双击入口保留Windows换行，避免cmd误解析中文脚本。
+* text=auto eol=lf
+*.cmd text eol=crlf
+
+# 来源原文和样例清单按原字节保存，避免换行转换改变SHA256。
+data/** -text
+src/finpipe/resources/demo/** -text

@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "source": "eastmoney",
+  "codes": [
+    "600519.SH",
+    "000333.SZ"
+  ],
+  "periods": [
+    "2023-03-31",
+    "2023-06-30",
+    "2023-09-30",
+    "2023-12-31",
+    "2024-03-31",
+    "2024-06-30",
+    "2024-09-30",
+    "2024-12-31"
+  ],
+  "captured_at": "2025-05-01T08:00:00.000000Z",
+  "capture_kind": "synthetic",
+  "synthetic_notice": "仅用于测试，金额及公司名为人工构造，不能作为真实公司数据。",
+  "pages": [
+    {
+      "page_id": "synthetic-income-2025-05-01T08:00:00.000000Z",
+      "body_path": "income.json",
+      "raw_hash": "5670eed5c31d83ec3dea111d78a7592acf7db700fd93eae3df33580c1776352a",
+      "report_type": "income",
+      "report_name": "RPT_F10_FINANCE_GINCOME",
+      "observed_at": "2025-05-01T08:00:00.000000Z",
+      "capture_kind": "synthetic",
+      "request": {
+        "params": {
+          "reportName": "RPT_F10_FINANCE_GINCOME",
+          "pageNumber": "1",
+          "pageSize": "16"
+        }
+      }
+    },
+    {
+      "page_id": "synthetic-balance-2025-05-01T08:00:00.000000Z",
+      "body_path": "balance.json",
+      "raw_hash": "8a92dd010100eac33fcab0f44c0e7407def47b0a05516ec96479ef9035033acf",
+      "report_type": "balance",
+      "report_name": "RPT_F10_FINANCE_GBALANCE",
+      "observed_at": "2025-05-01T08:00:00.000000Z",
+      "capture_kind": "synthetic",
+      "request": {
+        "params": {
+          "reportName": "RPT_F10_FINANCE_GBALANCE",
+          "pageNumber": "1",
+          "pageSize": "16"
+        }
+      }
+    },
+    {
+      "page_id": "synthetic-indicator-2025-05-01T08:00:00.000000Z",
+      "body_path": "indicator.json",
+      "raw_hash": "b8022de753c50fa74c6daa73d9d4b51b1529dbda5cdd5d131056e1699d75aa32",
+      "report_type": "indicator",
+      "report_name": "RPT_F10_FINANCE_MAINFINADATA",
+      "observed_at": "2025-05-01T08:00:00.000000Z",
+      "capture_kind": "synthetic",
+      "request": {
+        "params": {
+          "reportName": "RPT_F10_FINANCE_MAINFINADATA",
+          "pageNumber": "1",
+          "pageSize": "16"
+        }
+      }
+    }
+  ],
+  "complete": true,
+  "errors": []
+}

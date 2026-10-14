@@ -1,0 +1,22 @@
+{
+  "run_id": "run_5c21c87399ba4ae1a3a9493a566fffa3",
+  "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+  "status": "SUCCEEDED",
+  "snapshot_id": "snapshot_1bbdbdc19cd04631887f46a86d919a31",
+  "started_at": "2026-10-13T06:19:33.143207Z",
+  "finished_at": "2026-10-13T06:19:44.186840Z",
+  "counts": {
+    "clean_new": 72,
+    "evaluated": 180,
+    "expected_reports": 72,
+    "lineage_changed": 0,
+    "numeric_changed": 180,
+    "reused": 0,
+    "source_new": 72,
+    "state_new": 72,
+    "status_changed": 180
+  },
+  "executable_sha256": "71efb7b6a147bfa7bb48eaeb8119fa78e774e680166133fef344db5e94a2d845",
+  "manifest_path": "F:\\test\\output\\final_exe_online\\raw\\capture_ed3899265201b112e4e0ed310d27b5ab\\manifest.json",
+  "evidence_manifest": "data\\evidence\\final_exe_online_capture_20261013\\manifest.json"
+}

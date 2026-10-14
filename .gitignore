@@ -1,0 +1,28 @@
+__pycache__/
+*.py[cod]
+.venv/
+.build-venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+output/
+config/output/
+release/
+*.spec
+
+# 运行时配置与密钥不进入源码仓库，示例配置可以保留。
+.env
+.env.*
+!.env.example
+
+# 保留正式公开归档与验收JSON，重复在线捕获留在本地。
+data/evidence/*/
+!data/evidence/full_market_capture_20261013/
+
+# 历史对话和过往设计留档不属于对外源码交付。
+data/reference/shared_dialogues/
+docs/reviews/baseline/
+docs/reviews/round2/
+docs/reviews/delivery_round3_20261014/*_before.md

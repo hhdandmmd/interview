@@ -1,0 +1,362 @@
+{
+  "success": true,
+  "code": 0,
+  "result": {
+    "pages": 1,
+    "count": 16,
+    "data": [
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-03-31 00:00:00",
+        "NOTICE_DATE": "2023-05-10 00:00:00",
+        "UPDATE_DATE": "2023-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 100,
+        "TOTAL_OPERATE_INCOME": 100,
+        "OPERATE_COST": 60,
+        "NETPROFIT": 10,
+        "PARENT_NETPROFIT": 8
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-06-30 00:00:00",
+        "NOTICE_DATE": "2023-08-15 00:00:00",
+        "UPDATE_DATE": "2023-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 220,
+        "TOTAL_OPERATE_INCOME": 220,
+        "OPERATE_COST": 126,
+        "NETPROFIT": 28,
+        "PARENT_NETPROFIT": 23
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-09-30 00:00:00",
+        "NOTICE_DATE": "2023-11-15 00:00:00",
+        "UPDATE_DATE": "2023-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 360,
+        "TOTAL_OPERATE_INCOME": 360,
+        "OPERATE_COST": 196,
+        "NETPROFIT": 56,
+        "PARENT_NETPROFIT": 47
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2023-12-31 00:00:00",
+        "NOTICE_DATE": "2024-04-15 00:00:00",
+        "UPDATE_DATE": "2024-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 520,
+        "TOTAL_OPERATE_INCOME": 520,
+        "OPERATE_COST": 268,
+        "NETPROFIT": 96,
+        "PARENT_NETPROFIT": 82
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-03-31 00:00:00",
+        "NOTICE_DATE": "2024-05-10 00:00:00",
+        "UPDATE_DATE": "2024-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 150,
+        "TOTAL_OPERATE_INCOME": 150,
+        "OPERATE_COST": 84,
+        "NETPROFIT": 24,
+        "PARENT_NETPROFIT": 20
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-06-30 00:00:00",
+        "NOTICE_DATE": "2024-08-15 00:00:00",
+        "UPDATE_DATE": "2024-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 348,
+        "TOTAL_OPERATE_INCOME": 348,
+        "OPERATE_COST": 186,
+        "NETPROFIT": 60,
+        "PARENT_NETPROFIT": 50
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-09-30 00:00:00",
+        "NOTICE_DATE": "2024-11-15 00:00:00",
+        "UPDATE_DATE": "2024-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 600,
+        "TOTAL_OPERATE_INCOME": 600,
+        "OPERATE_COST": 312,
+        "NETPROFIT": 114,
+        "PARENT_NETPROFIT": 95
+      },
+      {
+        "SECUCODE": "600519.SH",
+        "SECURITY_CODE": "600519",
+        "SECURITY_NAME_ABBR": "人工夹具甲公司",
+        "REPORT_DATE": "2024-12-31 00:00:00",
+        "NOTICE_DATE": "2025-04-15 00:00:00",
+        "UPDATE_DATE": "2025-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-600519.SH",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 912,
+        "TOTAL_OPERATE_INCOME": 912,
+        "OPERATE_COST": 456,
+        "NETPROFIT": 192,
+        "PARENT_NETPROFIT": 161
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-03-31 00:00:00",
+        "NOTICE_DATE": "2023-05-10 00:00:00",
+        "UPDATE_DATE": "2023-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 80,
+        "TOTAL_OPERATE_INCOME": 80,
+        "OPERATE_COST": 48,
+        "NETPROFIT": 8,
+        "PARENT_NETPROFIT": 6
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-06-30 00:00:00",
+        "NOTICE_DATE": "2023-08-15 00:00:00",
+        "UPDATE_DATE": "2023-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 180,
+        "TOTAL_OPERATE_INCOME": 180,
+        "OPERATE_COST": 110,
+        "NETPROFIT": 20,
+        "PARENT_NETPROFIT": 16
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-09-30 00:00:00",
+        "NOTICE_DATE": "2023-11-15 00:00:00",
+        "UPDATE_DATE": "2023-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 300,
+        "TOTAL_OPERATE_INCOME": 300,
+        "OPERATE_COST": 182,
+        "NETPROFIT": 38,
+        "PARENT_NETPROFIT": 31
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2023-12-31 00:00:00",
+        "NOTICE_DATE": "2024-04-15 00:00:00",
+        "UPDATE_DATE": "2024-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 440,
+        "TOTAL_OPERATE_INCOME": 440,
+        "OPERATE_COST": 266,
+        "NETPROFIT": 59,
+        "PARENT_NETPROFIT": 49
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-03-31 00:00:00",
+        "NOTICE_DATE": "2024-05-10 00:00:00",
+        "UPDATE_DATE": "2024-05-10 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 100,
+        "TOTAL_OPERATE_INCOME": 100,
+        "OPERATE_COST": 55,
+        "NETPROFIT": 15,
+        "PARENT_NETPROFIT": 12
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-06-30 00:00:00",
+        "NOTICE_DATE": "2024-08-15 00:00:00",
+        "UPDATE_DATE": "2024-08-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 230,
+        "TOTAL_OPERATE_INCOME": 230,
+        "OPERATE_COST": 133,
+        "NETPROFIT": 41,
+        "PARENT_NETPROFIT": 32
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-09-30 00:00:00",
+        "NOTICE_DATE": "2024-11-15 00:00:00",
+        "UPDATE_DATE": "2024-11-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 400,
+        "TOTAL_OPERATE_INCOME": 400,
+        "OPERATE_COST": 218,
+        "NETPROFIT": 75,
+        "PARENT_NETPROFIT": 60
+      },
+      {
+        "SECUCODE": "000333.SZ",
+        "SECURITY_CODE": "000333",
+        "SECURITY_NAME_ABBR": "人工夹具乙公司",
+        "REPORT_DATE": "2024-12-31 00:00:00",
+        "NOTICE_DATE": "2025-04-15 00:00:00",
+        "UPDATE_DATE": "2025-04-15 00:00:00",
+        "ORG_TYPE": "通用",
+        "ORG_CODE": "synthetic-000333.SZ",
+        "CURRENCY": "CNY",
+        "_revision_sequence": 1,
+        "_evidence": {
+          "authoritative_revision": true,
+          "capture_kind": "synthetic",
+          "consolidation_scope": "consolidated"
+        },
+        "OPERATE_INCOME": 620,
+        "TOTAL_OPERATE_INCOME": 620,
+        "OPERATE_COST": 328,
+        "NETPROFIT": 119,
+        "PARENT_NETPROFIT": 100
+      }
+    ]
+  }
+}

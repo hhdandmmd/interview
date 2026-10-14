@@ -1,0 +1,12 @@
+{
+  "stage": "final_after_schedule_fix",
+  "status": "passed",
+  "source_versions": 72,
+  "feature_cells": 180,
+  "chinese_space_cwd": true,
+  "path_contains_python": false,
+  "network_condition": "离线入口及不可用HTTP代理；不是操作系统网络隔离",
+  "clean_machine_verified": false,
+  "executable": "F:\\test\\dist\\finpipe\\finpipe.exe",
+  "executable_sha256": "b22ae18d6be1be4de59c0f42f10119f1238072865ba734dc088e46c4dd72a3f6"
+}

@@ -1,0 +1,37 @@
+{
+  "version": "0.1.2",
+  "created_at": "2026-10-13T16:43:57.617973+00:00",
+  "regressions": [
+    {
+      "python": "3.12.7",
+      "passed": 191,
+      "subtests": 289,
+      "seconds": 179.92
+    },
+    {
+      "python": "3.13.1",
+      "passed": 191,
+      "subtests": 289,
+      "seconds": 158.1
+    }
+  ],
+  "ruff": "passed",
+  "format_files": 52,
+  "annotations": {
+    "docstrings": 224,
+    "comments": 18
+  },
+  "non_chinese_annotations": [],
+  "original_evidence_unchanged": {
+    "full_financial_manifest": "dc339e2a1765390a32621c142fd967f2e89e486f537b910c93312e6070bd2b6b",
+    "demo_manifest": "60f6ab1900531773f812180f8d0d7ccb021d2541dc5996fc594d99c9467020cf",
+    "old_release_zip": "39bf436523f53bddf646118c854fefe61a5490e0452a36d5ede2907f67d05383"
+  },
+  "market_requests": 33,
+  "market_raw_hashes_verified": true,
+  "market_manifest_sha256": "c39bbc36cf91c94a6a9355eda2d0cdebe0b0f55aee40b650e2a1567d56a963f6",
+  "market_price_rows": 7258,
+  "calendar_sessions": 727,
+  "backtest_example_bytes": 665706,
+  "clean_machine_verified": false
+}

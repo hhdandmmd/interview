@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "pinned_snapshot": "snapshot_8eb457cbebbd4bd6bc81d30ef268284f",
+  "feature_rows": 180,
+  "all_values_statuses_versions_input_hashes_equal": true,
+  "replay": {
+    "status": "NO_CHANGE",
+    "run_id": "run_23d3da37fbf04430bde93ca707e9ea1f",
+    "snapshot_id": "snapshot_8eb457cbebbd4bd6bc81d30ef268284f",
+    "scope_id": "scope_9a562ca7bf6a921d9970cc89b78292b6",
+    "counts": {
+      "source_new": 0,
+      "clean_new": 0,
+      "state_new": 0,
+      "expected_reports": 72,
+      "scan_requested_reports": 72,
+      "scan_returned_reports": 72,
+      "evaluated": 0,
+      "numeric_changed": 0,
+      "status_changed": 0,
+      "lineage_changed": 0,
+      "reused": 180
+    },
+    "export_path": "F:\\test\\output\\smoke\\snapshots\\snapshot_8eb457cbebbd4bd6bc81d30ef268284f",
+    "scope_health": "healthy",
+    "health_rules": []
+  },
+  "executable_sha256": "cba1aca68600daf17e95e0bacc3ac366751597dc2666190bc352da6185060898"
+}

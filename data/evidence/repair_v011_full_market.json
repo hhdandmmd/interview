@@ -1,0 +1,22 @@
+{
+  "status": "PUBLISHED",
+  "run_id": "run_5f51a1babc0f450f86f0e623ec46a702",
+  "snapshot_id": "snapshot_a0885a44460f4231b7370353644d36ec",
+  "scope_id": "scope_c7a145335f13a44151814ce1cd8f88ea",
+  "counts": {
+    "clean_new": 2353,
+    "evaluated": 9000,
+    "expected_reports": 2400,
+    "lineage_changed": 0,
+    "numeric_changed": 9000,
+    "reused": 0,
+    "scan_requested_reports": 2400,
+    "scan_returned_reports": 2353,
+    "source_new": 2353,
+    "state_new": 2400,
+    "status_changed": 9000
+  },
+  "export_path": "F:\\test\\output\\acceptance_full_release_v011\\snapshots\\snapshot_a0885a44460f4231b7370353644d36ec",
+  "scope_health": "healthy",
+  "health_rules": []
+}
