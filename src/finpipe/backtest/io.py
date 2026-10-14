@@ -271,6 +271,56 @@ def write_report(
     }
 
 
+def run_backtest(
+    signals: list[dict],
+    signal_metadata: dict,
+    market_data: tuple[list[dict], list[str], dict],
+    *,
+    feature: str,
+    output: Path,
+    start: str | None = None,
+    end: str | None = None,
+    horizon: int = 20,
+    groups: int = 5,
+    cost_bps: float = 0.0,
+    demo: bool = False,
+) -> dict:
+    """单因子复用已读取行情；命令行和批量入口使用相同范围、计算与报告口径。"""
+    prices, calendar, market_metadata = market_data
+    if not demo:
+        left = market_metadata.get("start", calendar[0] if calendar else None)
+        right = market_metadata.get("end", calendar[-1] if calendar else None)
+        if (start and left and start < left) or (end and right and end > right):
+            raise ValueError("请求范围超出行情清单覆盖范围，请补充行情后回测")
+        signal_metadata = {
+            **signal_metadata,
+            "original_security_count": len({row["security_code"] for row in signals}),
+            "selected_codes": market_metadata["codes"],
+            "pool_selection": "显式使用行情清单codes作为固定研究池，不按未来报价完整性筛选",
+        }
+        signals = [row for row in signals if row["security_code"] in market_metadata["codes"]]
+    report = run_groups(
+        signals,
+        prices,
+        calendar,
+        feature=feature,
+        start=start,
+        end=end,
+        horizon=horizon,
+        groups=groups,
+        cost_bps=cost_bps,
+        codes=market_metadata["codes"],
+    )
+    report.update(
+        schema_version=1,
+        generated_at=utc_now(),
+        signal_metadata=signal_metadata,
+        market_metadata=market_metadata,
+        limitations=LIMITATIONS,
+    )
+    return write_report(output, report, signals, prices, calendar)
+
+
 def execute_backtest(arguments, workspace: Path) -> dict:
     """命令编排不修改财务库；人工样例和真实数据入口明确分开。"""
     if arguments.demo:
@@ -304,24 +354,12 @@ def execute_backtest(arguments, workspace: Path) -> dict:
             )
         )
         prices, calendar, market_metadata = load_market(arguments.market)
-        left = market_metadata.get("start", calendar[0] if calendar else None)
-        right = market_metadata.get("end", calendar[-1] if calendar else None)
-        if (arguments.start and left and arguments.start < left) or (
-            arguments.end and right and arguments.end > right
-        ):
-            raise ValueError("请求范围超出行情清单覆盖范围，请补充行情后回测")
-        signal_metadata = {
-            **signal_metadata,
-            "original_security_count": len({row["security_code"] for row in signals}),
-            "selected_codes": market_metadata["codes"],
-            "pool_selection": "显式使用行情清单codes作为固定研究池，不按未来报价完整性筛选",
-        }
-        signals = [row for row in signals if row["security_code"] in market_metadata["codes"]]
-    report = run_groups(
+    return run_backtest(
         signals,
-        prices,
-        calendar,
+        signal_metadata,
+        (prices, calendar, market_metadata),
         feature=arguments.feature,
+        output=arguments.output,
         start=arguments.start,
         end=arguments.end,
         horizon=arguments.horizon
@@ -329,13 +367,5 @@ def execute_backtest(arguments, workspace: Path) -> dict:
         else (2 if arguments.demo else 20),
         groups=arguments.groups,
         cost_bps=arguments.cost_bps,
-        codes=market_metadata["codes"],
+        demo=arguments.demo,
     )
-    report.update(
-        schema_version=1,
-        generated_at=utc_now(),
-        signal_metadata=signal_metadata,
-        market_metadata=market_metadata,
-        limitations=LIMITATIONS,
-    )
-    return write_report(arguments.output, report, signals, prices, calendar)

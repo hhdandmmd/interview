@@ -59,6 +59,8 @@ def start_page(destination: Path, snapshot_id: str, companies: int, has_backtest
         "<h2>配置后直接运行</h2><ol><li>打开根目录config.py，填写股票、来源和输出报告期；默认东方财富和茅台2025年。</li>"
         "<li>双击根目录run.cmd，自动采集财报、清洗、存储并同步计算15个因子。窗口显示结果目录和HTML路径，无需安装Python。</li>"
         "<li>程序自动补齐上一年比较数据。当前只支持东方财富，其他来源会明确报错。</li></ol>"
+        "<p>可选回测：在config.py设置backtest.enabled=True并填写factors；五组至少选择五只股票。每个因子分别出报告，多因子共用一次行情，运行结束显示总览路径。"
+        "默认observed按真实已知时间放出；历史近似研究须显式选publication_proxy。因子定义维护在source/src/finpipe/features/factors各目录的factor.py。</p>"
         "<h2>离线查看与演示</h2><p>点击上方链接看随包真实结果，无需网络。进入windows/finpipe，双击run_demo.cmd重跑固定真实样本；再次演示复用结果。</p>"
         "<h2>在交付包根目录打开PowerShell</h2><p>查询一家公司一个报告期：</p>"
         f"<pre>{html.escape(query)}</pre><p>人工五组演示：</p>"

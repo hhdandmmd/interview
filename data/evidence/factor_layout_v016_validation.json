@@ -1,0 +1,18 @@
+{
+  "version": "0.1.6",
+  "status": "passed",
+  "dictionary_equal_v015": true,
+  "source_snapshot": "snapshot_a0885a44460f4231b7370353644d36ec",
+  "companies": 50,
+  "checks": [
+    {
+      "formula_version": "1",
+      "features_all_fields_equal": 9000
+    },
+    {
+      "formula_version": "2",
+      "features_all_fields_equal": 9000
+    }
+  ],
+  "comparison": "同一固定真实输入下，新旧纯计算的数值、状态、原因、精确依赖、时间、指纹和版本标识全部一致；未联网或改写历史库"
+}

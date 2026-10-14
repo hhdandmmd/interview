@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "version": "0.1.6",
+  "source_batch": "F:\\test\\output\\simple_backtest_v016_live\\backtests\\20261014T105240Z_3cd4905e",
+  "executable_batch": "F:\\test\\output\\simple_backtest_v016_live\\backtests\\20261014T105901Z_42c4acea",
+  "checks": [
+    "system_path_without_python",
+    "two_factors_four_windows_each",
+    "same_financial_snapshot",
+    "all_calculation_fields_equal",
+    "svg_and_csv_bytes_equal",
+    "external_market_used_no_market_download"
+  ],
+  "clean_machine_verified": false
+}

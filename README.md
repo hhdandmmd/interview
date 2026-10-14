@@ -11,7 +11,7 @@
 ```python
 from pathlib import Path
 
-from finpipe.config import RunConfig
+from finpipe.config import BacktestConfig, RunConfig
 
 CONFIG = RunConfig(
     stocks=["600519.SH"],
@@ -19,6 +19,10 @@ CONFIG = RunConfig(
     start_period="2025Q1",
     end_period="2025Q4",
     output_dir=Path(__file__).parent / "output" / "financial",
+    backtest=BacktestConfig(
+        enabled=False,
+        factors=["roe_weighted_ytd", "revenue_growth_yoy"],
+    ),
 )
 ```
 
@@ -39,6 +43,10 @@ result = run()
 ```
 
 Windows完整交付包包含根目录`config.py`和`run.cmd`以及自带程序，修改配置后双击即可运行。控制台显示实际财报数量、因子位置和报告路径，CSV、Parquet、字典及质量结果一起生成；缺值仍保留原因。
+
+需要回测时将`backtest.enabled=True`，并填写`factors`列表；五组至少选择五只股票，每个因子独立出报告。未指定`market_dir`时自动获取所选股票的腾讯后复权日线，多因子共用一次行情；也可指定本地行情目录。默认observed使用真实已知时间，历史近似研究须显式选择publication_proxy。日期、分组、持有期和费用设置见[配置回测](docs/backtest.md)。运行结束显示总览与各因子报告路径；回测失败保留财报结果并返回非零码。
+
+十五个因子已整理为独立目录，`factor.py`统一维护公式、单位、依赖和计算，见[因子扩展](docs/factors.md)。
 
 从GitHub获取源码时，按下方“源码运行”安装并执行。仓库根目录包含`src`、`tests`、`config`和`docs`；虚拟环境、运行输出与EXE构建产物不进入Git。
 

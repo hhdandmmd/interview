@@ -12,9 +12,9 @@
 
 ## 配置和维护
 
-研究公司池只通过`scope.codes`或`run --sample-size`调整。原配置`scope.sample_size`从未控制采集，现已移除并明确拒绝，避免配置看似生效却仍请求50家公司。配置类型、未知字段和规则标签在任何写入前校验，错误指出字段位置。
+日常配置用根config.py的stocks和BacktestConfig；高级命令用scope.codes或run --sample-size。原配置`scope.sample_size`从未控制采集，现已移除并明确拒绝，避免配置看似生效却仍请求50家公司。配置类型、未知字段和规则标签在任何写入前校验，错误指出字段位置。
 
-`catalog.py`维护字段名称、来源、单位、期间性质及说明；`features/specifications.py`维护15个因子的字典和准确依赖，`features/calculation.py`负责计算。新增因子需同时声明公式、单位、依赖、数学无定义政策和独立手算。`transforms/cleaning.py`与`quality.py`分别负责局部输入处理和整个候选的质量预算，不把网络和数据库塞进计算函数。
+`catalog.py`维护字段名称、来源、单位、期间性质及说明；features/factors各目录的factor.py维护公式、单位、依赖和计算，registry.py登记，specifications.py生成字典，calculation.py负责网格及指纹，见[factors.md](factors.md)。新增因子需同时声明公式、单位、依赖、数学无定义政策和独立手算。`transforms/cleaning.py`与`quality.py`分别负责局部输入处理和整个候选的质量预算，不把网络和数据库塞进计算函数。
 
 `config/default.toml`的网络、质量和job参数可调整。新运行使用mapping/dictionary/time-policy版本1、formula版本2及latest_complete_observation来源政策，未知版本直接拒绝。旧冻结运行仍可按原formula1和legacy_conflict政策恢复，不混入新配置；正式新结果应在默认新profile重放。清洗规则身份包含参数摘要；质量预算、公式等整体纳入profile。修改口径创建新身份并重算，禁止改旧处理结果。
 

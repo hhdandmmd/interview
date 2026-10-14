@@ -46,3 +46,7 @@
 真实回测默认`observed`时间；显式`publication_proxy`为公告及已知更新日期近似研究，不能宣称严格历史PIT。复算及在线获取方法见包根目录的`source/docs/backtest.md`；重复回测须换新输出目录。
 
 当前财报不构成历史PIT或无前视偏差回测。独立干净Windows机器尚未验收，本机搬迁和无Python PATH验证见包根目录`source/docs/delivery_validation.md`。技术说明和官方PDF集中在source，EXE目录不重复保存。
+
+## 配置多因子回测
+
+根config.py的backtest.enabled控制是否回测，factors为因子列表；五组至少需要五只股票。每个因子分别出报告，多因子共用行情并固定本次财报快照。默认observed不回填历史，公告近似研究须显式选publication_proxy；结果总览在工作区backtests/时间_编号/index.html。日期、持有期、费用与本地行情见交付包source/docs/backtest.md。回测失败保留财报结果，修复输入后重跑入口。

@@ -2,9 +2,11 @@
 
 import copy
 import json
+import math
 import re
 import tomllib
 from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 from finpipe.identity import stable_id
@@ -146,6 +148,87 @@ def load_config(
 
 
 @dataclass
+class BacktestConfig:
+    """可选的独立因子分组研究；日期是交易区间，和财报报告期分别维护。"""
+
+    enabled: bool = False
+    factors: list[str] = field(default_factory=lambda: ["roe_weighted_ytd"])
+    groups: int = 5
+    horizon: int = 20
+    cost_bps: float = 0.0
+    time_policy: str = "observed"
+    start_date: str | None = None
+    end_date: str | None = None
+    market_dir: str | Path | None = None
+
+    def parameters(self, stocks: list[str], periods: tuple[str, ...]) -> dict | None:
+        """启用时在财报采集前校验；未提供行情目录则由现有腾讯入口自动采集。"""
+        if type(self.enabled) is not bool:
+            raise ValueError("backtest.enabled须为True或False")
+        if not self.enabled:
+            return None
+        from finpipe.features import FEATURE_NAMES
+
+        if (
+            not isinstance(self.factors, list)
+            or not self.factors
+            or any(not isinstance(name, str) for name in self.factors)
+            or len(set(self.factors)) != len(self.factors)
+        ):
+            raise ValueError("backtest.factors须为非空且不重复的因子名称列表")
+        unknown = set(self.factors) - set(FEATURE_NAMES)
+        if unknown:
+            raise ValueError(f"未知回测因子：{', '.join(sorted(unknown))}")
+        if type(self.groups) is not int or not 2 <= self.groups <= 20:
+            raise ValueError("backtest.groups须为2至20的整数")
+        if len(stocks) < self.groups:
+            raise ValueError(
+                f"{self.groups}组回测至少需要{self.groups}只股票，请调整stocks或groups"
+            )
+        if type(self.horizon) is not int or self.horizon < 1:
+            raise ValueError("backtest.horizon须为正整数交易日数")
+        if (
+            isinstance(self.cost_bps, bool)
+            or not isinstance(self.cost_bps, (int, float))
+            or not math.isfinite(self.cost_bps)
+            or not 0 <= self.cost_bps < 10000
+        ):
+            raise ValueError("backtest.cost_bps须为0至10000之间的有限单边基点数")
+        if self.time_policy not in ("observed", "publication_proxy"):
+            raise ValueError("backtest.time_policy须为observed或publication_proxy")
+        start = self.start_date if self.start_date is not None else periods[0][:4] + "-01-01"
+        end = self.end_date if self.end_date is not None else periods[-1]
+        for value in (start, end):
+            if not isinstance(value, str) or date.fromisoformat(value).isoformat() != value:
+                raise ValueError("回测起止日期须为准确ISO日期，如2025-01-01")
+        if start > end:
+            raise ValueError("回测起始日期不能晚于结束日期")
+        if self.market_dir is not None and (
+            not isinstance(self.market_dir, (str, Path)) or not str(self.market_dir).strip()
+        ):
+            raise ValueError("backtest.market_dir须为行情目录或None")
+        if self.market_dir is None:
+            if len(stocks) > 50 or any(
+                code.endswith(".BJ") or code == "000001.SH" for code in stocks
+            ):
+                raise ValueError("自动行情支持至多50只沪深股票；其他范围请指定backtest.market_dir")
+            if int(end[:4]) - int(start[:4]) > 4:
+                raise ValueError("自动行情至多跨五个自然年；更长范围请指定backtest.market_dir")
+        return {
+            "factors": self.factors.copy(),
+            "groups": self.groups,
+            "horizon": self.horizon,
+            "cost_bps": self.cost_bps,
+            "time_policy": self.time_policy,
+            "start": start,
+            "end": end,
+            "market_dir": str(Path(self.market_dir).resolve())
+            if self.market_dir is not None
+            else None,
+        }
+
+
+@dataclass
 class RunConfig:
     """日常运行只指定公司、来源和输出报告期；相对输出目录以调用目录为准。"""
 
@@ -154,6 +237,7 @@ class RunConfig:
     start_period: str = "2025Q1"
     end_period: str = "2025Q4"
     output_dir: str | Path = "output/financial"
+    backtest: BacktestConfig = field(default_factory=BacktestConfig)
 
     def to_pipeline_config(self) -> dict:
         """自动补齐上一自然年Q1起的历史，供单季、同比和跨年环比计算。"""
@@ -169,15 +253,26 @@ class RunConfig:
         year = int(outputs[0][:4])
         if year <= 1:
             raise ValueError("起始报告期须留出上一年的比较历史")
-        return load_config(
+        from finpipe.features import required_periods
+
+        # 标准因子保留上一整年；新增更长滞后因子时按声明自动向前补历史。
+        first_required = required_periods(outputs)[0]
+        input_start = (
+            f"{year - 1:04d}Q1" if first_required >= f"{year - 1:04d}-03-31" else first_required
+        )
+        prepared = load_config(
             values={
                 "workspace": str(self.output_dir),
                 "scope": {
                     "codes": self.stocks.copy(),
-                    "input_start": f"{year - 1:04d}Q1",
+                    "input_start": input_start,
                     "input_end": outputs[-1],
                     "output_start": outputs[0],
                     "output_end": outputs[-1],
                 },
             }
         )
+        if not isinstance(self.backtest, BacktestConfig):
+            raise ValueError("backtest须为BacktestConfig")
+        self.backtest.parameters(prepared["scope"]["codes"], prepared["output_periods"])
+        return prepared

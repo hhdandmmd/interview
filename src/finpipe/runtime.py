@@ -24,7 +24,12 @@ def fault(point: str):
 def result_exit_code(result: dict) -> int:
     """所有入口遵守同一成功口径；已生成文件但范围受阻或过期仍返回非零。"""
     successful = result.get("status") in ("ok", "healthy", "PUBLISHED", "NO_CHANGE")
-    return 0 if successful and result.get("scope_health") not in ("blocked", "stale") else 3
+    backtest_ok = "backtest" not in result or result["backtest"].get("status") == "ok"
+    return (
+        0
+        if successful and backtest_ok and result.get("scope_health") not in ("blocked", "stale")
+        else 3
+    )
 
 
 def recovery_command(run_id: str, workspace: str | Path) -> str:

@@ -1,0 +1,90 @@
+{
+  "version": "0.1.6",
+  "companies": [
+    "600519.SH",
+    "000333.SZ",
+    "000651.SZ",
+    "600009.SH",
+    "601006.SH"
+  ],
+  "financial_reports": 120,
+  "feature_positions": 300,
+  "financial_repeat": "NO_CHANGE，重算0，复用300，同一快照",
+  "market_source": "tencent",
+  "financial_source": "eastmoney",
+  "source_runs_actual_network": true,
+  "historical_versions_verified": false,
+  "cases": [
+    {
+      "batch": "20261014T104301Z_3fc383c5",
+      "status": "incomplete",
+      "snapshot_id": "snapshot_364f62076ef64a2c91833cae76826698",
+      "parameters": {
+        "factors": [
+          "roe_weighted_ytd",
+          "revenue_growth_yoy"
+        ],
+        "groups": 5,
+        "horizon": 20,
+        "cost_bps": 0.0,
+        "time_policy": "publication_proxy",
+        "start": "2025-01-01",
+        "end": "2025-12-31",
+        "market_dir": null
+      },
+      "results": [
+        {
+          "factor": "roe_weighted_ytd",
+          "status": "ok",
+          "formed_periods": 2
+        },
+        {
+          "factor": "revenue_growth_yoy",
+          "status": "incomplete",
+          "formed_periods": 0
+        }
+      ]
+    },
+    {
+      "batch": "20261014T105240Z_3cd4905e",
+      "status": "ok",
+      "snapshot_id": "snapshot_364f62076ef64a2c91833cae76826698",
+      "parameters": {
+        "factors": [
+          "roe_weighted_ytd",
+          "revenue_growth_yoy"
+        ],
+        "groups": 5,
+        "horizon": 20,
+        "cost_bps": 0.0,
+        "time_policy": "publication_proxy",
+        "start": "2026-06-01",
+        "end": "2026-09-30",
+        "market_dir": null
+      },
+      "results": [
+        {
+          "factor": "roe_weighted_ytd",
+          "status": "ok",
+          "formed_periods": 4
+        },
+        {
+          "factor": "revenue_growth_yoy",
+          "status": "ok",
+          "formed_periods": 4
+        }
+      ]
+    }
+  ],
+  "regression": {
+    "passed": 298,
+    "subtests": 289,
+    "seconds": 166.62
+  },
+  "final_targeted": {
+    "passed": 48,
+    "seconds": 4.92
+  },
+  "factor_full_equivalence": "真实50家公司，两套金融公式各9000个全字段一致，字典一致",
+  "clean_machine_verified": false
+}

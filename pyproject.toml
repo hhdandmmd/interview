@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finpipe"
-version = "0.1.5"
+version = "0.1.6"
 description = "可追溯的财报数据处理与特征工程"
 requires-python = ">=3.11"
 dependencies = ["numpy>=1.26", "pandas>=2.2", "requests>=2.31", "pyarrow>=15", "filelock>=3.13"]
