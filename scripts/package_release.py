@@ -188,8 +188,10 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "[示例结果](source/题目回应/示例结果/index.html)、"
         "[测试与验收](source/题目回应/测试与验收.md)。\n\n"
         "源码安装见[source/README.md](source/README.md)，技术说明见"
-        "[文档导航](source/docs/README.md)。SHA256.json记录交付文件摘要，"
-        "provenance.json记录构建环境。独立干净Windows机器尚未验收。\n"
+        "[文档导航](source/docs/README.md)。独立干净Windows机器尚未验收。\n\n"
+        "## 附录：完整性记录\n\n"
+        "SHA256.json记录文件摘要，provenance.json记录构建环境，供维护与排错使用。"
+        "正常运行无需先手工校验。\n"
     )
     (destination / "START_HERE.md").write_text(start, encoding="utf-8", newline="\n")
     licenses = binary / "licenses"

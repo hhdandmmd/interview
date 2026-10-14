@@ -6,4 +6,3 @@
 data/** -text whitespace=cr-at-eol
 src/finpipe/resources/demo/** -text
 题目回应/示例结果/** -text whitespace=cr-at-eol
-题目回应/测试输出/** -text whitespace=cr-at-eol
