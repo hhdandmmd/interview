@@ -6,6 +6,8 @@
 
 ## 一分钟运行
 
+Windows免安装完整交付包：[下载v0.1.4](https://github.com/hhdandmmd/interview/releases/tag/v0.1.4)。下载Release中的`finpipe_0.1.4_20261014T062410Z.zip`，完整解压后使用下面的双击入口。
+
 从GitHub获取源码时，按下方“源码运行”安装并执行。仓库根目录包含`src`、`tests`、`config`和`docs`；虚拟环境、运行输出与EXE构建产物不进入Git。
 
 拿到Windows完整交付包后，先双击解压根目录`START_HERE.html`，无需Python和网络即可看真实财务与回测结果。交付包中的原题、源码、测试和当前技术说明在`source`；小财务库在`examples/financial`，真实回测输入在`examples/backtest_real`。
