@@ -5,7 +5,6 @@ import hashlib
 import html
 import importlib.metadata as metadata
 import json
-import platform
 import shutil
 import sys
 import tempfile
@@ -18,7 +17,6 @@ from finpipe import __version__
 
 CURRENT_DOCUMENTS = (
     "README.md",
-    "source_capture_implementation.md",
     "windows_usage.md",
     "implementation.md",
     "architecture.md",
@@ -26,22 +24,16 @@ CURRENT_DOCUMENTS = (
     "data_dictionary.md",
     "backtest.md",
     "factors.md",
-    "coding_standard.md",
-    "acceptance.md",
-    "requirements_traceability.md",
-    "delivery_validation.md",
-    "original_report_validation.md",
-    "delivery_review_20261014.md",
-    "reviews/backtest_delivery_20261014.md",
-    "reviews/delivery_fixes_20261013.md",
-    "reviews/delivery_round3_20261014/business_robustness.md",
-    "reviews/delivery_round3_20261014/first_run.md",
-    "reviews/delivery_round3_20261014/design_size.md",
+)
+DELIVERY_EVIDENCE = (
+    "source_probe.json",
+    "configured_backtest_v016_validation.json",
+    "usability_v016_validation.json",
 )
 
 
 def copy_documents(root: Path, destination: Path) -> None:
-    """只交付当前说明与实际审核，历史设计和过程记录留在原工作区。"""
+    """只交付使用、技术及扩展说明；开发约定和历史评审留在本地。"""
     for name in CURRENT_DOCUMENTS:
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -80,7 +72,15 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     destination = root / "release" / ("finpipe_" + version + "_" + stamp)
     destination.mkdir(parents=True, exist_ok=False)
     binary = destination / "windows" / "finpipe"
-    shutil.copytree(root / "dist/finpipe", binary)
+    # 运行资源保留原字节，仅排除重复的开发说明；依赖许可证仍完整交付。
+    resource_docs = root / "dist/finpipe/_internal/finpipe/resources/demo"
+    shutil.copytree(
+        root / "dist/finpipe",
+        binary,
+        ignore=lambda directory, names: (
+            {"README.md"} if Path(directory) == resource_docs else set()
+        ),
+    )
     for name in ("config.py", "main.py", "run.cmd", "run_demo.cmd"):
         shutil.copyfile(root / name, destination / name)
     shutil.copyfile(root / "scripts/run_demo.cmd", binary / "run_demo.cmd")
@@ -93,8 +93,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         encoding="utf-8",
         newline="\n",
     )
-    for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
-        shutil.copyfile(root / name, binary / name)
+    shutil.copyfile(root / "LICENSE", binary / "LICENSE")
     (binary / "scripts").mkdir()
     shutil.copyfile(root / "scripts/scheduled_job.ps1", binary / "scripts/scheduled_job.ps1")
     shutil.copytree(root / "config", binary / "config", ignore=shutil.ignore_patterns("output"))
@@ -105,21 +104,24 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         shutil.copytree(
             root / name,
             source / name,
-            ignore=shutil.ignore_patterns("__pycache__", ".pytest_cache", "*.egg-info", "output"),
+            ignore=shutil.ignore_patterns(
+                "__pycache__",
+                ".pytest_cache",
+                "*.egg-info",
+                "output",
+                "verify_backtest_delivery.py",
+            ),
         )
     for name in (
         "README.md",
         "LICENSE",
-        "THIRD_PARTY_NOTICES.md",
-        "AGENTS.md",
         "pyproject.toml",
         "requirements.txt",
-        ".gitignore",
-        ".gitattributes",
         "config.py",
         "main.py",
         "run.cmd",
         "run_demo.cmd",
+        "机试题目-金融数据处理与特征工程.md",
     ):
         shutil.copyfile(root / name, source / name)
     copy_documents(root, source / "docs")
@@ -131,11 +133,9 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         root / "data/evidence/full_market_capture_20261013",
         source / "data/evidence/full_market_capture_20261013",
     )
-    for path in sorted((root / "data/evidence").glob("*.json")):
-        shutil.copyfile(path, source / "data/evidence" / path.name)
-    for path in root.glob("*.md"):
-        if not (source / path.name).exists():
-            shutil.copyfile(path, source / path.name)
+    # 保留测试实际读取的来源证据及题目回应引用的验收摘要，不遍历复制旧记录。
+    for name in DELIVERY_EVIDENCE:
+        shutil.copyfile(root / "data/evidence" / name, source / "data/evidence" / name)
     from finpipe.ops import backup
 
     example = backup(example_workspace, destination / "examples")
@@ -190,7 +190,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "源码安装见[source/README.md](source/README.md)，技术说明见"
         "[文档导航](source/docs/README.md)。独立干净Windows机器尚未验收。\n\n"
         "## 附录：完整性记录\n\n"
-        "SHA256.json记录文件摘要，provenance.json记录构建环境，供维护与排错使用。"
+        "SHA256.json记录文件摘要，供维护与排错使用。"
         "正常运行无需先手工校验。\n"
     )
     (destination / "START_HERE.md").write_text(start, encoding="utf-8", newline="\n")
@@ -208,23 +208,6 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
                     target = licenses / distribution.metadata["Name"] / item
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(original, target)
-    # 可编辑安装可能遗留重复元数据，采用与metadata.version一致的首个有效记录。
-    packages = {}
-    for dist in metadata.distributions():
-        packages.setdefault(dist.metadata["Name"], dist.version)
-    provenance = {
-        "version": version,
-        "created_at": stamp,
-        "python": sys.version,
-        "platform": platform.platform(),
-        "packages": packages,
-        "data_kind": "真实HTTP归档与明确人工夹具分别存放",
-        "clean_machine_validation": "not_run",
-        "packaging_policy": "当前源码与测试、当前文档、完整公开财务原文和小样例；历史档案留原工作区，PDF只存一份",
-    }
-    (destination / "provenance.json").write_text(
-        json.dumps(provenance, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
     files = [
         {
             "path": str(path.relative_to(destination)).replace("\\", "/"),
