@@ -35,7 +35,7 @@
     <div class="tag">面试项目 · 版本 ${version} · Windows完整交付包</div>
     <h1>金融数据处理与特征工程</h1>
     <p>选择公司与财报季度，一次运行完成采集、清洗、存储和15个财务因子计算。</p>
-    <p class="tip"><strong>先解压整个ZIP。</strong> 以下操作都在本页面所在的最外层文件夹完成，无需安装Python。</p>
+    <p class="tip"><strong>先解压整个ZIP。</strong> 以下操作都在本页面所在的最外层文件夹完成，无需安装Python或创建.venv。</p>
   </header>
 
   <section>
@@ -44,7 +44,8 @@
     <div class="buttons">
       <a class="button primary" href="${financial_report}">查看财务结果</a>
       ${backtest_link}
-      <a class="button" href="source/题目回应/示例结果/index.html">查看清洗、质量与核对示例</a>
+      <a class="button" href="题目回应/示例结果/index.html">查看清洗、质量与核对示例</a>
+      <a class="button" href="题目回应/README.md">题目回应与设计说明</a>
     </div>
     <p>财务结果来自${companies}家公司的真实归档。财务报告中可以打开完整因子CSV，查看股票、报告期、因子名称、值和状态。</p>
   </section>
@@ -95,8 +96,8 @@
     <p>财报跑通后，再按 <a href="source/docs/backtest.md">回测说明</a>中的完整配置选择公司和因子。五组至少五家公司，报告期和交易区间分别设置。</p>
     <p>默认按本系统真实已知时间使用信号，历史区间可能无有效窗口。显式选择publication_proxy才做公告近似研究；随包ROE示例使用该近似，历史财报版本未完整核验。</p>
     <ul>
-      <li><a href="source/题目回应/README.md">题目逐项回应</a>：逐项实现、代码和证据。</li>
-      <li><a href="source/题目回应/测试与验收.md">测试与验收</a>：案例、复现命令和实际边界。</li>
+      <li><a href="题目回应/README.md">题目逐项回应</a>：逐项实现、代码和证据，位于最外层“题目回应”文件夹。</li>
+      <li><a href="题目回应/测试与验收.md">测试与验收</a>：直接运行EXE的复现步骤、测试方案与可选源码测试。</li>
       <li><a href="source/README.md">源码安装与使用</a>、<a href="source/docs/README.md">技术文档导航</a>。</li>
     </ul>
     <p class="tag">.md说明可用编辑器或记事本打开；源码在source/src，测试在source/tests。使用已构建程序时无需先安装源码。</p>

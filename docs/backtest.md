@@ -12,7 +12,7 @@
 .\windows\finpipe\finpipe.exe backtest --signals .\examples\backtest_real\signals.json --market .\examples\backtest_real\market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output .\output\回测复算_01
 ```
 
-**源码**先按README安装，在含`main.py`的目录执行：
+**源码（可选）**先按[项目README](../README.md)创建`.venv`并安装依赖，再在含`main.py`和`requirements.txt`的源码目录执行；完整ZIP中该目录为`source`。仅运行上面的EXE命令无需此步骤。
 
 ```powershell
 .\.venv\Scripts\python.exe -m finpipe backtest --signals data/examples/backtest_real/signals.json --market data/examples/backtest_real/market --time-policy publication_proxy --start 2023-01-01 --end 2025-12-31 --horizon 20 --output output/回测复算_01
@@ -127,7 +127,7 @@ HTML首屏显示中文因子名称、标识、分组方式、股票池、持有�
 
 ## 高级：人工案例、在线行情和完整归档
 
-本节命令均在已安装依赖的**源码根目录**运行，适合需要单独控制采集、行情和回测的维护者。普通使用优先选择上面的完整配置。输出使用新目录，已有报告不会覆盖。
+本节命令均在已按[项目README](../README.md)创建`.venv`并安装依赖的**源码根目录**运行，完整ZIP中为`source`目录，适合需要单独控制采集、行情和回测的维护者。普通使用优先选择上面的完整配置。输出使用新目录，已有报告不会覆盖。
 
 完全离线的人工财报演示：
 

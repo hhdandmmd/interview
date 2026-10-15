@@ -17,11 +17,13 @@
 
 **完整ZIP的操作目录是同时放着`START_HERE.html`、`config.py`、`run.cmd`的最外层。** 日常编辑这里的配置；`source/config.py`供源码开发使用，`config/*.toml`供高级命令使用。
 
-### 从GitHub下载的源码
+完整ZIP不附开发虚拟环境`.venv`，程序依赖已放在`windows/finpipe`中。直接运行EXE和双击入口均无需创建虚拟环境；题目回应与示例结果位于最外层的`题目回应`文件夹。
 
-源码包不含Windows程序。先安装Python 3.13，然后在**含有`main.py`和`requirements.txt`的目录**打开PowerShell：在资源管理器地址栏输入`powershell`并回车。
+### 使用源码或运行自动测试（可选）
 
-首次安装执行：
+GitHub源码包不含Windows程序；完整ZIP的源码在`source`目录。只有选择源码运行或pytest测试时才需要本节。先安装Python 3.13，然后在**含有`main.py`和`requirements.txt`的源码目录**打开PowerShell：在资源管理器地址栏输入`powershell`并回车。
+
+首次安装执行以下两条命令，它们会在当前源码目录创建`.venv`并安装依赖：
 
 ```powershell
 py -3.13 -m venv .venv

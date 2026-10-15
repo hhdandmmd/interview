@@ -5,6 +5,8 @@ import hashlib
 import html
 import importlib.metadata as metadata
 import json
+import os
+import re
 import shutil
 import sys
 import tempfile
@@ -12,6 +14,7 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from string import Template
+from urllib.parse import unquote, urlsplit
 
 from finpipe import __version__
 
@@ -38,6 +41,36 @@ def copy_documents(root: Path, destination: Path) -> None:
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / "docs" / name, target)
+
+
+def relocate_document_links(root: Path, response: Path, destination: Path) -> None:
+    """按交付目录改写说明链接；封存的示例结果保持原字节。"""
+    source = destination / "source"
+    documents = [(root / path.relative_to(source), path) for path in source.rglob("*.md")]
+    documents.extend((path, destination / "题目回应" / path.name) for path in response.glob("*.md"))
+
+    for original, target in documents:
+        content = original.read_text(encoding="utf-8")
+
+        def replace(match: re.Match) -> str:
+            """仅调整本地文件路径，外链、页内锚点及查询参数保持不变。"""
+            link = urlsplit(match[2])
+            if link.scheme or link.netloc or not link.path:
+                return match[0]
+            referenced = (original.parent / unquote(link.path)).resolve()
+            for origin, delivered in ((response, destination / "题目回应"), (root, source)):
+                if referenced.is_relative_to(origin):
+                    relocated = delivered / referenced.relative_to(origin)
+                    relative = Path(os.path.relpath(relocated, target.parent)).as_posix()
+                    suffix = ("?" + link.query if link.query else "") + (
+                        "#" + link.fragment if link.fragment else ""
+                    )
+                    return match[1] + relative + suffix + match[3]
+            return match[0]
+
+        updated = re.sub(r"(\[[^\]]*\]\()([^\s)]+)(\))", replace, content)
+        if updated != content:
+            target.write_text(updated, encoding="utf-8", newline="\n")
 
 
 def start_page(destination: Path, snapshot_id: str, companies: int, has_backtest: bool) -> None:
@@ -99,7 +132,11 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     shutil.copytree(root / "config", binary / "config", ignore=shutil.ignore_patterns("output"))
     source = destination / "source"
     source.mkdir()
-    shutil.copytree(root / "题目回应", source / "题目回应")
+    # 开发仓库与完整交付包中的源码位置不同，均保留唯一一份题目回应。
+    response = root / "题目回应"
+    if not response.is_dir():
+        response = root.parent / "题目回应"
+    shutil.copytree(response, destination / "题目回应")
     for name in ("src", "tests", "config", "scripts"):
         shutil.copytree(
             root / name,
@@ -136,6 +173,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     # 保留测试实际读取的来源证据及题目回应引用的验收摘要，不遍历复制旧记录。
     for name in DELIVERY_EVIDENCE:
         shutil.copyfile(root / "data/evidence" / name, source / "data/evidence" / name)
+    relocate_document_links(root, response, destination)
     from finpipe.ops import backup
 
     example = backup(example_workspace, destination / "examples")
@@ -175,7 +213,7 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
     start_page(destination, published["snapshot_id"], example_companies, bool(backtest_example))
     start = (
         "# 从这里开始\n\n先解压整个ZIP，再双击同目录的[START_HERE.html](START_HERE.html)。"
-        "无需Python，以下操作都在本文件所在的最外层完成。\n\n"
+        "无需Python或.venv，以下操作都在本文件所在的最外层完成。\n\n"
         "1. 点击起始页的“查看财务结果”，先看已有样例。\n"
         "2. 双击同目录run_demo.cmd离线重跑；退出码0表示成功，按窗口的“报告路径”打开HTML。"
         "固定三家公司，结果保存到output/demo。\n"
@@ -184,9 +222,9 @@ def package(root: Path, example_workspace: Path, backtest_example: Path | None =
         "日常编辑最外层config.py；source/config.py用于源码开发。程序需要整个windows/finpipe目录。\n\n"
         "更多操作与排错见[Windows说明](source/docs/windows_usage.md)，"
         "回测见[完整配置示例](source/docs/backtest.md)。\n\n"
-        "审核材料：[题目逐项回应](source/题目回应/README.md)、"
-        "[示例结果](source/题目回应/示例结果/index.html)、"
-        "[测试与验收](source/题目回应/测试与验收.md)。\n\n"
+        "审核材料直接放在最外层题目回应文件夹：[题目逐项回应](题目回应/README.md)、"
+        "[示例结果](题目回应/示例结果/index.html)、"
+        "[测试与验收](题目回应/测试与验收.md)。\n\n"
         "源码安装见[source/README.md](source/README.md)，技术说明见"
         "[文档导航](source/docs/README.md)。独立干净Windows机器尚未验收。\n\n"
         "## 附录：完整性记录\n\n"

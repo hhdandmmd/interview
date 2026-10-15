@@ -2,7 +2,7 @@
 
 本页供已经跑通项目、需要查询和维护的人使用。第一次运行见[项目README](../README.md)，Windows操作见[Windows说明](windows_usage.md)；不需要先理解下面的版本与发布机制才能使用。
 
-本文命令统一在完整ZIP最外层执行；源码开发者在源码根目录将`.\windows\finpipe\finpipe.exe`替换为`.\.venv\Scripts\python.exe -m finpipe`。实际环境和结果见[测试与验收](../题目回应/测试与验收.md)。
+本文命令统一在完整ZIP最外层执行，无需Python。源码开发者须先按[项目README](../README.md)创建`.venv`并安装依赖，再在源码根目录将`.\windows\finpipe\finpipe.exe`替换为`.\.venv\Scripts\python.exe -m finpipe`；完整ZIP中的源码根目录是`source`。实际环境和结果见[测试与验收](../题目回应/测试与验收.md)。
 
 ## 运行路径与产物
 
